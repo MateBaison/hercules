@@ -16,10 +16,9 @@ export function AppHeader({
   }, []);
   return (
     <header className="app-header">
-      {accountAction}
       <Link
         href="/home"
-        className={accountAction ? "brand account-brand" : "brand"}
+        className="brand"
         aria-label="HERCULES — volver al inicio"
       >
         <img src="/assets/hercules-logo-v1.jpg" alt="" width={44} height={44} />
@@ -28,23 +27,26 @@ export function AppHeader({
           <small>Tu entrenamiento</small>
         </span>
       </Link>
-      <div className="header-date" aria-label="Fecha y hora">
-        {now && (
-          <>
-            <time dateTime={now.toISOString()}>
-              {new Intl.DateTimeFormat("es", {
-                day: "numeric",
-                month: "short",
-              }).format(now)}
-            </time>
-            <span>
-              {new Intl.DateTimeFormat("es", {
-                hour: "2-digit",
-                minute: "2-digit",
-              }).format(now)}
-            </span>
-          </>
-        )}
+      <div className="header-actions">
+        <div className="header-date" aria-label="Fecha y hora">
+          {now && (
+            <>
+              <time dateTime={now.toISOString()}>
+                {new Intl.DateTimeFormat("es", {
+                  day: "numeric",
+                  month: "short",
+                }).format(now)}
+              </time>
+              <span>
+                {new Intl.DateTimeFormat("es", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }).format(now)}
+              </span>
+            </>
+          )}
+        </div>
+        {accountAction}
       </div>
     </header>
   );

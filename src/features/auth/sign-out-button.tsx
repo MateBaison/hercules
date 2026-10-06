@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { DoorOpen } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppDialog } from "@/components/ui/app-dialog";
 import { signOut } from "@/lib/supabase/auth-actions";
@@ -23,9 +23,9 @@ export function SignOutButton({
   return (
     <>
       <Button
-        variant="secondary"
-        size={iconOnly ? "icon-lg" : "default"}
-        className={iconOnly ? "size-11" : "w-full"}
+        variant={iconOnly ? "destructive-solid" : "secondary"}
+        size={iconOnly ? "icon-xl" : "default"}
+        className={iconOnly ? "header-exit" : "w-full"}
         aria-label={
           iconOnly ? t("Salir de la cuenta", "Leave account") : undefined
         }
@@ -37,7 +37,7 @@ export function SignOutButton({
         }}
       >
         {iconOnly ? (
-          <DoorOpen data-icon="inline-start" />
+          <LogOut data-icon="inline-start" />
         ) : (
           t("Cerrar sesión", "Sign out")
         )}
