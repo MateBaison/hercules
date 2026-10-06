@@ -42,6 +42,25 @@ test("welcome, all navigation routes, active tab, brand home and reload", async 
     await link.click();
     await expect(page).toHaveURL(new RegExp(`${url}$`));
     await expect(link).toHaveAttribute("aria-current", "page");
+    const title = page.locator(".header-section-title");
+    await expect(title).toHaveText(label);
+    const fits = await page.locator(".app-header").evaluate((header) => {
+      const brand = header.querySelector(".brand")!.getBoundingClientRect();
+      const title = header
+        .querySelector(".header-section-title")!
+        .getBoundingClientRect();
+      const actions = header
+        .querySelector(".header-actions")!
+        .getBoundingClientRect();
+      return (
+        brand.right <= title.left &&
+        title.right <= actions.left &&
+        Math.abs(
+          brand.top + brand.height / 2 - (title.top + title.height / 2),
+        ) < 2
+      );
+    });
+    expect(fits).toBe(true);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
