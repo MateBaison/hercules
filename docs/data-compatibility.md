@@ -1,0 +1,25 @@
+# Data compatibility contract
+
+The existing Supabase table remains `public.mrgymson_state` with `user_id`, `payload` and `updated_at`. No hosted schema, policy or records were changed by this implementation. The archived SQL is a reference, not a fresh audit of actual RLS. The repository validates returned rows with Zod; no fabricated live-generated database type is claimed.
+
+Snapshots retain routines, selected routine, sessions, active workout, profile, settings, favorites and custom exercises, plus unknown fields at every persisted object level. Old aggregate sessions need not contain individual sets. Retired exercise history is not deleted. Null blanks, nullable historical durations, string profile weights/heights, photos, notes, original done/entered flags and unknown metadata survive reads/round trips.
+
+Saved data uses tolerant Zod readers; new commands use bounded/strict input schemas. Missing fields can receive compatible defaults; malformed data returns an explicit error instead of silently becoming an empty account. Seconds and repetitions remain distinct. New logged sets save input without a tick; untouched default values are not invented as completed sets.
+
+## Persistence and recovery
+
+- Verified account UUID owns its provider, local cache and repository.
+- Account keys remain `mrgymson-user-<UUID>`; the legacy guest key is preserved, never automatically uploaded into another account.
+- Initial cloud read/reconciliation happens before writes; initial defaults are not automatically uploaded.
+- Local input persistence is immediate. Cloud uploads debounce 900ms, run serially and capture edits made during an in-flight upload.
+- Failed cloud reads allow local cached editing but block cloud uploads until recovery. Disposed account work cancels requests/timers.
+- Original raw cache backups use `<key>:migration-backup-v1:<timestamp>`. Divergent copies require an explicit choice and preserve fingerprinted local/cloud conflict backups. A failed backup blocks replacement.
+- Profile, workout completion and sign-out can flush explicitly. Upload errors remain visible; a pending local save must not be called a successful cloud save.
+- Full photo-heavy payloads go directly browser → Supabase under the user's session/RLS. Server summary reads select only small profile fields. No service-role key is used.
+- No realtime merge/CAS is introduced: simultaneous devices keep the existing last-write-wins limitation. Recovery on loading a divergent pending copy is not a guarantee against concurrent writes.
+
+## Origin handoff
+
+New Vercel origins cannot access the old site's storage/cookies. Reauthentication restores cloud data only; explicit export/import handles unsynced old-origin data. Profile JSON exports include private records/photos and must not be publicly shared. Routine links and workout posters intentionally omit private profile fields, body weights, photos and exercise notes.
+
+Historical set editing preserves untouched original fields/totals where only metadata changes. Calendar copies receive independent IDs/date and omit original photos/body weights. All optimized image assets and original baseline files are verified by SHA-256.

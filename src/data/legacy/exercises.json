@@ -1,0 +1,2042 @@
+[
+  {
+    "id": "press-de-banca-con-barra",
+    "name": "Press de banca con barra",
+    "group": "Pectorales",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "press-banca-barra-mrgymson.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-banca-inclinado-con-mancuernas",
+    "name": "Press banca inclinado con mancuernas",
+    "group": "Pectorales",
+    "equipment": "Mancuernas",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "press-banca-inclinado-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "aperturas-en-maquina-peck-deck-o-contractora",
+    "name": "Aperturas en máquina Peck Deck o Contractora",
+    "group": "Pectorales",
+    "equipment": "Máquina",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "aperturas-en-maquina-peck-deck-o-contractora.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "cruce-de-poleas",
+    "name": "Cruce de poleas",
+    "group": "Pectorales",
+    "equipment": "Polea",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "cruce-de-poleas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-de-banca-inclinado-con-barra",
+    "name": "Press de banca inclinado con barra",
+    "group": "Pectorales",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "press-de-banca-inclinado-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-de-banca-con-mancuernas",
+    "name": "Press de banca con mancuernas",
+    "group": "Pectorales",
+    "equipment": "Mancuernas",
+    "pattern": "push",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "press-de-banca-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "aperturas-con-mancuernas",
+    "name": "Aperturas con mancuernas",
+    "group": "Pectorales",
+    "equipment": "Mancuernas",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "aperturas-con-mancuernas-v3.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "aperturas-inclinadas-con-mancuernas",
+    "name": "Aperturas inclinadas con mancuernas",
+    "group": "Pectorales",
+    "equipment": "Mancuernas",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "aperturas-inclinadas-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-de-banca-en-maquina-sentado",
+    "name": "Press de banca en máquina sentado",
+    "group": "Pectorales",
+    "equipment": "Máquina",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "press-de-banca-en-maquina-sentado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-de-banca-declinado-con-barra",
+    "name": "Press de banca declinado con barra",
+    "group": "Pectorales",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "press-de-banca-declinado-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-de-banca-declinado-con-mancuernas",
+    "name": "Press de banca declinado con mancuernas",
+    "group": "Pectorales",
+    "equipment": "Mancuernas",
+    "pattern": "push",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "press-de-banca-declinado-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "flexiones",
+    "name": "Flexiones",
+    "group": "Pectorales",
+    "equipment": "Peso corporal",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "flexiones.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "remo-con-mancuerna-a-una-mano",
+    "name": "Remo con mancuerna a una mano",
+    "group": "Espalda",
+    "equipment": "Mancuernas",
+    "pattern": "pull",
+    "level": "Intermedio",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/remo-con-mancuerna-a-una-mano.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "jalon-con-agarre-ancho",
+    "name": "Jalón con agarre ancho",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/jalon-con-agarre-ancho.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "remo-en-maquina",
+    "name": "Remo en máquina",
+    "group": "Espalda",
+    "equipment": "Máquina",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/remo-en-maquina.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "jalon-al-pecho-con-agarre-cerrado",
+    "name": "Jalón al pecho con agarre cerrado",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/jalon-al-pecho-con-agarre-cerrado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "remo-con-barra",
+    "name": "Remo con barra",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/remo-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "jalon-tras-nuca",
+    "name": "Jalón tras nuca",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "pull",
+    "level": "Intermedio",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/jalon-tras-nuca.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "jalon-al-pecho-con-agarre-invertido",
+    "name": "Jalón al pecho con agarre invertido",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/jalon-al-pecho-con-agarre-invertido.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "jalon-en-polea-con-cuerda",
+    "name": "Jalón en polea con cuerda",
+    "group": "Espalda",
+    "equipment": "Polea",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/jalon-en-polea-con-cuerda.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "remo-en-barra-t",
+    "name": "Remo en barra T",
+    "group": "Espalda",
+    "equipment": "Barra T",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/remo-en-barra-t.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "remo-inclinado-con-barra-con-agarre-supinado",
+    "name": "Remo inclinado con barra con agarre supinado",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/remo-inclinado-con-barra-con-agarre-supinado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-en-barra-fija",
+    "name": "Elevaciones en barra fija",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "pull",
+    "level": "Intermedio",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/elevaciones-en-barra-fija.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-en-barra-fija-con-agarre-supinado",
+    "name": "Elevaciones en barra fija con agarre supinado",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/elevaciones-en-barra-fija-con-agarre-supinado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "jalon-dorsal-con-brazos-rectos",
+    "name": "Jalón dorsal con brazos rectos",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/jalon-dorsal-con-brazos-rectos.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "remo-inclinado-con-mancuernas",
+    "name": "Remo inclinado con mancuernas",
+    "group": "Espalda",
+    "equipment": "Mancuernas",
+    "pattern": "pull",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/remo-inclinado-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "pullover-con-mancuerna",
+    "name": "Pullover con mancuerna",
+    "group": "Espalda",
+    "equipment": "Mancuernas",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/pullover-con-mancuerna.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "pullover-con-barra",
+    "name": "Pullover con barra",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "move",
+    "level": "Intermedio",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/pullover-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "peso-muerto-con-barra",
+    "name": "Peso muerto con barra",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "peso-muerto-sumo-con-barra",
+    "name": "Peso muerto sumo con barra",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-sumo-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "peso-muerto-con-barra-hexagonal",
+    "name": "Peso muerto con barra hexagonal",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-con-barra-hexagonal.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "peso-muerto-con-mancuernas",
+    "name": "Peso muerto con mancuernas",
+    "group": "Espalda",
+    "equipment": "Mancuernas",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "encogimiento-de-hombros-con-barra",
+    "name": "Encogimiento de hombros con barra",
+    "group": "Espalda",
+    "equipment": "Barra",
+    "pattern": "move",
+    "level": "Intermedio",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/encogimiento-de-hombros-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "encogimiento-de-hombros-con-mancuernas",
+    "name": "Encogimiento de hombros con mancuernas",
+    "group": "Espalda",
+    "equipment": "Mancuernas",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/encogimiento-de-hombros-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extensiones-lumbares-en-banco-a-45",
+    "name": "Extensiones lumbares en banco a 45°",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Ajustá el banco a 45° para que el apoyo quede justo debajo del pliegue de la cadera. Asegurá los pies y cruzá los brazos sobre el pecho.",
+      "Activá el abdomen y bajá el tronco lentamente desde la cadera, manteniendo la espalda y el cuello alineados. Limitá el recorrido si perdés la postura.",
+      "Subí con control hasta alinear el tronco con las piernas, sin arquear de más la zona lumbar ni usar impulso. También participan glúteos e isquiotibiales; detenete si aparece dolor."
+    ],
+    "image": "exercises/extensiones-lumbares-en-banco-a-45.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-tronco-en-decubito-prono-colchoneta",
+    "name": "Extensión de tronco en decúbito prono (colchoneta)",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Acostate boca abajo sobre una colchoneta, con las piernas estiradas y los brazos extendidos hacia delante (variante Superman). Mantené la mirada hacia el piso y el cuello alineado.",
+      "Activá suavemente el abdomen y elevá los brazos y las piernas apenas unos centímetros, con una elevación leve del pecho. Conservá el abdomen y la pelvis apoyados; no levantes la cabeza ni fuerces el arco lumbar.",
+      "Hacé una pausa breve y bajá lentamente, sin rebotes y respirando con normalidad. Trabaja los extensores lumbares junto con glúteos y hombros; detenete si aparece dolor."
+    ],
+    "image": "exercises/extension-de-tronco-en-decubito-prono-colchoneta.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-de-hombro-con-mancuernas",
+    "name": "Press de hombro con mancuernas",
+    "group": "Hombros",
+    "equipment": "Mancuernas",
+    "pattern": "push",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-de-hombro-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-lateral-con-mancuernas",
+    "name": "Elevación lateral con mancuernas",
+    "group": "Hombros",
+    "equipment": "Mancuernas",
+    "pattern": "raise",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/elevacion-lateral-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-frontal-con-mancuernas",
+    "name": "Elevación frontal con mancuernas",
+    "group": "Hombros",
+    "equipment": "Mancuernas",
+    "pattern": "raise",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/elevacion-frontal-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "cruces-inversos-en-polea-alta",
+    "name": "Cruces inversos en polea alta",
+    "group": "Hombros",
+    "equipment": "Polea",
+    "pattern": "raise",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/cruces-inversos-en-polea-alta.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-de-hombros-en-maquina-smith",
+    "name": "Press de hombros en máquina Smith",
+    "group": "Hombros",
+    "equipment": "Máquina",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-de-hombros-en-maquina-smith.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "remo-alto-con-barra",
+    "name": "Remo alto con barra",
+    "group": "Hombros",
+    "equipment": "Barra",
+    "pattern": "pull",
+    "level": "Intermedio",
+    "steps": [
+      "Fijá el tronco y empezá con hombros lejos de las orejas.",
+      "Llevá los codos en la dirección indicada, sin balancear el cuerpo.",
+      "Regresá despacio hasta extender los brazos manteniendo tensión."
+    ],
+    "image": "exercises/remo-alto-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-posteriores-para-hombros-pajaro",
+    "name": "Elevaciones posteriores para hombros “Pájaro”",
+    "group": "Hombros",
+    "equipment": "Peso corporal",
+    "pattern": "raise",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/elevaciones-posteriores-para-hombros-pajaro.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-lateral-con-cable-a-una-mano",
+    "name": "Elevación lateral con cable a una mano",
+    "group": "Hombros",
+    "equipment": "Polea",
+    "pattern": "raise",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/elevacion-lateral-con-cable-a-una-mano-v3.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-militar-con-mancuernas",
+    "name": "Press militar con mancuernas",
+    "group": "Hombros",
+    "equipment": "Mancuernas",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-militar-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-militar",
+    "name": "Press militar",
+    "group": "Hombros",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-militar.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-frontales-con-cable-a-una-mano",
+    "name": "Elevaciones frontales con cable a una mano",
+    "group": "Hombros",
+    "equipment": "Polea",
+    "pattern": "move",
+    "level": "Intermedio",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/elevaciones-frontales-con-cable-a-una-mano.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-frontales-con-barra",
+    "name": "Elevaciones frontales con barra",
+    "group": "Hombros",
+    "equipment": "Barra",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/elevaciones-frontales-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-militar-sentado-con-barra",
+    "name": "Press militar sentado con barra",
+    "group": "Hombros",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-militar-sentado-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-militar-de-pie",
+    "name": "Press militar de pie",
+    "group": "Hombros",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-militar-de-pie.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-frontal-con-mancuernas-alternas-agarre-neutro",
+    "name": "Elevación frontal con mancuernas alternas agarre neutro",
+    "group": "Hombros",
+    "equipment": "Mancuernas",
+    "pattern": "raise",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/elevacion-frontal-con-mancuernas-alternas-agarre-neutro.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-frontal-con-un-brazo-en-polea-baja-agarre-neutro",
+    "name": "Elevación frontal con un brazo en polea baja agarre neutro",
+    "group": "Hombros",
+    "equipment": "Polea",
+    "pattern": "raise",
+    "level": "Intermedio",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/elevacion-frontal-con-un-brazo-en-polea-baja-agarre-neutro.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-frontal-con-mancuerna-a-dos-manos",
+    "name": "Elevación frontal con mancuerna a dos manos",
+    "group": "Hombros",
+    "equipment": "Mancuernas",
+    "pattern": "raise",
+    "level": "Inicial",
+    "steps": [
+      "Fijá el torso y mantené una leve flexión de codos.",
+      "Elevá los brazos en el plano indicado sin encoger los hombros.",
+      "Bajá lentamente sin usar impulso."
+    ],
+    "image": "exercises/elevacion-frontal-con-mancuerna-a-dos-manos.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-con-barra",
+    "name": "Curl con barra",
+    "group": "Bíceps",
+    "equipment": "Barra",
+    "pattern": "curl",
+    "level": "Intermedio",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-alterno-con-mancuernas",
+    "name": "Curl alterno con mancuernas",
+    "group": "Bíceps",
+    "equipment": "Mancuernas",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-alterno-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-con-barra-ez",
+    "name": "Curl con barra EZ",
+    "group": "Bíceps",
+    "equipment": "Barra",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-con-barra-ez.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-de-predicador-con-barra-ez",
+    "name": "Curl de predicador con barra EZ",
+    "group": "Bíceps",
+    "equipment": "Barra",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-de-predicador-con-barra-ez.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-alterno-de-martillo-con-mancuernas",
+    "name": "Curl alterno de martillo con mancuernas",
+    "group": "Bíceps",
+    "equipment": "Mancuernas",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-alterno-de-martillo-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-inclinado-con-mancuernas",
+    "name": "Curl inclinado con mancuernas",
+    "group": "Bíceps",
+    "equipment": "Mancuernas",
+    "pattern": "curl",
+    "level": "Intermedio",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-inclinado-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-concentrado-con-mancuernas",
+    "name": "Curl concentrado con mancuernas",
+    "group": "Bíceps",
+    "equipment": "Mancuernas",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-concentrado-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-de-cable-en-polea-baja-a-una-mano",
+    "name": "Curl de cable en polea baja a una mano",
+    "group": "Bíceps",
+    "equipment": "Polea",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-de-cable-en-polea-baja-a-una-mano.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-de-cable-con-barra-recta-en-polea-baja",
+    "name": "Curl de cable con barra recta en polea baja",
+    "group": "Bíceps",
+    "equipment": "Barra",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-de-cable-con-barra-recta-en-polea-baja.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-de-muneca-con-barra-sentado",
+    "name": "Curl de muñeca con barra sentado",
+    "group": "Bíceps",
+    "equipment": "Barra",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-de-muneca-con-barra-sentado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-de-barra-invertido",
+    "name": "Curl de barra invertido",
+    "group": "Bíceps",
+    "equipment": "Barra",
+    "pattern": "curl",
+    "level": "Intermedio",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-de-barra-invertido.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-tumbado",
+    "name": "Extensión de tríceps tumbado",
+    "group": "Tríceps",
+    "equipment": "Peso corporal",
+    "pattern": "triceps",
+    "level": "Intermedio",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-tumbado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-en-polea",
+    "name": "Extensión de tríceps en polea",
+    "group": "Tríceps",
+    "equipment": "Polea",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-en-polea.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-en-polea-con-cuerda",
+    "name": "Extensión de tríceps en polea con cuerda",
+    "group": "Tríceps",
+    "equipment": "Polea",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-en-polea-con-cuerda.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-con-polea-trasnuca",
+    "name": "Extensión de tríceps con polea trasnuca",
+    "group": "Tríceps",
+    "equipment": "Polea",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Colócate de espaldas a la polea baja y toma la cuerda con ambas manos detrás de la cabeza.",
+      "Mantén el abdomen firme y los codos elevados, apuntando hacia delante y cerca de la cabeza.",
+      "Extiende los codos llevando las manos por encima de la cabeza; vuelve lentamente a la posición inicial."
+    ],
+    "image": "exercises/extension-triceps-polea-trasnuca.svg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza",
+    "name": "Extensión de tríceps con mancuernas por encima de la cabeza",
+    "group": "Tríceps",
+    "equipment": "Mancuernas",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-banca-con-agarre-cerrado",
+    "name": "Press banca con agarre cerrado",
+    "group": "Tríceps",
+    "equipment": "Peso corporal",
+    "pattern": "push",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-banca-con-agarre-cerrado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "patadas-traseras",
+    "name": "Patadas traseras",
+    "group": "Tríceps",
+    "equipment": "Peso corporal",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/patadas-traseras.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-con-cable-de-agarre-inverso-con-barra",
+    "name": "Extensión de tríceps con cable de agarre inverso con barra",
+    "group": "Tríceps",
+    "equipment": "Barra",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-con-cable-de-agarre-inverso-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-con-cable-a-una-mano",
+    "name": "Extensión de tríceps con cable a una mano",
+    "group": "Tríceps",
+    "equipment": "Polea",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-con-cable-a-una-mano.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado",
+    "name": "Extensión de tríceps con cable a una mano con agarre supinado",
+    "group": "Tríceps",
+    "equipment": "Polea",
+    "pattern": "triceps",
+    "level": "Inicial",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-triceps-con-mancuernas-tumbado",
+    "name": "Extensión de tríceps con mancuernas tumbado",
+    "group": "Tríceps",
+    "equipment": "Mancuernas",
+    "pattern": "triceps",
+    "level": "Intermedio",
+    "steps": [
+      "Fijá hombros y codos antes de comenzar.",
+      "Extendé el codo sin desplazar la parte superior del brazo.",
+      "Volvé lentamente hasta una flexión cómoda."
+    ],
+    "image": "exercises/extension-de-triceps-con-mancuernas-tumbado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "press-frances-sentado-con-barra",
+    "name": "Press francés sentado con barra",
+    "group": "Tríceps",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/press-frances-sentado-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "fondos-en-banco",
+    "name": "Fondos en banco",
+    "group": "Tríceps",
+    "equipment": "Peso corporal",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/fondos-en-banco.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "fondos-en-barras-paralelas",
+    "name": "Fondos en barras paralelas",
+    "group": "Tríceps",
+    "equipment": "Barra",
+    "pattern": "push",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pies, tronco y omóplatos antes de mover la carga.",
+      "Bajá con control hasta un rango cómodo, sin perder la alineación.",
+      "Empujá siguiendo la trayectoria del implemento y evitá bloquear de golpe."
+    ],
+    "image": "exercises/fondos-en-barras-paralelas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "crunch",
+    "name": "Crunch",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Intermedio",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/crunch.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "crunch-oblicuo",
+    "name": "Crunch oblicuo",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/crunch-oblicuo.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "abdominales-en-maquina",
+    "name": "Abdominales en máquina",
+    "group": "Abdominales",
+    "equipment": "Máquina",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/abdominales-en-maquina.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "abdominales-con-cuerda-en-polea-alta",
+    "name": "Abdominales con cuerda en polea alta",
+    "group": "Abdominales",
+    "equipment": "Polea",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/abdominales-con-cuerda-en-polea-alta.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "plancha",
+    "name": "Plancha",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Apoyá antebrazos y puntas de los pies, con los codos debajo de los hombros.",
+      "Mantené el cuerpo alineado y el abdomen activo, sin hundir ni elevar la cadera.",
+      "Sostené la posición durante los segundos indicados, respirando con normalidad. Terminá la serie si perdés la postura."
+    ],
+    "image": "exercises/plancha.jpg",
+    "tracking": "seconds"
+  },
+  {
+    "id": "elevacion-de-piernas",
+    "name": "Elevación de piernas",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Intermedio",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/elevacion-de-piernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "encogimientos-de-rodillas-para-abdominales",
+    "name": "Encogimientos de rodillas para abdominales",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/encogimientos-de-rodillas-para-abdominales.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "abdominales-con-brazos-estirados",
+    "name": "Abdominales con brazos estirados",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/abdominales-con-brazos-estirados.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "plancha-con-flexion",
+    "name": "Plancha con flexión",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/plancha-con-flexion.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla",
+    "name": "Sentadilla",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Intermedio",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "prensa-de-piernas",
+    "name": "Prensa de piernas",
+    "group": "Piernas",
+    "equipment": "Máquina",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/prensa-de-piernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-de-piernas",
+    "name": "Extensión de piernas",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/extension-de-piernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "zancada",
+    "name": "Zancada",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/zancada.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "curl-de-pierna-tumbado-en-maquina-de-femoral",
+    "name": "Curl de pierna tumbado en máquina de femoral",
+    "group": "Piernas",
+    "equipment": "Máquina",
+    "pattern": "curl",
+    "level": "Inicial",
+    "steps": [
+      "Mantené los codos estables y las muñecas alineadas.",
+      "Flexioná el codo sin impulsar el torso.",
+      "Descendé por completo y con control."
+    ],
+    "image": "exercises/curl-de-pierna-tumbado-en-maquina-de-femoral.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-hack",
+    "name": "Sentadilla Hack",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Intermedio",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-hack.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "extension-a-una-pierna",
+    "name": "Extensión a una pierna",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/extension-a-una-pierna.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-frontal",
+    "name": "Sentadilla frontal",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-frontal.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "peso-muerto-rumano-con-mancuernas",
+    "name": "Peso muerto rumano con mancuernas",
+    "group": "Piernas",
+    "equipment": "Mancuernas",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-rumano-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "peso-muerto-rumano-con-barra",
+    "name": "Peso muerto rumano con barra",
+    "group": "Piernas",
+    "equipment": "Barra",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-rumano-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-goblet-con-mancuerna",
+    "name": "Sentadilla Goblet con mancuerna",
+    "group": "Piernas",
+    "equipment": "Mancuernas",
+    "pattern": "squat",
+    "level": "Intermedio",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-goblet-con-mancuerna.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "salto-rodillas-al-pecho",
+    "name": "Salto rodillas al pecho",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "core",
+    "level": "Inicial",
+    "steps": [
+      "Alineá costillas y pelvis; activá el abdomen antes de moverte.",
+      "Realizá el recorrido sin tirar del cuello ni arquear la espalda.",
+      "Volvé con control manteniendo la respiración fluida."
+    ],
+    "image": "exercises/salto-rodillas-al-pecho.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "burpees",
+    "name": "Burpees",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/burpees.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadillas-con-propio-peso",
+    "name": "Sentadillas con propio peso",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadillas-con-propio-peso.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadillas-con-balon-medicinal",
+    "name": "Sentadillas con balón medicinal",
+    "group": "Piernas",
+    "equipment": "Balón medicinal",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadillas-con-balon-medicinal.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-bulgara-con-barra",
+    "name": "Sentadilla búlgara con barra",
+    "group": "Piernas",
+    "equipment": "Barra",
+    "pattern": "squat",
+    "level": "Intermedio",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-bulgara-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-bulgara-con-propio-peso",
+    "name": "Sentadilla búlgara con propio peso",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-bulgara-con-propio-peso.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-con-minibanda",
+    "name": "Sentadilla con minibanda",
+    "group": "Piernas",
+    "equipment": "Banda",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-con-minibanda.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-con-salto",
+    "name": "Sentadilla con salto",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-con-salto.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-isometrica-apoyado-sobre-la-pared",
+    "name": "Sentadilla isométrica apoyado sobre la pared",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-isometrica-apoyado-sobre-la-pared.jpg",
+    "tracking": "seconds"
+  },
+  {
+    "id": "peso-muerto-con-balon-medicinal",
+    "name": "Peso muerto con balón medicinal",
+    "group": "Piernas",
+    "equipment": "Balón medicinal",
+    "pattern": "hinge",
+    "level": "Intermedio",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-con-balon-medicinal.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "peso-muerto-a-una-pierna",
+    "name": "Peso muerto a una pierna",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/peso-muerto-a-una-pierna.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "sentadilla-sumo-con-kettlebell",
+    "name": "Sentadilla sumo con kettlebell",
+    "group": "Piernas",
+    "equipment": "Kettlebell",
+    "pattern": "squat",
+    "level": "Inicial",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/sentadilla-sumo-con-kettlebell.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "buenos-dias-con-barra",
+    "name": "Buenos días con barra",
+    "group": "Piernas",
+    "equipment": "Barra",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/buenos-dias-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "puente-con-propio-peso",
+    "name": "Puente con propio peso",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/puente-con-propio-peso.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "puentes-a-una-pierna",
+    "name": "Puentes a una pierna",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "hip",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/puentes-a-una-pierna.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "puente-con-bandas",
+    "name": "Puente con bandas",
+    "group": "Piernas",
+    "equipment": "Banda",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/puente-con-bandas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "caminata-de-pato",
+    "name": "Caminata de pato",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/caminata-de-pato.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "superman-en-cuadrupedia",
+    "name": "Superman en cuadrupedia",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/superman-en-cuadrupedia.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "groiners",
+    "name": "Groiners",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/groiners.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "hidrantes",
+    "name": "Hidrantes",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "hip",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/hidrantes.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-de-cadera-con-maquina-smith",
+    "name": "Elevaciones de cadera con máquina Smith",
+    "group": "Piernas",
+    "equipment": "Máquina",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/elevaciones-de-cadera-con-maquina-smith.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-de-cadera-con-barra",
+    "name": "Elevaciones de cadera con barra",
+    "group": "Piernas",
+    "equipment": "Barra",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/elevaciones-de-cadera-con-barra.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "abducciones-de-cadera-sentado-con-banda",
+    "name": "Abducciones de cadera sentado con banda",
+    "group": "Piernas",
+    "equipment": "Banda",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/abducciones-de-cadera-sentado-con-banda.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "abduccion-de-cadera-en-maquina",
+    "name": "Abducción de cadera en máquina",
+    "group": "Piernas",
+    "equipment": "Máquina",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/abduccion-de-cadera-en-maquina.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "abduccion-con-polea",
+    "name": "Abducción con polea",
+    "group": "Piernas",
+    "equipment": "Polea",
+    "pattern": "hip",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/abduccion-con-polea.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-en-posicion-de-rana",
+    "name": "Elevaciones en posición de rana",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/elevaciones-en-posicion-de-rana.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-cortas-en-posicion-de-rana-con-maquina-smith",
+    "name": "Elevaciones cortas en posición de rana con máquina Smith",
+    "group": "Piernas",
+    "equipment": "Máquina",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/elevaciones-cortas-en-posicion-de-rana-con-maquina-smith.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "almejas-laterales-con-banda",
+    "name": "Almejas laterales con banda",
+    "group": "Piernas",
+    "equipment": "Banda",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/almejas-laterales-con-banda.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "levantamiento-de-pierna-acostado-de-lado",
+    "name": "Levantamiento de pierna acostado de lado",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/levantamiento-de-pierna-acostado-de-lado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "step-up-con-mancuernas",
+    "name": "Step Up con mancuernas",
+    "group": "Piernas",
+    "equipment": "Mancuernas",
+    "pattern": "squat",
+    "level": "Intermedio",
+    "steps": [
+      "Afirmá todo el pie y alineá rodillas con los dedos.",
+      "Descendé flexionando cadera y rodillas con el tronco firme.",
+      "Empujá el suelo para volver sin perder la postura."
+    ],
+    "image": "exercises/step-up-con-mancuernas.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "caminata-lateral-con-minibanda",
+    "name": "Caminata lateral con minibanda",
+    "group": "Piernas",
+    "equipment": "Banda",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/caminata-lateral-con-minibanda.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-de-rodilla",
+    "name": "Elevaciones de rodilla",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/elevaciones-de-rodilla-v2.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "columpios-con-kettlebell",
+    "name": "Columpios con kettlebell",
+    "group": "Piernas",
+    "equipment": "Kettlebell",
+    "pattern": "hinge",
+    "level": "Inicial",
+    "steps": [
+      "Desbloqueá las rodillas y llevá la cadera hacia atrás.",
+      "Mantené la carga cerca y la espalda estable.",
+      "Extendé la cadera para volver, sin hiperextender la zona lumbar."
+    ],
+    "image": "exercises/columpios-con-kettlebell.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "contragolpe-con-cable",
+    "name": "Contragolpe con cable",
+    "group": "Piernas",
+    "equipment": "Polea",
+    "pattern": "move",
+    "level": "Inicial",
+    "steps": [
+      "Prepará una base estable y revisá el recorrido sin carga.",
+      "Ejecutá el movimiento de manera controlada.",
+      "Volvé a la posición inicial sin perder la alineación."
+    ],
+    "image": "exercises/contragolpe-con-cable-v6.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "patadas-de-burro",
+    "name": "Patadas de burro",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "hip",
+    "level": "Intermedio",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/patadas-de-burro.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevaciones-de-cadera-acostado-lateralmente",
+    "name": "Elevaciones de cadera acostado lateralmente",
+    "group": "Piernas",
+    "equipment": "Peso corporal",
+    "pattern": "hip",
+    "level": "Inicial",
+    "steps": [
+      "Estabilizá pelvis y abdomen antes de iniciar.",
+      "Mové la cadera o la pierna sin compensar con la zona lumbar.",
+      "Volvé de forma lenta conservando la tensión."
+    ],
+    "image": "exercises/elevaciones-de-cadera-acostado-lateralmente.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-de-gemelos-sentado",
+    "name": "Elevación de gemelos sentado",
+    "group": "Gemelos",
+    "equipment": "Peso corporal",
+    "pattern": "calf",
+    "level": "Intermedio",
+    "steps": [
+      "Apoyá el antepié y mantené estable el resto del cuerpo.",
+      "Elevá los talones hasta una contracción clara.",
+      "Descendé despacio hasta un estiramiento cómodo, sin rebotar."
+    ],
+    "image": "exercises/elevacion-de-gemelos-sentado.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "elevacion-de-gemelos-de-pie",
+    "name": "Elevación de gemelos de pie",
+    "group": "Gemelos",
+    "equipment": "Peso corporal",
+    "pattern": "calf",
+    "level": "Inicial",
+    "steps": [
+      "Apoyá el antepié y mantené estable el resto del cuerpo.",
+      "Elevá los talones hasta una contracción clara.",
+      "Descendé despacio hasta un estiramiento cómodo, sin rebotar."
+    ],
+    "image": "exercises/elevacion-de-gemelos-de-pie.jpg",
+    "tracking": "reps"
+  }
+]

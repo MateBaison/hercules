@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">Extensión de tríceps con polea trasnuca</title>
+  <desc id="desc">Dos fases: cuerda detrás de la cabeza con codos flexionados y extensión de los brazos sobre la cabeza.</desc>
+  <defs>
+    <linearGradient id="skin" x2="0" y2="1"><stop stop-color="#efc2a3"/><stop offset="1" stop-color="#bc8065"/></linearGradient>
+    <linearGradient id="metal" x2="1"><stop stop-color="#242832"/><stop offset=".45" stop-color="#59606d"/><stop offset="1" stop-color="#242832"/></linearGradient>
+    <linearGradient id="coral" x2="0" y2="1"><stop stop-color="#ff9169"/><stop offset="1" stop-color="#f14f32"/></linearGradient>
+    <filter id="shadow"><feGaussianBlur stdDeviation="14"/></filter>
+    <g id="station">
+      <path d="M493 52h31v490h-31zM550 52h24v490h-24z" fill="url(#metal)" stroke="#717987" stroke-width="3"/>
+      <path d="M496 61h25v480h-25z" fill="#272b34"/><path d="M495 506h80v34h-80z" fill="#242832" stroke="#656d78" stroke-width="3"/>
+      <g fill="#11141a" stroke="#68717d" stroke-width="3"><circle cx="508" cy="94" r="6"/><circle cx="508" cy="132" r="6"/><circle cx="508" cy="170" r="6"/><circle cx="508" cy="208" r="6"/><circle cx="508" cy="246" r="6"/><circle cx="508" cy="284" r="6"/><circle cx="508" cy="322" r="6"/><circle cx="508" cy="360" r="6"/><circle cx="508" cy="398" r="6"/></g>
+      <path d="M492 464h48v13h-48z" fill="#161a21" stroke="#727a85" stroke-width="3"/><circle cx="514" cy="463" r="12" fill="#171b22" stroke="#8a929b" stroke-width="4"/>
+      <path d="M529 540v16M566 540v16M476 557h117" fill="none" stroke="#59616e" stroke-width="9" stroke-linecap="round"/>
+    </g>
+    <g id="torso">
+      <path d="M222 147q28-24 58 0l27 33-12 118q-42 27-88 0l-12-118z" fill="url(#skin)"/>
+      <path d="M217 151q-31 17-37 61l20 75q14 14 27 2l9-67 19-46-9-31zM285 151q31 17 37 61l-20 75q-14 14-27 2l-9-67-19-46 9-31z" fill="url(#skin)"/>
+      <path d="M207 191q18-21 30-2l-7 34q-12 12-25 1zM296 191q-18-21-30-2l7 34q12 12 25 1z" fill="url(#coral)"/>
+      <path d="M210 293q69 22 139 0l-5 104q-64 20-128 0z" fill="#151820"/>
+      <path d="M224 394h43l-5 122h-42zM280 394h43l17 122h-42z" fill="url(#skin)"/>
+      <path d="M217 507h53q10 0 10 10v13h-72v-9q0-14 9-14zM291 507h50q14 0 18 12l3 11h-74z" fill="#171a21" stroke="#69717c" stroke-width="3"/>
+      <ellipse cx="252" cy="88" rx="36" ry="43" fill="url(#skin)"/><path d="M218 85q0-49 38-47 35 2 35 38l-19-11-43 15-11 10z" fill="#262329"/>
+      <path d="M244 125h18v29h-18z" fill="url(#skin)"/>
+    </g>
+    <g id="rope"><path d="M220 143v-26q0-10 10-10h10m24 0h10q10 0 10 10v26" fill="none" stroke="#c4c9d0" stroke-width="6" stroke-linecap="round"/><path d="M245 104l-6-14m30 14 6-14" stroke="#aaaeb5" stroke-width="6" stroke-linecap="round"/></g>
+  </defs>
+  <rect width="1200" height="600" fill="#151820"/>
+  <path d="M0 506h1200v94H0z" fill="#12151b"/><ellipse cx="300" cy="535" rx="170" ry="24" fill="#050608" opacity=".5" filter="url(#shadow)"/><ellipse cx="900" cy="535" rx="170" ry="24" fill="#050608" opacity=".5" filter="url(#shadow)"/>
+  <g transform="translate(0)"><use href="#station"/><use href="#torso"/>
+    <path d="M196 178q-34 23-29 61l25 22q18-2 22-18l-10-30 18-47M310 178q34 23 29 61l-25 22q-18-2-22-18l10-30-18-47" fill="url(#skin)" stroke="#a86f58" stroke-width="2"/>
+    <path d="M188 243l37-4 25-52-16-11-29 36-19 12zM318 243l-37-4-25-52 16-11 29 36 19 12z" fill="url(#skin)" stroke="#a86f58" stroke-width="2"/>
+    <use href="#rope"/><path d="M282 111L514 463" fill="none" stroke="#c5c9d0" stroke-width="3"/><path d="M505 458l9 5-6 10-9-5z" fill="#858d99"/>
+  </g>
+  <path d="M600 0v600" stroke="#343944" stroke-width="2"/>
+  <g transform="translate(600)"><use href="#station"/><use href="#torso"/>
+    <path d="M196 178q-29 15-21 42l-4-104q1-18 18-23l30-9-2 28-21 8zM310 178q29 15 21 42l4-104q-1-18-18-23l-30-9 2 28 21 8z" fill="url(#skin)" stroke="#a86f58" stroke-width="2"/>
+    <path d="M180 123l32-8 4-47q1-17 17-20l8 25-4 54q-2 19-20 25l-36 4zM326 123l-32-8-4-47q-1-17-17-20l-8 25 4 54q2 19 20 25l36 4z" fill="url(#skin)" stroke="#a86f58" stroke-width="2"/>
+    <path d="M183 92q12-18 27-8l-2 34-30 3zM329 92q-12-18-27-8l2 34 30 3z" fill="url(#coral)"/>
+    <use href="#rope"/><path d="M282 111L514 463" fill="none" stroke="#c5c9d0" stroke-width="3"/><path d="M505 458l9 5-6 10-9-5z" fill="#858d99"/>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+{
+  "Pectorales": [
+    "press-de-banca-con-barra",
+    "press-banca-inclinado-con-mancuernas",
+    "aperturas-en-maquina-peck-deck-o-contractora",
+    "press-de-banca-con-mancuernas",
+    "cruce-de-poleas",
+    "flexiones"
+  ],
+  "Espalda": [
+    "jalon-con-agarre-ancho",
+    "remo-con-mancuerna-a-una-mano",
+    "remo-en-maquina",
+    "jalon-al-pecho-con-agarre-cerrado",
+    "remo-con-barra",
+    "jalon-dorsal-con-brazos-rectos"
+  ],
+  "Hombros": [
+    "press-de-hombro-con-mancuernas",
+    "elevacion-lateral-con-mancuernas",
+    "elevaciones-posteriores-para-hombros-pajaro",
+    "elevacion-lateral-con-cable-a-una-mano"
+  ],
+  "Bíceps": [
+    "curl-con-barra-ez",
+    "curl-alterno-de-martillo-con-mancuernas",
+    "curl-inclinado-con-mancuernas",
+    "curl-alterno-con-mancuernas"
+  ],
+  "Tríceps": [
+    "extension-de-triceps-en-polea",
+    "extension-de-triceps-con-polea-trasnuca",
+    "extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza",
+    "extension-de-triceps-en-polea-con-cuerda"
+  ],
+  "Abdominales": [
+    "crunch",
+    "elevacion-de-piernas",
+    "crunch-oblicuo",
+    "encogimientos-de-rodillas-para-abdominales"
+  ],
+  "Piernas": [
+    "sentadilla-goblet-con-mancuerna",
+    "peso-muerto-rumano-con-mancuernas",
+    "curl-de-pierna-tumbado-en-maquina-de-femoral",
+    "prensa-de-piernas",
+    "zancada",
+    "elevaciones-de-cadera-con-barra"
+  ],
+  "Gemelos": ["elevacion-de-gemelos-de-pie", "elevacion-de-gemelos-sentado"]
+}

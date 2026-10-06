@@ -1,0 +1,59 @@
+{
+  "routines": [
+    {
+      "id": "r1",
+      "name": "Rutina principal",
+      "goal": "Fuerza e hipertrofia",
+      "days": [
+        {
+          "id": "d1",
+          "name": "Pecho y tríceps",
+          "items": [
+            "press-de-banca-con-barra",
+            "press-banca-inclinado-con-mancuernas",
+            "extension-de-triceps-en-polea"
+          ]
+        },
+        {
+          "id": "d2",
+          "name": "Espalda y bíceps",
+          "items": [
+            "remo-en-barra-t",
+            "jalon-con-agarre-ancho",
+            "curl-con-barra"
+          ]
+        },
+        {
+          "id": "d3",
+          "name": "Piernas y abdomen",
+          "items": ["sentadilla", "peso-muerto-rumano-con-barra", "plancha"]
+        }
+      ]
+    }
+  ],
+  "selected": "r1",
+  "sessions": [],
+  "workout": null,
+  "profile": {
+    "name": "",
+    "email": "",
+    "birth": "",
+    "height": 175,
+    "weight": 75,
+    "country": "",
+    "gender": "",
+    "photo": "",
+    "instagram": "",
+    "facebook": "",
+    "tiktok": "",
+    "x": ""
+  },
+  "settings": {
+    "weight": "kg",
+    "height": "cm",
+    "distance": "km",
+    "language": "es"
+  },
+  "favorites": [],
+  "customExercises": []
+}

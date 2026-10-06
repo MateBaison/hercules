@@ -1,0 +1,941 @@
+{
+  "capturedAt": "2026-10-06T13:48:11.512Z",
+  "exercises": 136,
+  "files": [
+    {
+      "path": "migration-baseline/portable.html",
+      "bytes": 355695,
+      "sha256": "2bfec1f8ac04c543367061ee7bee0f54d700ce00e477a96b14ec07eab3e18c86"
+    },
+    {
+      "path": "migration-baseline/published.html",
+      "bytes": 355695,
+      "sha256": "3e755b785c4ca166c27dd727f00e773ddb1615f11f1aebb8329a1913d7759aff"
+    },
+    {
+      "path": "migration-baseline/supabase-setup.sql",
+      "bytes": 1036,
+      "sha256": "d317ee5349b19bb1c8dc9526b0b2b6242e00552ffccb9dc9a5d4eecbe4cf061d"
+    },
+    {
+      "path": "public/assets/aperturas-con-mancuernas-v3.jpg",
+      "bytes": 181798,
+      "sha256": "959ce9cf8dcc9fb5752cf3d7632874af1d56345a13a69720d735269268b51d41"
+    },
+    {
+      "path": "public/assets/aperturas-en-maquina-peck-deck-o-contractora.jpg",
+      "bytes": 267980,
+      "sha256": "c32ebb33e3a5330d963f7d16919ae89b177154d97e74f3a9ce9b7a27541f5082"
+    },
+    {
+      "path": "public/assets/aperturas-inclinadas-con-mancuernas.jpg",
+      "bytes": 267508,
+      "sha256": "5d0bff7ec8ae381052b66b86580cbd81efb30a0ca53e77de527858f7659fbb77"
+    },
+    {
+      "path": "public/assets/cruce-de-poleas.jpg",
+      "bytes": 257900,
+      "sha256": "59b46b4e5aa3b3bc6251fed72ca08c7016afe44eb0b37b887b116c1b3641015e"
+    },
+    {
+      "path": "public/assets/exercises/1-5-repeticiones-de-sentadillas-con-propio-peso.jpg",
+      "bytes": 191402,
+      "sha256": "2bc8f79636bdb5726a32218ce67299533165691f656dc0c6b14e839c746e1756"
+    },
+    {
+      "path": "public/assets/exercises/abdominales-con-brazos-estirados.jpg",
+      "bytes": 177708,
+      "sha256": "4088c046f264c1d71bd104e99c5f3a04ca3b947479074934ff722e01e80147f0"
+    },
+    {
+      "path": "public/assets/exercises/abdominales-con-cuerda-en-polea-alta.jpg",
+      "bytes": 248841,
+      "sha256": "1505407739c769154fdd0744e29d9431daebfeed997e0d91378992d40723b17b"
+    },
+    {
+      "path": "public/assets/exercises/abdominales-en-maquina.jpg",
+      "bytes": 264698,
+      "sha256": "c19d4cda9b886c7583260f262b5bd747b5ccffe3750b835e105ed3d8f02d4b15"
+    },
+    {
+      "path": "public/assets/exercises/abduccion-con-polea.jpg",
+      "bytes": 228119,
+      "sha256": "7261c50a7012754b27f5819e995e655f4593befe6ff32765f2f8702ebf4b462d"
+    },
+    {
+      "path": "public/assets/exercises/abduccion-de-cadera-en-maquina.jpg",
+      "bytes": 245584,
+      "sha256": "a26704156bd5a0bbaa9935989c2d0509f28d4f3041c4e18efb4c7bafc7735ed1"
+    },
+    {
+      "path": "public/assets/exercises/abducciones-de-cadera-sentado-con-banda.jpg",
+      "bytes": 254341,
+      "sha256": "12f262c94c35b4789748db9c5f62cc1841c4e29c3b4d6fa079324431378bc126"
+    },
+    {
+      "path": "public/assets/exercises/almejas-laterales-con-banda.jpg",
+      "bytes": 239799,
+      "sha256": "983af3fb2a129a989d08f4e3678f6e941e4082ccee2d38cd3d2f24e1c6e1f8dd"
+    },
+    {
+      "path": "public/assets/exercises/buenos-dias-con-barra.jpg",
+      "bytes": 212827,
+      "sha256": "906143ed6e6fce5d4ae37acde8fbc9c709b35eb878ba4ce2045f21f440599349"
+    },
+    {
+      "path": "public/assets/exercises/burpees.jpg",
+      "bytes": 193409,
+      "sha256": "a9c5a9d19887beedd36f7c14c0d7d444959afed4b62c0b8079cb7c0b620f825c"
+    },
+    {
+      "path": "public/assets/exercises/caminata-de-pato.jpg",
+      "bytes": 210675,
+      "sha256": "c480742ca5989fcd7f0cadb96e37a84f79a7bbefaedcece7fbc35c4141db6e48"
+    },
+    {
+      "path": "public/assets/exercises/caminata-lateral-con-minibanda.jpg",
+      "bytes": 282436,
+      "sha256": "972e47160eb68086709c6f11cdf8787744b8f361e990588163733d56cbd96426"
+    },
+    {
+      "path": "public/assets/exercises/columpios-con-kettlebell.jpg",
+      "bytes": 261356,
+      "sha256": "b09fd2fecf903aff6205852f929257d72169faaafc164b65b64f8282ad03ebd7"
+    },
+    {
+      "path": "public/assets/exercises/contragolpe-con-cable-v2.jpg",
+      "bytes": 387351,
+      "sha256": "bc526ae51209188fd22d9a9441cac330d5685ddb4d9c7fc142d0646cc1e122e4"
+    },
+    {
+      "path": "public/assets/exercises/contragolpe-con-cable-v3.jpg",
+      "bytes": 387614,
+      "sha256": "fd6bab599a52e018eb3312d47e060f7db0d58cb6aa730c347cbeb204cb6c112f"
+    },
+    {
+      "path": "public/assets/exercises/contragolpe-con-cable-v6.jpg",
+      "bytes": 373993,
+      "sha256": "eb7a4b5489011400cdb73c089f929f8c3b3fd0e7bf58702a61c7bbe466ed8c18"
+    },
+    {
+      "path": "public/assets/exercises/contragolpe-con-cable.jpg",
+      "bytes": 328938,
+      "sha256": "b2dd8dbde50be83132e61f38ac43458a58b5981213829fb2f8b4f8ed8ddf09db"
+    },
+    {
+      "path": "public/assets/exercises/cruces-inversos-en-polea-alta.jpg",
+      "bytes": 280895,
+      "sha256": "7619752872919d6c1f19d7aeb97721a9282a9c0b987c0ee17aaec14e943aa76d"
+    },
+    {
+      "path": "public/assets/exercises/crunch-oblicuo.jpg",
+      "bytes": 251387,
+      "sha256": "07856400d57f7c58b5c8e2b83c62d8e47203b56b5875c1283b806e66be7caf0c"
+    },
+    {
+      "path": "public/assets/exercises/crunch.jpg",
+      "bytes": 220692,
+      "sha256": "ce34a1e767fc9f8f51370ed329a159cda807f1e1cc40c60c0db25e941a0061a9"
+    },
+    {
+      "path": "public/assets/exercises/curl-alterno-con-mancuernas.jpg",
+      "bytes": 294510,
+      "sha256": "7e3048a5ca42e5095ecf3bd12c006384d03a750d20294ff0992a32639edf1c52"
+    },
+    {
+      "path": "public/assets/exercises/curl-alterno-de-martillo-con-mancuernas.jpg",
+      "bytes": 306077,
+      "sha256": "bad5d48a8f0f2240e817450635db68018c611bfc9f5d9e4b57177a0156222c9f"
+    },
+    {
+      "path": "public/assets/exercises/curl-con-barra-ez.jpg",
+      "bytes": 262815,
+      "sha256": "0e109ba2cd66856fbff9d32be9289d3b25a702ed978d69a39c03de4bd6e0e9e2"
+    },
+    {
+      "path": "public/assets/exercises/curl-con-barra.jpg",
+      "bytes": 270853,
+      "sha256": "305e9b63353c6d1ae57f412edabdfa58e2407518d6998f7f260dd70b661ddbbf"
+    },
+    {
+      "path": "public/assets/exercises/curl-con-cuerda-en-polea.jpg",
+      "bytes": 286525,
+      "sha256": "c5c9f645f045ac9304fa46c3f76e68c03c2709b7317ebc739cb12e15122f078b"
+    },
+    {
+      "path": "public/assets/exercises/curl-concentrado-con-mancuernas.jpg",
+      "bytes": 273212,
+      "sha256": "c90a81f9522333abf7da7d3e0da3da6943eb609cbe21e9d3e8c5a6706c35f3cb"
+    },
+    {
+      "path": "public/assets/exercises/curl-de-barra-invertido.jpg",
+      "bytes": 274266,
+      "sha256": "48ee1e7da03f210fd873782514647bc904e9e3cf10dc781db68a5679f7144223"
+    },
+    {
+      "path": "public/assets/exercises/curl-de-cable-con-barra-recta-en-polea-baja.jpg",
+      "bytes": 292197,
+      "sha256": "f88c316773940680c8c65b8aa63d50e978cd45f2b6a96128b9f47ba1107b3adc"
+    },
+    {
+      "path": "public/assets/exercises/curl-de-cable-en-polea-baja-a-una-mano.jpg",
+      "bytes": 252551,
+      "sha256": "1ea3e7f1bcc5824bbddc08af77558de288c4430842f845ed4a570151b6f5deb7"
+    },
+    {
+      "path": "public/assets/exercises/curl-de-muneca-con-barra-sentado.jpg",
+      "bytes": 304410,
+      "sha256": "d1da3f2261a2b2e6e0471067653a43d66d27f5c93119d77c53d59fe33e8f88fb"
+    },
+    {
+      "path": "public/assets/exercises/curl-de-pierna-tumbado-en-maquina-de-femoral.jpg",
+      "bytes": 284234,
+      "sha256": "85200f8b52777852d2d33735d79b4f4b4a3bab5f3102ba77de13ed78ab503935"
+    },
+    {
+      "path": "public/assets/exercises/curl-de-piernas-sentado.jpg",
+      "bytes": 313808,
+      "sha256": "685e84d6774ab38f03b042a21b46e636500144d5e8a77838bb2ed0d989041d46"
+    },
+    {
+      "path": "public/assets/exercises/curl-de-predicador-con-barra-ez.jpg",
+      "bytes": 307839,
+      "sha256": "eb401503ab1724597f06c8b89c54922242b017d43f44bda0eed6dc1a5871ec82"
+    },
+    {
+      "path": "public/assets/exercises/curl-inclinado-con-mancuernas.jpg",
+      "bytes": 296154,
+      "sha256": "c08ead872e82b4859b6a49c702fdbd769215ee2399f0c63446971628531dfa07"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-de-gemelos-de-pie.jpg",
+      "bytes": 184585,
+      "sha256": "3537e262d486144f9aa8969c0caa649801588b7c6971fc047c6646e70d7acc91"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-de-gemelos-sentado.jpg",
+      "bytes": 305168,
+      "sha256": "d57aadfa32176512e08c54c2c60b8a60f8d92d633897efeb610eabe4c43d6a53"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-de-piernas.jpg",
+      "bytes": 246535,
+      "sha256": "f5c387988623d5b17af64912170f62af12a065f107a09c83ebeb4ca1a518ac6d"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-frontal-con-mancuerna-a-dos-manos.jpg",
+      "bytes": 184340,
+      "sha256": "22543e4d53030e1a0bb64336f0a615bc1852b39e9e39e93f357d88a2280295cf"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-frontal-con-mancuernas-alternas-agarre-neutro.jpg",
+      "bytes": 195792,
+      "sha256": "ff6d411f42a6f4300ec4d2cc9d35d3517d4e40a1ef6baaa4bc3476c66228af85"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-frontal-con-mancuernas.jpg",
+      "bytes": 173813,
+      "sha256": "112bca94cfb70dd2b932742bf9b9766e794ffa92073f3af526d346c7c0fd67cc"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-frontal-con-un-brazo-en-polea-baja-agarre-neutro.jpg",
+      "bytes": 221452,
+      "sha256": "8532f4b44c89c73065d62147026d226c91981c5f4d252892e5f0f75f0df23562"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-lateral-con-cable-a-una-mano-v3.jpg",
+      "bytes": 211998,
+      "sha256": "ecca4f05011e69e48afcc66337d07863b27d0a2f8afd97703c613541953d6596"
+    },
+    {
+      "path": "public/assets/exercises/elevacion-lateral-con-mancuernas.jpg",
+      "bytes": 175828,
+      "sha256": "722ba704a2b30dcb2b2d386cc2c9aa28a128f5d6e42f1c4925e442c02d0cc942"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-cortas-en-posicion-de-rana-con-maquina-smith.jpg",
+      "bytes": 297094,
+      "sha256": "eff7aa251b1c17c592b374976d0cf8c0904f0953bdb36e5f5f9dc524af2c29a0"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-de-biceps-femoral-con-maquina-ghd.jpg",
+      "bytes": 191863,
+      "sha256": "d7cc052df90d5192b3bf041bba7175c8ac4ebefd1afe2c7a4c5f8b99558d9e74"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-de-cadera-acostado-lateralmente.jpg",
+      "bytes": 259224,
+      "sha256": "44ae17f516fb58089e9ab5bfa43e384ea65e36aeaad0404edc9abc3fe8073533"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-de-cadera-con-barra.jpg",
+      "bytes": 286140,
+      "sha256": "5c70f7a159c4ea200153cb0945bb7b8391bfb83d0911672fc0c5dda188dc3fdd"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-de-cadera-con-maquina-smith.jpg",
+      "bytes": 271333,
+      "sha256": "d0efcfd8842115dbf6e18d1b01b3e22d25e473fff5ab50b1fd1be16c4c591fa7"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-de-rodilla-v2.jpg",
+      "bytes": 351208,
+      "sha256": "33d5fbc1b4f63d97b41ca325db83dcf5c7aadec2ee68f77bcbb9355f2de82aa9"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-de-rodilla.jpg",
+      "bytes": 307622,
+      "sha256": "0b935ac9fa5d897e45d55a6beb17f80ae7c6fc6bc2839b9e81e449dedbbb328f"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-en-barra-fija-con-agarre-supinado.jpg",
+      "bytes": 271103,
+      "sha256": "ff1b8918655d8180345e78bbe0a163aefee3de1e6565a9ee23ca56214a08b5d5"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-en-barra-fija.jpg",
+      "bytes": 283445,
+      "sha256": "495fb0047a06c55c1b45926b0145b4e5eb3b3bbb947b911ea1f6519f83115a6f"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-en-posicion-de-rana.jpg",
+      "bytes": 238311,
+      "sha256": "0aa9e64effe0d5401ba893e2b7df803995d1deb929978bb21e37e78cdf5419ac"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-frontales-con-barra.jpg",
+      "bytes": 190354,
+      "sha256": "3e147da7539a54b2e4cbc890eba2d80179d4b66f71cffc0ce02e8dbd33375c1c"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-frontales-con-cable-a-una-mano.jpg",
+      "bytes": 205148,
+      "sha256": "82c804cb1b6de10da1c382ba701a427aeb177b6bbd264416172ae821e428123e"
+    },
+    {
+      "path": "public/assets/exercises/elevaciones-posteriores-para-hombros-pajaro.jpg",
+      "bytes": 193973,
+      "sha256": "e77b044f3ecfbc4d06bc8bccde1dc88382f20147724395f82a28d6dd203cf337"
+    },
+    {
+      "path": "public/assets/exercises/encogimiento-de-hombros-con-barra.jpg",
+      "bytes": 294074,
+      "sha256": "8cae65dd139b797a5cebedeb5a530d0926b69c7ea0a8d476ae58bfe7164b4d47"
+    },
+    {
+      "path": "public/assets/exercises/encogimiento-de-hombros-con-mancuernas.jpg",
+      "bytes": 265031,
+      "sha256": "afdf7ba43d10b7db1bb83260d4fb352128dc4704384b01856a5ef056feb66bc5"
+    },
+    {
+      "path": "public/assets/exercises/encogimientos-de-rodillas-para-abdominales.jpg",
+      "bytes": 236506,
+      "sha256": "dd222062fe868e215f27846b0891cf9afdff659e3b7e28d089e33bcf42a87527"
+    },
+    {
+      "path": "public/assets/exercises/extension-a-una-pierna.jpg",
+      "bytes": 321467,
+      "sha256": "5c1bc0b994d7c4b091241c0b4e7d8940d74c9c922dd514dc8cf537ea417b3c71"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-muneca-con-barra-sentado.jpg",
+      "bytes": 276077,
+      "sha256": "c4e66544a7ec06ed841e9f891df4782157fce1288d741310d510a6cb5c2a71e2"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-piernas.jpg",
+      "bytes": 349653,
+      "sha256": "e0ae82b474e16c25f540fede90ac689be7b52e58e3a23bf36d46eef956bed668"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado.jpg",
+      "bytes": 219842,
+      "sha256": "e08bc5dea23610bf06f68370d1beef58fc1d49d25bd57b5b6a2b75e8ff2338cb"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-con-cable-a-una-mano.jpg",
+      "bytes": 220212,
+      "sha256": "9a6df47af7bef9439cfa6925d9df0ee40dbe5785b6a3d7adb94a8b284d1199a3"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-con-cable-de-agarre-inverso-con-barra.jpg",
+      "bytes": 225775,
+      "sha256": "d0c97213f5925e37526bc83de01b51d610555b3bcbe80d3936c322a036624d82"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza.jpg",
+      "bytes": 203976,
+      "sha256": "149ef50b125922b3dd33479a22fc59a7a07b28fc730cb9b27260967ffffc34ff"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-con-mancuernas-tumbado.jpg",
+      "bytes": 170273,
+      "sha256": "5cd1ceffd056d7722b149aad9f41108d35483e2698cf2749fad07201dc00ad34"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-en-polea-con-cuerda.jpg",
+      "bytes": 206082,
+      "sha256": "e28cabe35b36858a228be904799bb12a0672fb3399d78ebec330b3a9bde6e1d3"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-en-polea.jpg",
+      "bytes": 206818,
+      "sha256": "f6185b34d26fc23f2792927262eb1e241fd35b015beb017fb67006f48727aee9"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-triceps-tumbado.jpg",
+      "bytes": 210257,
+      "sha256": "46fc3e8ccc0a8a039cdd33b7b481f89eecb59403480fc7f2351c9cd41e7900c5"
+    },
+    {
+      "path": "public/assets/exercises/extension-de-tronco-en-decubito-prono-colchoneta.jpg",
+      "bytes": 343908,
+      "sha256": "5b5e61852ccdd2fb39b1fdf3eb95e86dcedffd60dae35e86f66580be1181d1af"
+    },
+    {
+      "path": "public/assets/exercises/extension-triceps-polea-trasnuca-femenino-v1.jpg",
+      "bytes": 325508,
+      "sha256": "d0c481097b6acc3b2d3964344ce6ea1220f626dbe02f102c716117c358a43a71"
+    },
+    {
+      "path": "public/assets/exercises/extension-triceps-polea-trasnuca-maniqui-v2.jpg",
+      "bytes": 352747,
+      "sha256": "49c10f1771161be598b0e44b58539a294a4d6ac104dba63f0b677390ba37d491"
+    },
+    {
+      "path": "public/assets/exercises/extension-triceps-polea-trasnuca.svg",
+      "bytes": 4453,
+      "sha256": "605f9d95ff02e0500d1fce9b9a30daf01690d0b126ea2ca8ea66e17ea948eab8"
+    },
+    {
+      "path": "public/assets/exercises/extensiones-lumbares-en-banco-a-45.jpg",
+      "bytes": 296872,
+      "sha256": "2409db752ad5d27f6b9deb79d7203aa4d375800c78f778009b65fbe73b753412"
+    },
+    {
+      "path": "public/assets/exercises/fondos-en-banco.jpg",
+      "bytes": 182058,
+      "sha256": "9eecdaf6ecd61796a442e7ee6d8152d1102aee159fb92600439d71118544883e"
+    },
+    {
+      "path": "public/assets/exercises/fondos-en-barras-paralelas.jpg",
+      "bytes": 193741,
+      "sha256": "b799a68349f0711b8c342c6ae3e99aeb7cfaea72322b50dbbc92252c93f5b680"
+    },
+    {
+      "path": "public/assets/exercises/groiners.jpg",
+      "bytes": 232573,
+      "sha256": "ecc73b060d3cb4b8a0cdae73777030160676f186dcf70bdbcec5a0d6ca8d0b87"
+    },
+    {
+      "path": "public/assets/exercises/hidrantes.jpg",
+      "bytes": 227414,
+      "sha256": "b29c74641431fe2ec0472e7a308f5555558e01fdd271625682db50afaaac44a4"
+    },
+    {
+      "path": "public/assets/exercises/jalon-al-pecho-con-agarre-cerrado.jpg",
+      "bytes": 269346,
+      "sha256": "c1bbb7fb9308ffe4c0749c4d7884ddff1a1466347faf0dcdec8900b4a9d98aa3"
+    },
+    {
+      "path": "public/assets/exercises/jalon-al-pecho-con-agarre-invertido.jpg",
+      "bytes": 303871,
+      "sha256": "6240873b2cbbffd08d3eb1c6ed691d8a8120bbb3dc2dc2165990b134c094ac6c"
+    },
+    {
+      "path": "public/assets/exercises/jalon-con-agarre-ancho.jpg",
+      "bytes": 260192,
+      "sha256": "6b0e51298b676313c4982b2095b981a06c0af4900ab188c60d6741bccca8e3a0"
+    },
+    {
+      "path": "public/assets/exercises/jalon-dorsal-con-brazos-rectos.jpg",
+      "bytes": 263274,
+      "sha256": "27bea38370ee68e3575caeb6b684effae68bd49c0acc84563a56334051538907"
+    },
+    {
+      "path": "public/assets/exercises/jalon-en-polea-con-cuerda.jpg",
+      "bytes": 238727,
+      "sha256": "c49d7f63bf9967299cfffa90d0c8abed2f006aed351c35a1b3bb4512ef9c634e"
+    },
+    {
+      "path": "public/assets/exercises/jalon-tras-nuca.jpg",
+      "bytes": 314108,
+      "sha256": "8846109d7d6834e328d845a07c1aa392381f9b4e5592b52688e2027aa71cc793"
+    },
+    {
+      "path": "public/assets/exercises/levantamiento-de-pierna-acostado-de-lado.jpg",
+      "bytes": 223736,
+      "sha256": "d1c7b747def04dad046990d22a466d1c3735cf464c43edc4536a523f304f9139"
+    },
+    {
+      "path": "public/assets/exercises/patadas-de-burro.jpg",
+      "bytes": 262237,
+      "sha256": "4f3a3b2ea0aa5042c8cf37003ae87120a16378affc37272deb0e13b86085967d"
+    },
+    {
+      "path": "public/assets/exercises/patadas-traseras.jpg",
+      "bytes": 195140,
+      "sha256": "23e6d67eeab09da05413f1674352ff03d4a00b20c048ec1fa0e47be322a62cc5"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-a-una-pierna.jpg",
+      "bytes": 150904,
+      "sha256": "a4225358075fc0138e00ef59a6258dd7d5b8472d83e6aa1004b7bfd386656095"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-con-balon-medicinal.jpg",
+      "bytes": 207292,
+      "sha256": "077c60e9c44649bcc2b0530044b96d66505562a4fa0257b06d3de854a46dc55a"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-con-barra-hexagonal.jpg",
+      "bytes": 302880,
+      "sha256": "44fdff51fa5e7ccacf0e9b801ebae66f165982ba611b7efab75305abd2871f48"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-con-barra.jpg",
+      "bytes": 289786,
+      "sha256": "bef20844dabd2cf87ca9ea45c4319a01145bf9f5fb33be9891150772a6255331"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-con-mancuernas.jpg",
+      "bytes": 281460,
+      "sha256": "96ed3dbd966dd3cce3b0da8a29947bbd069ca8ea2ddd17302627d527bec93a8d"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-rumano-con-barra.jpg",
+      "bytes": 251815,
+      "sha256": "d5551583264e24e9eab30031c5ac029ee979579e9bcd5b0a2acbc2c8ec54db4d"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-rumano-con-mancuernas.jpg",
+      "bytes": 301184,
+      "sha256": "355b2cd8f85f68968d2c626e144f6eea33ef5abae86db9f32a40a285d33ca1fe"
+    },
+    {
+      "path": "public/assets/exercises/peso-muerto-sumo-con-barra.jpg",
+      "bytes": 262500,
+      "sha256": "94d8f6e06737424f8e2dabc1e24e2648157c0527319c075280e14a879dd01be8"
+    },
+    {
+      "path": "public/assets/exercises/plancha-con-flexion.jpg",
+      "bytes": 179065,
+      "sha256": "d06faa10c0d621f5a29516a78db15e1bb5db0f8fa8b249af202a2c241d0060ed"
+    },
+    {
+      "path": "public/assets/exercises/plancha.jpg",
+      "bytes": 204941,
+      "sha256": "d44f374699320836032b8921a8ef830059aad18ac6341a1c3b66d760ef85fff5"
+    },
+    {
+      "path": "public/assets/exercises/prensa-de-piernas.jpg",
+      "bytes": 310256,
+      "sha256": "78616e6ed9e05e8639ea187c7f62f200cb15fe1a1df7f970d017a44dd09d8578"
+    },
+    {
+      "path": "public/assets/exercises/press-banca-con-agarre-cerrado.jpg",
+      "bytes": 247073,
+      "sha256": "5c8cbc1829059bbb8ea8345a893ac597a71989bca9b83a9919b2c39be65bc3f1"
+    },
+    {
+      "path": "public/assets/exercises/press-de-hombro-con-mancuernas.jpg",
+      "bytes": 265990,
+      "sha256": "0a3e4a8dc2e36892768f0c55bacaaf831edec320b1a115bc842376fd79ee4fce"
+    },
+    {
+      "path": "public/assets/exercises/press-de-hombros-en-maquina-smith.jpg",
+      "bytes": 267595,
+      "sha256": "e92483e6e8fe05353bb88199f475f02bae074b5fce5e90e39ac6bedd565b95e4"
+    },
+    {
+      "path": "public/assets/exercises/press-frances-sentado-con-barra.jpg",
+      "bytes": 188912,
+      "sha256": "44a92f5f2d6a2b0012636798bb2b2aac668583dbc8f585cfc28a4763f6f17c87"
+    },
+    {
+      "path": "public/assets/exercises/press-militar-con-mancuernas.jpg",
+      "bytes": 157574,
+      "sha256": "4bee921bf2c5c94f2361f4ce3dfa21e4144d1fa66f8180e41143cd05c62c2128"
+    },
+    {
+      "path": "public/assets/exercises/press-militar-de-pie.jpg",
+      "bytes": 185871,
+      "sha256": "7bab609e1f1093ad26ea43ecb57f990db618ff6c2369f97f7f8d61bc13abc808"
+    },
+    {
+      "path": "public/assets/exercises/press-militar-sentado-con-barra.jpg",
+      "bytes": 223978,
+      "sha256": "c8b91c4a38de66b9dd653fbf3da3c0ea33a42e57a2d24034516096a6d4f68454"
+    },
+    {
+      "path": "public/assets/exercises/press-militar.jpg",
+      "bytes": 169063,
+      "sha256": "0ae26ab6a68a6f2682e4d7475b8620114198094ada72d5eb1193f54cfeb6b306"
+    },
+    {
+      "path": "public/assets/exercises/puente-con-bandas.jpg",
+      "bytes": 193403,
+      "sha256": "c3e56fbf2c1325edaa4746ab8619def76f38f2e986d85573537a6f5c1cc2feb0"
+    },
+    {
+      "path": "public/assets/exercises/puente-con-propio-peso.jpg",
+      "bytes": 214698,
+      "sha256": "66ebd2e5587149c3038788a795da36bc87a2764be02c64f87f8d320b7095230c"
+    },
+    {
+      "path": "public/assets/exercises/puentes-a-una-pierna.jpg",
+      "bytes": 198416,
+      "sha256": "d7c4a55e87194d8f971ecdd8e2c1092c5ae93dca1d8c65985b2789a19125e4bb"
+    },
+    {
+      "path": "public/assets/exercises/pullover-con-barra.jpg",
+      "bytes": 249608,
+      "sha256": "bb54fa5297d7f06fe93fd644770f0300301389818caf89b547b5e1e3ed22aca4"
+    },
+    {
+      "path": "public/assets/exercises/pullover-con-mancuerna.jpg",
+      "bytes": 250962,
+      "sha256": "5a35cf9967be8838c04052cac64cedc49a0063dbe0aa601ae8928ed01c77c4db"
+    },
+    {
+      "path": "public/assets/exercises/remo-alto-con-barra.jpg",
+      "bytes": 192127,
+      "sha256": "e33f4ac2dd5d1d37fbd869a32ceb9e7742b9a10f60289cb85c44a1b7f824cb9a"
+    },
+    {
+      "path": "public/assets/exercises/remo-con-barra.jpg",
+      "bytes": 287975,
+      "sha256": "870833dabe4ba726f8088cedf551329f1117afe5bc14c1cddc2e6af144b45289"
+    },
+    {
+      "path": "public/assets/exercises/remo-con-mancuerna-a-una-mano.jpg",
+      "bytes": 230009,
+      "sha256": "0e4f423e9fe150e8da476be1e0347dfb7a5d3648f362316426a2dff3aa418c9e"
+    },
+    {
+      "path": "public/assets/exercises/remo-en-barra-t.jpg",
+      "bytes": 303373,
+      "sha256": "49aa57a2c048266d9dd02bca5d10700198fd919ecc3bc99556b4b9fc6d5d4ea1"
+    },
+    {
+      "path": "public/assets/exercises/remo-en-maquina.jpg",
+      "bytes": 260032,
+      "sha256": "96f23957922ca6d1720d0d98c096d2e97da389a82c3da4b468bea31cbe4ac531"
+    },
+    {
+      "path": "public/assets/exercises/remo-inclinado-con-barra-con-agarre-supinado.jpg",
+      "bytes": 292562,
+      "sha256": "d385b035f66aeee6f4cf56aaf1ca932dcf869976097fe7662dbe57047a0f304e"
+    },
+    {
+      "path": "public/assets/exercises/remo-inclinado-con-mancuernas.jpg",
+      "bytes": 264922,
+      "sha256": "3b0c05c4fcf82d6fc3a75c2d4a2a1aaae3cd15d935f5db096b5b59823972c297"
+    },
+    {
+      "path": "public/assets/exercises/salto-rodillas-al-pecho.jpg",
+      "bytes": 193564,
+      "sha256": "ed56f70d0e3bfee35726158d888dc912f9a36922d9f2a597aa4daef0cba8c2e2"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-bulgara-con-barra.jpg",
+      "bytes": 232715,
+      "sha256": "ee0cb3da9f47d51a3ad117be3e36fea8f5a9159dedfcbfd07f30b473ae7a0e53"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-bulgara-con-propio-peso.jpg",
+      "bytes": 190722,
+      "sha256": "c58ab9f58a649b31001bce31ccc13bf116750a87b7047ffdc99a285cb9f6a59e"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-con-minibanda.jpg",
+      "bytes": 178598,
+      "sha256": "0cb4f59b97d4cf165b7eb2530456abf565f6df8e4f749a446c5766f64e6bae6c"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-con-salto.jpg",
+      "bytes": 186132,
+      "sha256": "e1d584f9daf959f2906fea7a39ee23b2cd73371902d26e84884369d3eb8c839d"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-en-postura-funcional.jpg",
+      "bytes": 301921,
+      "sha256": "16cf3ea6e29f0b2575f937e422e33ee1bb588b72fe24fd559cd5018f696ce042"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-frontal.jpg",
+      "bytes": 346310,
+      "sha256": "2fb37b269b32405f3018fd5b4cdb3b30cce2030fcce1ac626251e6e918a8d761"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-goblet-con-mancuerna.jpg",
+      "bytes": 234963,
+      "sha256": "61e112570f273bec513758a56a68af29596ecdf4100eb6d4a01412a5873a12d2"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-hack.jpg",
+      "bytes": 307614,
+      "sha256": "98bd48908f14ddd7521f2af911307fc28594afa89584ee91df7af2b50f501991"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-isometrica-apoyado-sobre-la-pared.jpg",
+      "bytes": 235781,
+      "sha256": "2ccbc208d3720ec9a967032f4ad37c951be3192d8015bb91e90584107bc566d6"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla-sumo-con-kettlebell.jpg",
+      "bytes": 210407,
+      "sha256": "0d6d003d7cb172aec01a623d23cc4bbda4de24bd18188dbe8b1cd74d26b44708"
+    },
+    {
+      "path": "public/assets/exercises/sentadilla.jpg",
+      "bytes": 294204,
+      "sha256": "d50c28e5994c27ba12ee17a56dc04e07505c447e2a7dd9bb6129e000cb401a3f"
+    },
+    {
+      "path": "public/assets/exercises/sentadillas-con-balon-medicinal.jpg",
+      "bytes": 199555,
+      "sha256": "e0ca76036cb3affcafbf9f4d6cce3616b0f845e9ebe5f97195313a6665e53ffd"
+    },
+    {
+      "path": "public/assets/exercises/sentadillas-con-propio-peso.jpg",
+      "bytes": 176511,
+      "sha256": "91053b20f06de6cfe4edbc66b261e09f2d14d7cabe48d7e41b2c4514f543fe43"
+    },
+    {
+      "path": "public/assets/exercises/step-up-con-mancuernas.jpg",
+      "bytes": 241800,
+      "sha256": "70c247997a49e62e8ad6319652cf92945015b63ed4ff874f7a16ce0412e10fac"
+    },
+    {
+      "path": "public/assets/exercises/superman-en-cuadrupedia.jpg",
+      "bytes": 225641,
+      "sha256": "337dea78d24b7d72fea10c443d6547a9f7f2066f9cb864f13c32ad809e9b2037"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado-femenino.jpg",
+      "bytes": 327655,
+      "sha256": "6fefe0f2a3d1ab3eb19a1751c9834fa5ba4dd5a23be68357b95ad20abf207404"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado-masculino.jpg",
+      "bytes": 349519,
+      "sha256": "7828f26161dabf04ebb8dd5be509ffdfe5dd6c427603d67a1428a91769fb77b0"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-femenino.jpg",
+      "bytes": 316831,
+      "sha256": "513f5e209e3b33ada6fa44402542f03d37c0cb154a2c7e81018b3389b4d2e7d4"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-masculino.jpg",
+      "bytes": 336144,
+      "sha256": "6de5a8b708d2979881bcda017348b75c05ebe9ce6666b26a7dbf75e3cb3bf4e6"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-cable-de-agarre-inverso-con-barra-femenino.jpg",
+      "bytes": 331058,
+      "sha256": "07d9ac7bc6d75846c2d15dcdc8882dfad842a116974e12e95173343640e319cc"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-cable-de-agarre-inverso-con-barra-masculino.jpg",
+      "bytes": 338592,
+      "sha256": "6cbb504faef9a4a7c8ae09689662386c1578e9dbb24e2dcdb228453fc051c78b"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza-femenino.jpg",
+      "bytes": 290070,
+      "sha256": "eb4c8157ccbacb4ffb87f427f318cbb3b5cee4d2aef9cf03c8db22bbb416e7a5"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza-masculino.jpg",
+      "bytes": 307707,
+      "sha256": "f0fea5a251c44e14e668859360e5cdc2cb8e333fe04aac6e5b4ebbed83ed6fff"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-mancuernas-tumbado-femenino.jpg",
+      "bytes": 356946,
+      "sha256": "2ee282d890c0464ffb3e10cdf75a50a06d71cf261f0d5ea3a8f74d7441250956"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-con-mancuernas-tumbado-masculino.jpg",
+      "bytes": 368830,
+      "sha256": "f4306e6fb617db40600f69df1f75bd62b4bc6fd44021bd0fab88b3714c7c0daa"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-en-polea-con-cuerda-femenino.jpg",
+      "bytes": 332057,
+      "sha256": "010e7b8eab74dc477ae53768df9295f67eb363488cca360843993af9a7b819d6"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-en-polea-con-cuerda-masculino.jpg",
+      "bytes": 361280,
+      "sha256": "29695f64c3cbb30f0de86a58fa8bd80a9ff8b85bae7956321be6217aac5b2ace"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-en-polea-femenino.jpg",
+      "bytes": 312291,
+      "sha256": "98349d6962c8085a0f2d2681cf602e7dff25c7497e36d9868adeba3328e092a2"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-en-polea-masculino.jpg",
+      "bytes": 348407,
+      "sha256": "62c7766d0b60ad1d4612cab720ff125d2f4f2a3371bcd259455c1e282cbe2858"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-tumbado-femenino.jpg",
+      "bytes": 414567,
+      "sha256": "68b37a4bd75995cab83fcaad51e64a3733df3452e41ff54e9fea9993a58391bf"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/extension-de-triceps-tumbado-masculino.jpg",
+      "bytes": 436969,
+      "sha256": "6992a95637c134209a2f6af010761a375cd992917b5cc1197672f214941532e7"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/fondos-en-banco-femenino.jpg",
+      "bytes": 322965,
+      "sha256": "62b26ddf426e15df3c0a2dde8d1bdb1680677f9dd5ea36377868f8bfe7883da4"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/fondos-en-banco-masculino.jpg",
+      "bytes": 336095,
+      "sha256": "b1b3742b0963cff3c4f36b82a7b2d8835046ebee4573fbe05484e5215f8ab06d"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/fondos-en-barras-paralelas-femenino.jpg",
+      "bytes": 297098,
+      "sha256": "510134eaa8c2208074c5bf8a2a27333aa31d77640bafbbdf618fa23cc095bc18"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/fondos-en-barras-paralelas-masculino.jpg",
+      "bytes": 321899,
+      "sha256": "5f49d115af98deb82134075ead464cbc6e3f8e6f63d34ba898002742180f03b8"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/patadas-traseras-femenino.jpg",
+      "bytes": 331221,
+      "sha256": "f1662434da06ee5c0fb9489394e04caa4a32c5202a49839ddd48f96976cb9078"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/patadas-traseras-masculino.jpg",
+      "bytes": 377647,
+      "sha256": "a2c9820b247fd23409e48a21d7b616a37fd572a9d6deb15147c1877e850c3539"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/press-banca-con-agarre-cerrado-femenino.jpg",
+      "bytes": 363183,
+      "sha256": "11b510dae47b29eabee03fdc7437ce04b80b473a15d1858809d5293ef3ffcf5f"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/press-banca-con-agarre-cerrado-masculino.jpg",
+      "bytes": 385152,
+      "sha256": "b75dca55cdcce8188d8efee95c1af737f79c246a3fc74221491613cd2f3e8956"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/press-frances-sentado-con-barra-femenino.jpg",
+      "bytes": 283593,
+      "sha256": "7757ec4a3aa2169a5c70f4f0396da24ccf80cb801810ffdd46ece4c5eab5f0f6"
+    },
+    {
+      "path": "public/assets/exercises/triceps-v2/press-frances-sentado-con-barra-masculino.jpg",
+      "bytes": 331790,
+      "sha256": "f0ec040f04db44679000e497d8b947f800ff345daac863bbd4c97396afc92fd3"
+    },
+    {
+      "path": "public/assets/exercises/zancada.jpg",
+      "bytes": 259569,
+      "sha256": "e6ee78fce502b5534693d6e962337f8e26ac8938188095ec4edea2245aa4280d"
+    },
+    {
+      "path": "public/assets/flexiones.jpg",
+      "bytes": 183249,
+      "sha256": "4d9bb30b9551ec15e6b9a7cc4877f050971ac292a781a1652480811ecfb60114"
+    },
+    {
+      "path": "public/assets/grupo-abdominales.jpg",
+      "bytes": 274931,
+      "sha256": "4dcc66d9a6befe95e1d6025bcd320ec8f4bde125970d570be22ebdbd8df20862"
+    },
+    {
+      "path": "public/assets/grupo-biceps.jpg",
+      "bytes": 263167,
+      "sha256": "3dc0a6345972e9aa0b0e37dc580a9937c7fa288efbf6fb9e158437c33fd00470"
+    },
+    {
+      "path": "public/assets/grupo-espalda.jpg",
+      "bytes": 354931,
+      "sha256": "cae384ae718f22db4600712e5d34d36cff24e4b78b0beeec5ada0ff360dcc7d0"
+    },
+    {
+      "path": "public/assets/grupo-gemelos.jpg",
+      "bytes": 232938,
+      "sha256": "5448590ca7b3e86eb8c6a24da228b46e6a6170ad6e104ee831b2465afe6f1c84"
+    },
+    {
+      "path": "public/assets/grupo-hombros.jpg",
+      "bytes": 274122,
+      "sha256": "524f3e73f4e6f079e19e450f66240663a5953cd6fc4a6da0b9859b37902d43a8"
+    },
+    {
+      "path": "public/assets/grupo-pectorales.jpg",
+      "bytes": 282421,
+      "sha256": "0c020c05749ff6b6d94b15b7e3773de50ad6c0e379b2e7631b5a74fe5c07d477"
+    },
+    {
+      "path": "public/assets/grupo-piernas.jpg",
+      "bytes": 267432,
+      "sha256": "ece96826d1b0c9ed532de3cf700097786ae83ad627c372e0e8213de8765d7f65"
+    },
+    {
+      "path": "public/assets/grupo-triceps.jpg",
+      "bytes": 267707,
+      "sha256": "365eced50d111f17885c125e0368664bb3a6c697cbee511f8c6e121a6f3f459d"
+    },
+    {
+      "path": "public/assets/hercules-logo-v1.jpg",
+      "bytes": 51711,
+      "sha256": "41163b886c4dd3d324e585411700c9461873d58492e29ba0375faf353c0cffa8"
+    },
+    {
+      "path": "public/assets/press-banca-barra-mrgymson.jpg",
+      "bytes": 226258,
+      "sha256": "1b870b7d35063dc7d905c06bb67265ce7e4ccc257e0d886c38eb4a0dc64cd7fe"
+    },
+    {
+      "path": "public/assets/press-banca-inclinado-con-mancuernas.jpg",
+      "bytes": 201462,
+      "sha256": "64aa08c3d531523cedf260fdf909419e8077e21c4391875e1e22ea4d6a65fe99"
+    },
+    {
+      "path": "public/assets/press-de-banca-con-mancuernas.jpg",
+      "bytes": 246007,
+      "sha256": "08a4811af4f03aad54c7e68d20ad486c4ba1eb0c643e101440ae9846f8c16098"
+    },
+    {
+      "path": "public/assets/press-de-banca-declinado-con-barra.jpg",
+      "bytes": 248120,
+      "sha256": "2f2d9c0924fd79bb14dc0febb9e75d69ed8f9876847cb88e698d233c125f7110"
+    },
+    {
+      "path": "public/assets/press-de-banca-declinado-con-mancuernas.jpg",
+      "bytes": 223100,
+      "sha256": "8178ee549ece9f3f94f45c9eb155391e000b21fd950068d645457baa4d3d7397"
+    },
+    {
+      "path": "public/assets/press-de-banca-en-maquina-sentado.jpg",
+      "bytes": 292914,
+      "sha256": "8886a70a58f28dcfc599def9871b6a1a468ad7eca3a20382b9b3752024a59603"
+    },
+    {
+      "path": "public/assets/press-de-banca-inclinado-con-barra.jpg",
+      "bytes": 228200,
+      "sha256": "f712b5da145726ff27d49f81c3ce35dda70ab28b80a4f7267a742a1e79bd2b08"
+    },
+    {
+      "path": "public/hercules.webmanifest",
+      "bytes": 239,
+      "sha256": "99db7cd0466729d5b4206c5e3ad2dc655623709b885e1242e2b820b807ce8a1b"
+    }
+  ]
+}

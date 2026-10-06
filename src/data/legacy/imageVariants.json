@@ -1,0 +1,58 @@
+{
+  "extension-de-triceps-con-polea-trasnuca": {
+    "hombre": "exercises/extension-triceps-polea-trasnuca-maniqui-v2.jpg",
+    "mujer": "exercises/extension-triceps-polea-trasnuca-femenino-v1.jpg"
+  },
+  "extension-de-triceps-tumbado": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-tumbado-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-tumbado-femenino.jpg"
+  },
+  "extension-de-triceps-en-polea": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-en-polea-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-en-polea-femenino.jpg"
+  },
+  "extension-de-triceps-en-polea-con-cuerda": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-en-polea-con-cuerda-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-en-polea-con-cuerda-femenino.jpg"
+  },
+  "extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-con-mancuernas-por-encima-de-la-cabeza-femenino.jpg"
+  },
+  "press-banca-con-agarre-cerrado": {
+    "hombre": "exercises/triceps-v2/press-banca-con-agarre-cerrado-masculino.jpg",
+    "mujer": "exercises/triceps-v2/press-banca-con-agarre-cerrado-femenino.jpg"
+  },
+  "patadas-traseras": {
+    "hombre": "exercises/triceps-v2/patadas-traseras-masculino.jpg",
+    "mujer": "exercises/triceps-v2/patadas-traseras-femenino.jpg"
+  },
+  "extension-de-triceps-con-cable-de-agarre-inverso-con-barra": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-con-cable-de-agarre-inverso-con-barra-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-con-cable-de-agarre-inverso-con-barra-femenino.jpg"
+  },
+  "extension-de-triceps-con-cable-a-una-mano": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-femenino.jpg"
+  },
+  "extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-con-cable-a-una-mano-con-agarre-supinado-femenino.jpg"
+  },
+  "extension-de-triceps-con-mancuernas-tumbado": {
+    "hombre": "exercises/triceps-v2/extension-de-triceps-con-mancuernas-tumbado-masculino.jpg",
+    "mujer": "exercises/triceps-v2/extension-de-triceps-con-mancuernas-tumbado-femenino.jpg"
+  },
+  "press-frances-sentado-con-barra": {
+    "hombre": "exercises/triceps-v2/press-frances-sentado-con-barra-masculino.jpg",
+    "mujer": "exercises/triceps-v2/press-frances-sentado-con-barra-femenino.jpg"
+  },
+  "fondos-en-banco": {
+    "hombre": "exercises/triceps-v2/fondos-en-banco-masculino.jpg",
+    "mujer": "exercises/triceps-v2/fondos-en-banco-femenino.jpg"
+  },
+  "fondos-en-barras-paralelas": {
+    "hombre": "exercises/triceps-v2/fondos-en-barras-paralelas-masculino.jpg",
+    "mujer": "exercises/triceps-v2/fondos-en-barras-paralelas-femenino.jpg"
+  }
+}

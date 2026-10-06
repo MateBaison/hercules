@@ -1,0 +1,230 @@
+"use client";
+import { localeFor } from "@/data/translations";
+import { useState } from "react";
+import { z } from "zod";
+import { useRouter } from "next/navigation";
+import { useApp } from "@/state/app-provider";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { compressedPhoto, safePhoto } from "@/lib/browser/photos";
+const codes =
+  "ADAEAFAGAIALAMAOAQARASATAUAWAXAZBABBBDBEBFBGBHBIBJBLBMBNBOBQBRBSBTBVBWBYBZCACCCDCFCGCHCICKCLCMCNCOCRCUCVCWCXCYCZDEDJDKDMDODZECEEEGEHERESETFIFJFKFMFOFRGAGBGDGEGFGGGHGIGLGMGNGPGQGRGSGTGUGWGYHKHMHNHRHTHUIDIEILIMINIOIQIRISITJEJMJOJPKEKGKHKIKMKNKPKRKWKYKZLALBLCLILKLRLSLTLULVLYMAMCMDMEMFMGMHMKMLMMMNMOMPMQMRMSMTMUMVMWMXMYMZNANCNENFNGNINLNONPNRNUNZOMPAPEPFPGPHPKPLPMPNPRPSPTPWPYQARERORSRURWSASBSCSDSESGSHSISJSKSLSMSNSOSRSSSTSVSXSYSZTCTDTFTGTHTJTKTLTMTNTOTRTTTVTWTZUAUGUMUSUYUZVAVCVEVGVIVNVUWFWSYEYTZAZMZWXK".match(
+    /../g,
+  ) ?? [];
+export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
+  const { snapshot, change, flush, notify, t } = useApp(),
+    router = useRouter();
+  const [draft, setDraft] = useState(snapshot.profile),
+    [busy, setBusy] = useState(false),
+    [country, setCountry] = useState(snapshot.profile.country ?? "");
+  const displayNames = new Intl.DisplayNames(
+    [localeFor(snapshot.settings.language)],
+    { type: "region" },
+  );
+  const countries = codes
+    .map((code) => displayNames.of(code) ?? code)
+    .sort((a, b) => a.localeCompare(b));
+  const changed = JSON.stringify(draft) !== JSON.stringify(snapshot.profile);
+  const set = (key: string, value: string | number) =>
+    setDraft((previous) => ({ ...previous, [key]: value }));
+  return (
+    <form
+      className="space-y-4"
+      onSubmit={async (event) => {
+        event.preventDefault();
+        const name = z.string().trim().min(1).max(80).safeParse(draft.name);
+        if (!name.success)
+          return notify(t("Ingresá tu nombre.", "Enter your name."));
+        setBusy(true);
+        if (
+          !change((state) => {
+            state.profile = {
+              ...draft,
+              name: name.data,
+              onboardingComplete: true,
+            };
+          })
+        ) {
+          setBusy(false);
+          return;
+        }
+        const saved = await flush();
+        setBusy(false);
+        if (onboarding && saved) {
+          router.replace("/home");
+          router.refresh();
+        } else
+          notify(
+            saved
+              ? t("Perfil guardado", "Profile saved")
+              : t(
+                  "Guardado en este dispositivo; falta sincronizar.",
+                  "Saved on this device; sync is pending.",
+                ),
+          );
+      }}
+    >
+      <div className="profile-summary-grid">
+        <div>
+          {safePhoto(draft.photo) ? (
+            <img
+              src={draft.photo}
+              alt="Foto de perfil"
+              className="profile-avatar"
+            />
+          ) : (
+            <div className="profile-avatar">
+              {draft.name?.slice(0, 1).toUpperCase() ?? "H"}
+            </div>
+          )}
+          <label className="mt-2 block text-xs">
+            Cambiar foto
+            <input
+              className="mt-2 max-w-24 text-xs"
+              type="file"
+              aria-label="Cambiar foto"
+              accept="image/*"
+              disabled={busy}
+              onChange={async (event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+                setBusy(true);
+                try {
+                  const photo = await compressedPhoto(file, 360);
+                  setDraft((previous) => ({ ...previous, photo }));
+                } catch (error) {
+                  notify(
+                    error instanceof Error
+                      ? error.message
+                      : "No se pudo cargar la foto.",
+                  );
+                } finally {
+                  setBusy(false);
+                }
+              }}
+            />
+          </label>
+        </div>
+        <div className="space-y-3">
+          <label className="block">
+            {t("Nombre", "Name")}
+            <Input
+              required
+              maxLength={80}
+              value={draft.name ?? ""}
+              onChange={(event) => set("name", event.target.value)}
+            />
+          </label>
+          <label className="block">
+            {t(
+              "Email de contacto (no cambia tu cuenta)",
+              "Contact email (does not change your account)",
+            )}
+            <Input
+              type="email"
+              value={draft.email ?? ""}
+              onChange={(event) => set("email", event.target.value)}
+            />
+          </label>
+        </div>
+      </div>
+      <div className="form-grid">
+        <label>
+          {t("Fecha de nacimiento", "Birth date")}
+          <Input
+            type="date"
+            max={new Date().toISOString().slice(0, 10)}
+            value={draft.birth ?? ""}
+            onChange={(event) => set("birth", event.target.value)}
+          />
+        </label>
+        <label>
+          {t("País", "Country")}
+          <Input
+            list="countries"
+            value={country}
+            placeholder={t("Buscar país", "Search country")}
+            onChange={(event) => {
+              setCountry(event.target.value);
+              set("country", event.target.value);
+            }}
+          />
+          <datalist id="countries">
+            {countries.map((name) => (
+              <option key={name} value={name} />
+            ))}
+          </datalist>
+        </label>
+        <label>
+          {t("Género", "Gender")}
+          <select
+            value={draft.gender ?? ""}
+            onChange={(event) => set("gender", event.target.value)}
+          >
+            <option value="">
+              {t("Prefiero no decirlo", "Prefer not to say")}
+            </option>
+            <option value="hombre">{t("Hombre", "Male")}</option>
+            <option value="mujer">{t("Mujer", "Female")}</option>
+            <option value="no_binario">{t("No binario", "Non-binary")}</option>
+            <option value="otro">{t("Otro", "Other")}</option>
+          </select>
+        </label>
+        <label>
+          {t("Peso", "Weight")} ({snapshot.settings.weight})
+          <select
+            value={Number(draft.weight) || 75}
+            onChange={(event) => set("weight", Number(event.target.value))}
+          >
+            {[
+              ...new Set([
+                Number(draft.weight) || 75,
+                ...Array.from({ length: 801 }, (_, index) => 25 + index * 0.5),
+              ]),
+            ]
+              .sort((a, b) => a - b)
+              .map((weight) => (
+                <option key={weight} value={weight}>
+                  {weight}
+                </option>
+              ))}
+          </select>
+        </label>
+        <label>
+          {t("Altura", "Height")} ({snapshot.settings.height})
+          <select
+            value={Number(draft.height) || 175}
+            onChange={(event) => set("height", Number(event.target.value))}
+          >
+            {[
+              ...new Set([
+                Number(draft.height) || 175,
+                ...(snapshot.settings.height === "ft"
+                  ? Array.from(
+                      { length: 61 },
+                      (_, i) => Math.round((3 + i * 0.1) * 10) / 10,
+                    )
+                  : Array.from({ length: 151 }, (_, i) => 100 + i)),
+              ]),
+            ]
+              .sort((a, b) => a - b)
+              .map((height) => (
+                <option key={height} value={height}>
+                  {height}
+                </option>
+              ))}
+          </select>
+        </label>
+      </div>
+      {(changed || onboarding) && (
+        <Button type="submit" className="w-full" disabled={busy}>
+          {busy
+            ? "Guardando…"
+            : onboarding
+              ? t("Crear perfil y entrar", "Create profile and enter")
+              : t("Guardar cambios", "Save changes")}
+        </Button>
+      )}
+    </form>
+  );
+}
