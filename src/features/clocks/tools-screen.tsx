@@ -8,7 +8,6 @@ export function ToolsScreen() {
     { t } = useApp();
   return (
     <>
-      <h1>{t("Herramientas", "Tools")}</h1>
       <p className="page-description">
         {t(
           "Relojes, tracking y calculadoras.",

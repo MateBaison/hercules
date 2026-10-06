@@ -47,7 +47,6 @@ export function ExerciseLibrary() {
     <>
       <div className="page-heading flex items-center justify-between gap-3">
         <div>
-          <h1>{t("Biblioteca", "Library")}</h1>
           <p>
             {t(
               "Elegí una zona o buscá un ejercicio.",

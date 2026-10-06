@@ -61,7 +61,6 @@ export function ProgressScreen() {
   )[0];
   return (
     <>
-      <h1>{t("Progreso", "Progress")}</h1>
       <p className="page-description">
         {t(
           "Cambios reales en tus ejercicios y hábitos de entrenamiento.",

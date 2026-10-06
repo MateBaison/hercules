@@ -1,12 +1,25 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { translate } from "@/data/translations";
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 export function AppHeader({
   accountAction,
+  language = "es",
 }: {
   accountAction?: React.ReactNode;
+  language?: string;
 }) {
+  const pathname = usePathname();
+  const section = [
+    { path: "/home", es: "Inicio", en: "Home" },
+    { path: "/library", es: "Biblioteca", en: "Library" },
+    { path: "/tools", es: "Herramientas", en: "Tools" },
+    { path: "/progress", es: "Progreso", en: "Progress" },
+    { path: "/profile", es: "Perfil", en: "Profile" },
+  ].find((item) => item.path === pathname);
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
     const update = () => setNow(new Date());
@@ -15,7 +28,7 @@ export function AppHeader({
     return () => clearInterval(timer);
   }, []);
   return (
-    <header className="app-header">
+    <header className={cn("app-header", section && "app-header-section")}>
       <Link
         href="/home"
         className="brand"
@@ -48,6 +61,11 @@ export function AppHeader({
         </div>
         {accountAction}
       </div>
+      {section && (
+        <h1 className="header-section-title">
+          {translate(language, section.es, section.en)}
+        </h1>
+      )}
     </header>
   );
 }

@@ -70,9 +70,6 @@ export function RoutinesHome() {
     activeDay = activeRoutine?.days.find((day) => day.id === workout?.did);
   return (
     <>
-      <div className="page-heading">
-        <h1>{t("Inicio", "Home")}</h1>
-      </div>
       {workout ? (
         <section className="active-workout hero-panel mb-5">
           <span className="eyebrow">

@@ -35,7 +35,6 @@ export function ProfileScreen() {
     <>
       <div className="page-heading flex items-center justify-between">
         <div>
-          <h1>{t("Perfil", "Profile")}</h1>
           <p>{t("Tus datos y preferencias", "Your details and preferences")}</p>
         </div>
         <Button

@@ -942,3 +942,24 @@ strong {
     font-size: 1rem;
   }
 }
+
+.app-header-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  row-gap: 12px;
+  padding-bottom: 10px;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+.header-section-title {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--secondary);
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 750;
+  line-height: 1.3;
+}

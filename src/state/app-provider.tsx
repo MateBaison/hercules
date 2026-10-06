@@ -92,6 +92,7 @@ export function AppProvider({
   }, [view.snapshot?.settings.language]);
   const header = (
     <AppHeader
+      language={view.snapshot?.settings.language}
       accountAction={
         <SignOutButton
           iconOnly
