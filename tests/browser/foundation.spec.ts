@@ -35,7 +35,7 @@ test("welcome, all navigation routes, active tab, brand home and reload", async 
     ["Progreso", "/progress"],
     ["Perfil", "/profile"],
     ["Inicio", "/home"],
-  ]) {
+  ] as const) {
     const link = page
       .getByRole("navigation")
       .getByRole("link", { name: label, exact: true });
