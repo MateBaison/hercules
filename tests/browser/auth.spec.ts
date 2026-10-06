@@ -36,6 +36,9 @@ test("server gates require auth; OTP rejects invalid codes, restores cookies and
     page.getByRole("button", { name: "Cerrar sesión" }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Cerrar sesión" }).click();
+  await page
+    .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
+    .click();
   await expect(page).toHaveURL(/\/login$/);
   await page.goto("/profile");
   await expect(page).toHaveURL(/\/login$/);
@@ -77,6 +80,9 @@ test("account switches isolate caches and restore each account's own cloud data"
   await page
     .getByRole("button", { name: "Cerrar sesión", exact: true })
     .click();
+  await page
+    .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
+    .click();
   await login(page, "second@example.invalid");
   await page.goto("/profile");
   await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue(
@@ -87,6 +93,9 @@ test("account switches isolate caches and restore each account's own cloud data"
   ).toBeVisible();
   await page
     .getByRole("button", { name: "Cerrar sesión", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
     .click();
   await login(page);
   await page.goto("/profile");
@@ -103,4 +112,90 @@ test("account switches isolate caches and restore each account's own cloud data"
         ).profile.name,
     ),
   ).toBe("Second");
+});
+
+test("email entry can return home and discard the pending code", async ({
+  page,
+}) => {
+  await page.goto("/login");
+  await page.getByLabel("Correo electrónico").fill("test@example.invalid");
+  await page
+    .getByRole("button", { name: "Enviar código", exact: true })
+    .click();
+  await expect(page.getByLabel("Código del correo")).toBeVisible();
+  await page
+    .getByRole("link", { name: "Volver al inicio", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/$/);
+  await page
+    .getByRole("link", { name: "Crear cuenta o iniciar sesión" })
+    .click();
+  await expect(page.getByLabel("Correo electrónico")).toBeEditable();
+  await expect(page.getByLabel("Código del correo")).toHaveCount(0);
+});
+
+test("onboarding has a cancellable sign-out door before saving a profile", async ({
+  page,
+}) => {
+  await page.request.get("http://127.0.0.1:54329/__reset?new=1");
+  await login(page);
+  await expect(page).toHaveURL(/\/onboarding$/);
+  await page
+    .getByRole("button", { name: "Salir de la cuenta", exact: true })
+    .click();
+  await page.getByRole("button", { name: "Cancelar", exact: true }).click();
+  await expect(page).toHaveURL(/\/onboarding$/);
+  expect((await page.request.get("/api/account/summary")).status()).toBe(200);
+  await page
+    .getByRole("button", { name: "Salir de la cuenta", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/login$/);
+  expect((await page.request.get("/api/account/summary")).status()).toBe(401);
+  const audit = await (
+    await page.request.get("http://127.0.0.1:54329/__audit")
+  ).json();
+  expect(audit.writes).toEqual([]);
+});
+
+test("header sign-out preserves unsynced edits and requires a second confirmation", async ({
+  page,
+}) => {
+  await login(page);
+  await page.goto("/profile");
+  await page.route("**/rest/v1/mrgymson_state*", (route) =>
+    route.request().method() === "POST" ? route.abort() : route.continue(),
+  );
+  await page
+    .getByLabel("Nombre", { exact: true })
+    .fill("Pending local profile");
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Salir de la cuenta", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Salir igualmente", exact: true }),
+  ).toBeVisible();
+  expect((await page.request.get("/api/account/summary")).status()).toBe(200);
+  await page
+    .getByRole("button", { name: "Salir igualmente", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/login$/);
+  expect(
+    await page.evaluate(
+      () =>
+        JSON.parse(
+          localStorage.getItem(
+            "mrgymson-user-11111111-1111-4111-8111-111111111111",
+          )!,
+        ).profile.name,
+    ),
+  ).toBe("Pending local profile");
 });

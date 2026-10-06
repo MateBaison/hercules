@@ -72,6 +72,12 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
   await page
     .getByRole("button", { name: "Finalizar entrenamiento", exact: true })
     .click();
+  await expect(page.locator(".training-colors button")).toHaveCount(7);
+  await expect(page.locator('input[type="color"]')).toHaveCount(0);
+  await page.screenshot({
+    path: `artifacts/training-colors-${info.project.name}.png`,
+    animations: "disabled",
+  });
   await page
     .getByLabel("Comentario del entrenamiento", { exact: true })
     .fill("Buen entrenamiento");
@@ -83,6 +89,30 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
     const d = new Date();
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   });
+  const day = page.locator(`[data-calendar-date="${today}"]`);
+  const box = await day.boundingBox();
+  expect(Math.abs(box!.width - box!.height)).toBeLessThan(2);
+  const darker = await day.evaluate((el) => {
+    const dot = el.querySelector("i")!;
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d")!;
+    function brightness(css: string) {
+      ctx.fillStyle = css;
+      ctx.fillRect(0, 0, 1, 1);
+      const [r, g, b] = ctx.getImageData(0, 0, 1, 1).data;
+      return r! + g! + b!;
+    }
+    return (
+      brightness(getComputedStyle(dot).backgroundColor) <
+      brightness(getComputedStyle(el).backgroundColor)
+    );
+  });
+  expect(darker).toBe(true);
+  await day.scrollIntoViewIfNeeded();
+  await page.screenshot({
+    path: `artifacts/calendar-colors-${info.project.name}.png`,
+    animations: "disabled",
+  });
   await page.locator(`[data-calendar-date="${today}"]`).click();
   await page.locator(".calendar-workout summary").click();
   await expect(page.locator(".calendar-workout")).toContainText(
@@ -91,8 +121,9 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
   await page.getByRole("button", { name: "Editar", exact: true }).click();
   await page.getByLabel("Repeticiones 1 serie 1", { exact: true }).fill("9");
   await page
-    .getByLabel("Color del calendario", { exact: true })
-    .fill("#4b9bff");
+    .getByRole("group", { name: "Color del calendario", exact: true })
+    .getByRole("button", { name: "Azul", exact: true })
+    .click();
   await page
     .getByRole("button", { name: "Guardar entrenamiento", exact: true })
     .click();

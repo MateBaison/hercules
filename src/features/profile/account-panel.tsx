@@ -1,9 +1,9 @@
 "use client";
 import { useApp } from "@/state/app-provider";
-import { signOut } from "@/lib/supabase/auth-actions";
+import { SignOutButton } from "@/features/auth/sign-out-button";
 import { Button } from "@/components/ui/button";
 export function AccountPanel() {
-  const { user, message, retry, flush, t, notify } = useApp();
+  const { user, message, retry, flush, t, snapshot } = useApp();
   return (
     <>
       <section className="panel">
@@ -22,27 +22,7 @@ export function AccountPanel() {
           {t("Reintentar sincronización", "Retry sync")}
         </Button>
       </section>
-      <form
-        action={async () => {
-          const saved = await flush();
-          if (
-            !saved &&
-            !confirm(
-              t(
-                "Hay cambios pendientes guardados en este dispositivo. ¿Cerrar sesión igualmente?",
-                "Changes are pending on this device. Sign out anyway?",
-              ),
-            )
-          )
-            return;
-          const result = await signOut();
-          if (result?.error) notify(result.error);
-        }}
-      >
-        <Button type="submit" variant="secondary" className="w-full">
-          {t("Cerrar sesión", "Sign out")}
-        </Button>
-      </form>
+      <SignOutButton flush={flush} language={snapshot.settings.language} />
     </>
   );
 }

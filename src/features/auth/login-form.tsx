@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { buttonVariants, Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   googleLogin,
@@ -103,10 +104,12 @@ export function LoginForm() {
         <Button
           variant="secondary"
           className="w-full"
+          disabled={busy}
           onClick={() => {
             try {
               sessionStorage.removeItem(PENDING_EMAIL_KEY);
             } catch {}
+            setError("");
             setSent(false);
             setCode("");
           }}
@@ -119,6 +122,17 @@ export function LoginForm() {
           Continuar con Google
         </Button>
       </form>
+      <Link
+        href="/"
+        className={buttonVariants({ variant: "ghost", className: "w-full" })}
+        onClick={() => {
+          try {
+            sessionStorage.removeItem(PENDING_EMAIL_KEY);
+          } catch {}
+        }}
+      >
+        Volver al inicio
+      </Link>
       <p className="text-sm text-muted-foreground">
         Tu cuenta guarda rutinas y entrenamientos en la nube. Nunca compartas el
         código recibido.

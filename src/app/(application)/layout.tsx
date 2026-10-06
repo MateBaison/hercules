@@ -1,4 +1,3 @@
-import { AppHeader } from "@/components/layout/app-header";
 import { AppProvider } from "@/state/app-provider";
 import { verifiedUser, accountSummary } from "@/lib/supabase/account-reader";
 import { configured } from "@/lib/env";
@@ -19,7 +18,6 @@ export default async function ApplicationLayout({
       <a className="skip-link" href="#main-content">
         Saltar al contenido
       </a>
-      <AppHeader />
       <AppProvider
         key={user.id}
         user={{ id: user.id, email: user.email ?? "" }}

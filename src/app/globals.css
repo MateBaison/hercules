@@ -333,6 +333,10 @@ a {
   font-size: 0.75rem;
   font-weight: 600;
 }
+.account-brand {
+  order: 2;
+  margin-left: auto;
+}
 .header-date {
   text-align: right;
   margin-right: 8px;
@@ -469,9 +473,8 @@ main > h1 {
 .muscle-chips {
   display: flex;
   gap: 8px;
-  overflow-x: auto;
+  flex-wrap: wrap;
   padding: 12px 2px;
-  scrollbar-width: thin;
 }
 .muscle-chips button {
   white-space: nowrap;
@@ -803,7 +806,9 @@ label input[type="checkbox"] {
   text-align: center;
 }
 .calendar-grid button {
-  min-height: 45px;
+  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
   border: 1px solid var(--border);
   background: #0e1117;
   border-radius: 10px;
@@ -830,7 +835,7 @@ label input[type="checkbox"] {
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  border: 1px solid #ffffffcc;
+  border: 1px solid #00000033;
 }
 .profile-summary-grid {
   display: grid;
@@ -869,4 +874,39 @@ strong {
 }
 .workout-fold {
   scroll-margin-top: 90px;
+}
+
+.training-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.training-color {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  display: grid;
+  place-items: center;
+  color: #090b10;
+}
+.training-color[data-pressed] {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+.training-color:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+@media (max-width: 360px) {
+  .account-brand small {
+    display: none;
+  }
+  .account-brand {
+    gap: 6px;
+  }
+  .account-brand strong {
+    font-size: 1rem;
+  }
 }

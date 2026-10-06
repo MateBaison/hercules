@@ -2,7 +2,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export function AppHeader() {
+export function AppHeader({
+  accountAction,
+}: {
+  accountAction?: React.ReactNode;
+}) {
   const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
     const update = () => setNow(new Date());
@@ -12,9 +16,10 @@ export function AppHeader() {
   }, []);
   return (
     <header className="app-header">
+      {accountAction}
       <Link
         href="/home"
-        className="brand"
+        className={accountAction ? "brand account-brand" : "brand"}
         aria-label="HERCULES — volver al inicio"
       >
         <img src="/assets/hercules-logo-v1.jpg" alt="" width={44} height={44} />

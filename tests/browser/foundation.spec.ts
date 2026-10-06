@@ -78,6 +78,10 @@ test("catalog groups, non-floating search, equipment filters, images, modal and 
   await page.goto("/library");
   await expect(page.locator(".exercise-card")).toHaveCount(136);
   await expect(page.locator(".muscle-summary")).toHaveCount(0);
+  await page.screenshot({
+    path: `artifacts/library-groups-${testInfo.project.name}.png`,
+    animations: "disabled",
+  });
   for (const group of [
     "Pectorales",
     "Espalda",
@@ -102,6 +106,18 @@ test("catalog groups, non-floating search, equipment filters, images, modal and 
         await image.decode();
       }
     });
+  }
+  expect(
+    await page
+      .locator(".muscle-chips")
+      .evaluate((el) => el.scrollWidth <= el.clientWidth),
+  ).toBe(true);
+  const chips = await page.locator(".muscle-chips button").all();
+  for (const chip of chips) {
+    const box = await chip.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
   }
   await page
     .getByRole("group", { name: "Zonas musculares" })

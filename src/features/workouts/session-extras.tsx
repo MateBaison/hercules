@@ -1,10 +1,22 @@
 "use client";
+import { Toggle } from "@base-ui/react/toggle";
+import { ToggleGroup } from "@base-ui/react/toggle-group";
+import { Check } from "lucide-react";
 import { useState } from "react";
 import { useApp } from "@/state/app-provider";
 import type { Extras } from "@/domain/workouts";
 import { compressedPhoto, safePhoto } from "@/lib/browser/photos";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+export const trainingColors = [
+  { value: "#ff5538", es: "Rojo", en: "Red" },
+  { value: "#fb923c", es: "Naranja", en: "Orange" },
+  { value: "#facc15", es: "Amarillo", en: "Yellow" },
+  { value: "#4ade80", es: "Verde", en: "Green" },
+  { value: "#38bdf8", es: "Azul", en: "Blue" },
+  { value: "#a78bfa", es: "Violeta", en: "Purple" },
+  { value: "#f472b6", es: "Rosa", en: "Pink" },
+] as const;
 export const emptyExtras: Extras = {
   color: "#ff5538",
   comment: "",
@@ -24,16 +36,42 @@ export function SessionExtras({
     factor = snapshot.settings.weight === "lb" ? 2.20462 : 1;
   return (
     <div className="space-y-4">
-      <label className="block">
-        {t("Color del calendario", "Calendar color")}
-        <Input
-          type="color"
-          value={value.color}
-          onChange={(event) =>
-            onChange({ ...value, color: event.target.value })
-          }
-        />
-      </label>
+      <fieldset>
+        <legend>{t("Color del calendario", "Calendar color")}</legend>
+        <ToggleGroup
+          className="training-colors"
+          aria-label={t("Color del calendario", "Calendar color")}
+          value={[value.color]}
+          onValueChange={(colors) => {
+            const chosen = colors[0];
+            if (chosen) onChange({ ...value, color: chosen });
+          }}
+        >
+          {trainingColors.map((option) => (
+            <Toggle
+              key={option.value}
+              value={option.value}
+              aria-label={t(option.es, option.en)}
+              className="training-color"
+              style={{ background: option.value }}
+            >
+              {value.color.toLowerCase() === option.value && (
+                <Check aria-hidden="true" />
+              )}
+            </Toggle>
+          ))}
+        </ToggleGroup>
+        {!trainingColors.some(
+          (option) => option.value === value.color.toLowerCase(),
+        ) && (
+          <p className="text-sm text-muted-foreground">
+            {t(
+              "Se conserva el color anterior hasta que elijas uno nuevo.",
+              "The previous color stays until you choose a new one.",
+            )}
+          </p>
+        )}
+      </fieldset>
       <label className="block">
         {t("Comentario del entrenamiento", "Workout comment")}
         <textarea

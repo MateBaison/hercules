@@ -7,6 +7,8 @@ import { stateRepository } from "@/lib/supabase/state-repository";
 import { SyncController, type SyncView } from "@/lib/supabase/sync-controller";
 import type { Snapshot } from "@/domain/schemas/snapshot";
 import { translate } from "@/data/translations";
+import { AppHeader } from "@/components/layout/app-header";
+import { SignOutButton } from "@/features/auth/sign-out-button";
 import { RuntimeProvider } from "./runtime-provider";
 
 type AccountContext = {
@@ -88,46 +90,63 @@ export function AppProvider({
     document.documentElement.dir =
       view.snapshot.settings.language === "ar" ? "rtl" : "ltr";
   }, [view.snapshot?.settings.language]);
+  const header = (
+    <AppHeader
+      accountAction={
+        <SignOutButton
+          iconOnly
+          language={view.snapshot?.settings.language}
+          flush={() => controller.current?.flush() ?? Promise.resolve(false)}
+        />
+      }
+    />
+  );
   if (view.status === "conflict")
     return (
-      <section className="hero-panel">
-        <h1>Elegir copia de tus datos</h1>
-        <p>{view.message}</p>
-        <div className="flex flex-wrap gap-3">
-          <Button
-            disabled={!controller.current?.hasCloud}
-            onClick={() => controller.current?.resolve("cloud")}
-          >
-            Usar nube
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => controller.current?.resolve("local")}
-          >
-            Usar dispositivo
-          </Button>
-        </div>
-      </section>
+      <>
+        {header}
+        <section className="hero-panel">
+          <h1>Elegir copia de tus datos</h1>
+          <p>{view.message}</p>
+          <div className="flex flex-wrap gap-3">
+            <Button
+              disabled={!controller.current?.hasCloud}
+              onClick={() => controller.current?.resolve("cloud")}
+            >
+              Usar nube
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => controller.current?.resolve("local")}
+            >
+              Usar dispositivo
+            </Button>
+          </div>
+        </section>
+      </>
     );
   if (!view.snapshot)
     return (
-      <section className="hero-panel" role="status">
-        <h1>
-          {view.status === "error"
-            ? "No pudimos cargar tu cuenta"
-            : "Cargando…"}
-        </h1>
-        <p>{view.message}</p>
-        {view.status === "error" && (
-          <Button
-            onClick={() => {
-              void controller.current?.start();
-            }}
-          >
-            Reintentar conexión
-          </Button>
-        )}
-      </section>
+      <>
+        {header}
+        <section className="hero-panel" role="status">
+          <h1>
+            {view.status === "error"
+              ? "No pudimos cargar tu cuenta"
+              : "Cargando…"}
+          </h1>
+          <p>{view.message}</p>
+          {view.status === "error" && (
+            <Button
+              onClick={() => {
+                void controller.current?.start();
+              }}
+            >
+              Reintentar conexión
+            </Button>
+          )}
+        </section>
+      </>
     );
   return (
     <Context.Provider
@@ -155,6 +174,7 @@ export function AppProvider({
         notify: setNotice,
       }}
     >
+      {header}
       <RuntimeProvider
         onRestComplete={() =>
           setNotice(

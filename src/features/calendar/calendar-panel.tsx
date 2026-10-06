@@ -157,7 +157,12 @@ export function CalendarPanel() {
               {index + 1}
               <span className="calendar-dots">
                 {colors.map((value) => (
-                  <i key={value} style={{ background: value }} />
+                  <i
+                    key={value}
+                    style={{
+                      background: `color-mix(in srgb, ${value} 72%, black)`,
+                    }}
+                  />
                 ))}
               </span>
             </button>
