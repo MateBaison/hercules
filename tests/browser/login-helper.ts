@@ -10,5 +10,5 @@ export async function login(page: Page, email = "test@example.invalid") {
     .getByRole("button", { name: "Verificar código", exact: true })
     .click();
   await expect(page).toHaveURL(/\/(home|onboarding)$/);
-  await expect(page.locator("[data-sync-status]")).toBeVisible();
+  await expect(page.locator("[data-sync-status]")).toBeAttached();
 }

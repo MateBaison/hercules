@@ -141,7 +141,7 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
     .click();
   await expect(page.locator(".calendar-workout")).toHaveCount(1);
   await page.keyboard.press("Escape");
-  await expect(page.locator('[data-sync-status="synced"]')).toBeVisible();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
   await page.reload();
   expect(
     await page.evaluate(
@@ -308,7 +308,7 @@ test("profile dirty-only saving and units remain account-linked on a second brow
   await page
     .getByRole("button", { name: "Guardar cambios", exact: true })
     .click();
-  await expect(page.locator('[data-sync-status="synced"]')).toBeVisible();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
   const context = await browser.newContext(),
     other = await context.newPage();
   try {

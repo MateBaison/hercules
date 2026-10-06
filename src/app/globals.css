@@ -614,7 +614,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 0 0 12px;
 }
 .sync-indicator[data-sync-status="synced"] {
-  color: #54d68b;
+  display: none;
 }
 .save-toast {
   position: fixed;

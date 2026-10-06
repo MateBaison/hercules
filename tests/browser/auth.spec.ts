@@ -76,7 +76,7 @@ test("account switches isolate caches and restore each account's own cloud data"
   await page
     .getByRole("button", { name: "Guardar cambios", exact: true })
     .click();
-  await expect(page.locator('[data-sync-status="synced"]')).toBeVisible();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
   await page
     .getByRole("button", { name: "Cerrar sesión", exact: true })
     .click();
