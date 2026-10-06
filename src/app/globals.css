@@ -340,13 +340,18 @@ a {
   flex-shrink: 0;
 }
 .header-exit {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 0;
   --destructive-solid: #dc2626;
   --destructive-solid-hover: #b91c1c;
 }
 .header-date {
   text-align: right;
   color: var(--muted-foreground);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   line-height: 1.45;
 }
 .header-date time {
@@ -709,15 +714,37 @@ label input[type="checkbox"] {
   background: #191d26;
 }
 .routine-day {
-  margin-top: 12px;
-  padding: 14px;
+  margin-top: 10px;
+  padding: 0 14px;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: #0e1117;
 }
-.routine-day summary {
+.routine-day > summary {
   cursor: pointer;
-  min-height: 36px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 20px;
+  text-align: center;
+  list-style: none;
+  position: relative;
+}
+.routine-day > summary::-webkit-details-marker {
+  display: none;
+}
+.routine-day > summary::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+}
+.routine-day[open] > summary::before {
+  content: "▾";
+}
+.routine-day[open] {
+  padding-bottom: 10px;
 }
 .drag-handle {
   touch-action: none;

@@ -24,7 +24,7 @@ export function AppHeader({
         <img src="/assets/hercules-logo-v1.jpg" alt="" width={44} height={44} />
         <span>
           <strong>HERCULES</strong>
-          <small>Tu entrenamiento</small>
+          <small>GYM TRACKER</small>
         </span>
       </Link>
       <div className="header-actions">
