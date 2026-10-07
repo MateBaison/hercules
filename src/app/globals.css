@@ -1224,8 +1224,28 @@ input[type="range"] {
 }
 
 .menstrual-calendar {
+  display: contents;
+}
+.menstrual-calendar-control {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  font-size: 0.85rem;
+}
+.menstrual-calendar-control .routine-switch {
+  flex-shrink: 0;
+}
+.menstrual-calendar-details {
+  grid-column: 1 / -1;
   border-top: 1px solid var(--border);
   padding-top: 16px;
+}
+.menstrual-calendar-details summary {
+  cursor: pointer;
+  font-weight: 750;
 }
 .menstrual-days {
   display: grid;

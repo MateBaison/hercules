@@ -258,20 +258,20 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
             <option value="otro">{t("Otro", "Other")}</option>
           </select>
         </label>
+        {(["mujer", "no_binario", "otro"].includes(draft.gender ?? "") ||
+          draft.menstrualCalendar?.enabled ||
+          (draft.menstrualCalendar?.dates?.length ?? 0) > 0) && (
+          <MenstrualCalendar
+            value={draft.menstrualCalendar}
+            onChange={(value) =>
+              setDraft((previous) => ({
+                ...previous,
+                menstrualCalendar: { ...previous.menstrualCalendar, ...value },
+              }))
+            }
+          />
+        )}
       </div>
-      {(["mujer", "no_binario", "otro"].includes(draft.gender ?? "") ||
-        draft.menstrualCalendar?.enabled ||
-        (draft.menstrualCalendar?.dates?.length ?? 0) > 0) && (
-        <MenstrualCalendar
-          value={draft.menstrualCalendar}
-          onChange={(value) =>
-            setDraft((previous) => ({
-              ...previous,
-              menstrualCalendar: { ...previous.menstrualCalendar, ...value },
-            }))
-          }
-        />
-      )}
       {(changed || onboarding) && (
         <Button type="submit" className="w-full" disabled={busy}>
           {busy

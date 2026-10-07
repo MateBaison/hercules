@@ -439,6 +439,15 @@ test("menstrual calendar is optional and dates persist", async ({
   }
   await calendar.getByRole("switch").click();
   const day = calendar.locator(".menstrual-days button:not(:disabled)").first();
+  const disclosure = calendar.locator("summary");
+  await disclosure.click();
+  await expect(day).not.toBeVisible();
+  await disclosure.focus();
+  await page.keyboard.press("Enter");
+  await expect(day).toBeVisible();
+  const genderBox = await gender.boundingBox();
+  const switchBox = await calendar.getByRole("switch").boundingBox();
+  expect(switchBox!.x).toBeGreaterThan(genderBox!.x);
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,
