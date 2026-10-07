@@ -45,19 +45,6 @@ export function ExerciseLibrary() {
   const index = filtered.findIndex((exercise) => exercise.id === selected?.id);
   return (
     <>
-      <div className="page-heading flex items-center justify-between gap-3">
-        <div>
-          <p>
-            {t(
-              "Elegí una zona o buscá un ejercicio.",
-              "Choose a muscle group or search for an exercise.",
-            )}
-          </p>
-        </div>
-        <Button variant="secondary" onClick={() => setCustom(true)}>
-          ＋ {t("Crear ejercicio", "Create exercise")}
-        </Button>
-      </div>
       <div className="library-controls">
         <label
           htmlFor="exercise-search"
@@ -121,9 +108,6 @@ export function ExerciseLibrary() {
         </section>
       )}
       <div className="exercise-results">
-        <p role="status" className="text-sm text-muted-foreground">
-          {filtered.length} {t("ejercicios", "exercises")}
-        </p>
         <details ref={filterMenu}>
           <summary>
             {t("Filtrar", "Filter")}
@@ -145,6 +129,16 @@ export function ExerciseLibrary() {
             ))}
           </div>
         </details>
+        <p role="status" className="text-sm text-muted-foreground">
+          {filtered.length} {t("ejercicios", "exercises")}
+        </p>
+        <Button
+          variant="secondary"
+          className="library-create"
+          onClick={() => setCustom(true)}
+        >
+          ＋ {t("Crear ejercicio", "Create exercise")}
+        </Button>
       </div>
       <div className="exercise-grid">
         {filtered.map((exercise) => (

@@ -20,7 +20,8 @@ test("combat preparation, rounds, warning, rest and finish are emitted once", ()
   expect(clock.advance(3000)).toEqual(["round"]);
   expect(clock.advance(8000)).toEqual(["warning"]);
   expect(clock.advance(9000)).toEqual([]);
-  expect(clock.advance(23000)).toEqual([]);
+  expect(clock.advance(23000)).toEqual(["rest"]);
+  expect(clock.advance(24000)).toEqual([]);
   expect(clock.state.phase).toBe("rest");
   expect(clock.advance(28000)).toEqual(["round"]);
   expect(clock.advance(48000)).toEqual(["finish"]);

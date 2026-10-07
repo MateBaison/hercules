@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Pencil, Star } from "lucide-react";
+import { Switch } from "@base-ui/react/switch";
+import { Pencil, Share, Trash2, Star } from "lucide-react";
 import { useApp } from "@/state/app-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -105,44 +106,61 @@ export function RoutinesHome() {
           open={routine.id === selected?.id}
         >
           <summary className="routine-heading">
-            <span className="font-bold">
-              {routine.name}
-              <button
-                type="button"
-                aria-label={`Renombrar ${routine.name}`}
-                className="rename-button"
-                onClick={(event) => {
-                  event.preventDefault();
-                  openEditor({ type: "rename", rid: routine.id }, routine.name);
-                }}
-              >
-                <Pencil size={17} />
-              </button>
+            <span className="routine-title">
+              <span className="font-bold">{routine.name}</span>
+              <span className="routine-title-actions">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-xl"
+                  className="routine-icon-control"
+                  aria-label={`Renombrar ${routine.name}`}
+                  title={t("Cambiar nombre", "Rename")}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    openEditor(
+                      { type: "rename", rid: routine.id },
+                      routine.name,
+                    );
+                  }}
+                >
+                  <Pencil data-icon="inline-start" />
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-xl"
+                  className="routine-icon-control"
+                  aria-label={t("Compartir rutina", "Share routine")}
+                  title={t("Compartir rutina", "Share routine")}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    try {
+                      setShare(
+                        `${location.origin}/#routine=${encodeRoutine(snapshot, routine)}`,
+                      );
+                    } catch (error) {
+                      notify(
+                        error instanceof Error
+                          ? error.message
+                          : "No se pudo compartir",
+                      );
+                    }
+                  }}
+                >
+                  <Share data-icon="inline-start" />
+                </Button>
+              </span>
             </span>
-            <small>
-              {routine.days.length} {t("días", "days")}
-            </small>
-          </summary>
-          <div className="flex flex-wrap gap-2 py-3">
             <Button
-              variant="secondary"
-              onClick={() =>
-                change((draft) => {
-                  draft.selected = routine.id;
-                })
-              }
-            >
-              {routine.id === selected?.id ? "Activa" : t("Usar", "Use")}
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => openEditor({ type: "day", rid: routine.id })}
-            >
-              {t("Agregar día", "Add day")}
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => {
+              type="button"
+              variant="destructive-solid"
+              size="icon-xl"
+              className="routine-delete routine-icon-control"
+              aria-label={t("Eliminar rutina", "Delete routine")}
+              title={t("Eliminar rutina", "Delete routine")}
+              onClick={(event) => {
+                event.preventDefault();
                 if (
                   confirm(
                     t(
@@ -161,26 +179,32 @@ export function RoutinesHome() {
                   });
               }}
             >
-              {t("Eliminar rutina", "Delete routine")}
+              <Trash2 data-icon="inline-start" />
             </Button>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                try {
-                  setShare(
-                    `${location.origin}/#routine=${encodeRoutine(snapshot, routine)}`,
-                  );
-                } catch (error) {
-                  notify(
-                    error instanceof Error
-                      ? error.message
-                      : "No se pudo compartir",
-                  );
+          </summary>
+          <div className="routine-status-row">
+            <label className="routine-activation">
+              <Switch.Root
+                className="routine-switch"
+                aria-label={`${t("Activar rutina", "Activate routine")}: ${routine.name}`}
+                checked={snapshot.selected === routine.id}
+                onCheckedChange={(checked) =>
+                  change((draft) => {
+                    draft.selected = checked ? routine.id : null;
+                  })
                 }
-              }}
-            >
-              {t("Compartir rutina", "Share routine")}
-            </Button>
+              >
+                <Switch.Thumb className="routine-switch-thumb" />
+              </Switch.Root>
+              <span>
+                {snapshot.selected === routine.id
+                  ? t("Activa", "Active")
+                  : t("Inactiva", "Inactive")}
+              </span>
+            </label>
+            <small>
+              {routine.days.length} {t("días", "days")}
+            </small>
           </div>
           {routine.days.map((day) => (
             <details className="routine-day" key={day.id}>
@@ -242,6 +266,13 @@ export function RoutinesHome() {
               )}
             </details>
           ))}
+          <Button
+            variant="secondary"
+            className="routine-add-day"
+            onClick={() => openEditor({ type: "day", rid: routine.id })}
+          >
+            {t("Agregar día", "Add day")}
+          </Button>
         </details>
       ))}
       {!snapshot.routines.length && (

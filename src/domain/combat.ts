@@ -13,7 +13,7 @@ export const combatConfigSchema = z.object({
   prep: z.number().int().min(0).max(600),
 });
 export type CombatConfig = z.infer<typeof combatConfigSchema>;
-export type CombatSignal = "round" | "warning" | "finish";
+export type CombatSignal = "round" | "rest" | "warning" | "finish";
 export type CombatState = {
   phase: "prep" | "work" | "rest" | "done";
   round: number;
@@ -81,6 +81,7 @@ export class CombatMachine {
         signals.push("finish");
       } else if (state.phase === "work" && this.config.rest) {
         state.phase = "rest";
+        signals.push("rest");
         state.end += this.config.rest * 1000;
       } else {
         state.phase = "work";

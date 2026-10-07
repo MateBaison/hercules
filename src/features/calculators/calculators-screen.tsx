@@ -53,6 +53,12 @@ export function CalculatorsScreen() {
     ),
     [maximum, setMaximum] = useState<number | null>(null),
     [goal, setGoal] = useState<WeightGoalResult | null>(null);
+  const useCaloriesForMacros = (value: number) => {
+    setCalories(value);
+    setMacros(null);
+    setError("");
+    setSection("macros");
+  };
   const input = (): CalorieInput => ({
     formula: sex,
     age,
@@ -265,6 +271,11 @@ export function CalculatorsScreen() {
             <Result
               color="loss"
               label="Bajar de peso"
+              onSelect={
+                targets.loss >= 1200
+                  ? () => useCaloriesForMacros(targets.loss)
+                  : undefined
+              }
               value={
                 targets.loss < 1200
                   ? "Consultar con un profesional"
@@ -274,11 +285,13 @@ export function CalculatorsScreen() {
             <Result
               color="maintain"
               label="Mantenerse"
+              onSelect={() => useCaloriesForMacros(targets.maintenance)}
               value={`${targets.maintenance} kcal/día`}
             />
             <Result
               color="gain"
               label="Subir de peso"
+              onSelect={() => useCaloriesForMacros(targets.gain)}
               value={`${targets.gain} kcal/día`}
             />
           </div>
@@ -394,11 +407,26 @@ function Result({
   color,
   label,
   value,
+  onSelect,
 }: {
   color: string;
   label: string;
   value: string;
+  onSelect?: () => void;
 }) {
+  if (onSelect)
+    return (
+      <button
+        type="button"
+        className={`result-card result-${color} result-action`}
+        onClick={onSelect}
+        aria-label={`${label}: ${value}. Usar en macros`}
+      >
+        <h3>{label}</h3>
+        <strong>{value}</strong>
+        <small className="mt-2 block">Usar en macros →</small>
+      </button>
+    );
   return (
     <div className={`result-card result-${color}`}>
       <h3>{label}</h3>

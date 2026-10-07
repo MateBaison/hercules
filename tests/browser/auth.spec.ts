@@ -72,6 +72,9 @@ test("account switches isolate caches and restore each account's own cloud data"
 }) => {
   await login(page);
   await page.goto("/profile");
+  const contact = page.getByLabel("Email de contacto", { exact: true });
+  await expect(contact).toHaveValue("test@example.invalid");
+  await expect(contact).toHaveAttribute("readonly", "");
   await page.getByLabel("Nombre", { exact: true }).fill("First account only");
   await page
     .getByRole("button", { name: "Guardar cambios", exact: true })
@@ -85,6 +88,7 @@ test("account switches isolate caches and restore each account's own cloud data"
     .click();
   await login(page, "second@example.invalid");
   await page.goto("/profile");
+  await expect(contact).toHaveValue("second@example.invalid");
   await expect(page.getByLabel("Nombre", { exact: true })).toHaveValue(
     "Second",
   );

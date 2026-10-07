@@ -12,7 +12,7 @@ const codes =
     /../g,
   ) ?? [];
 export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
-  const { snapshot, change, flush, notify, t } = useApp(),
+  const { snapshot, user, change, flush, notify, t } = useApp(),
     router = useRouter();
   const [draft, setDraft] = useState(snapshot.profile),
     [busy, setBusy] = useState(false),
@@ -41,6 +41,7 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
             state.profile = {
               ...draft,
               name: name.data,
+              email: user.email,
               onboardingComplete: true,
             };
           })
@@ -116,14 +117,12 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
             />
           </label>
           <label className="block">
-            {t(
-              "Email de contacto (no cambia tu cuenta)",
-              "Contact email (does not change your account)",
-            )}
+            {t("Email de contacto", "Contact email")}
             <Input
               type="email"
-              value={draft.email ?? ""}
-              onChange={(event) => set("email", event.target.value)}
+              value={user.email}
+              readOnly
+              autoComplete="email"
             />
           </label>
         </div>

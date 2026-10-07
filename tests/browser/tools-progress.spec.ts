@@ -102,6 +102,16 @@ test("four calculators expose colored results and a weight-goal range", async ({
     .getByRole("button", { name: "Calcular calorías", exact: true })
     .click();
   await expect(page.locator(".result-grid .result-card")).toHaveCount(3);
+  for (const color of ["loss", "maintain", "gain"]) {
+    if (color !== "loss")
+      await page.getByRole("button", { name: "Calorías", exact: true }).click();
+    const target = page.locator(`.result-${color}`);
+    const amount = (await target.locator("strong").innerText()).match(
+      /\d+/,
+    )![0]!;
+    await target.click();
+    await expect(page.getByLabel("Objetivo diario (kcal)")).toHaveValue(amount);
+  }
   await page.getByRole("button", { name: "Macros", exact: true }).click();
   await page
     .getByRole("button", { name: "Calcular macros", exact: true })

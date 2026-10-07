@@ -5,13 +5,9 @@
 .clock-face {
   font-variant-numeric: tabular-nums;
   text-align: center;
-  font-size: clamp(3rem, 12vw, 5rem);
-  font-weight: 800;
-  padding: 1.5rem 0;
-}
-.combat-face {
   font-size: clamp(4.5rem, 20vw, 8rem);
   line-height: 1.1;
+  font-weight: 800;
   padding: 2rem 0;
 }
 .route-map {
@@ -517,14 +513,15 @@ main > h1 {
   object-fit: contain;
 }
 .exercise-results {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
   margin: 8px 0 14px;
 }
 .exercise-results details {
   position: relative;
+  max-width: 120px;
 }
 .exercise-results summary {
   cursor: pointer;
@@ -536,7 +533,7 @@ main > h1 {
 }
 .equipment-menu {
   position: absolute;
-  right: 0;
+  inset-inline-start: 0;
   top: 48px;
   z-index: 10;
   display: grid;
@@ -844,7 +841,8 @@ label input[type="checkbox"] {
   border: 1px solid var(--border);
   background: #0e1117;
   border-radius: 10px;
-  font-size: 0.85rem;
+  font-size: 1.05rem;
+  font-weight: 700;
   position: relative;
 }
 .calendar-grid button.today {
@@ -861,13 +859,13 @@ label input[type="checkbox"] {
   justify-content: center;
   gap: 3px;
   margin-top: 3px;
-  min-height: 6px;
+  min-height: 8px;
 }
 .calendar-dots i {
-  height: 6px;
-  width: 6px;
-  border-radius: 50%;
-  border: 1px solid #00000033;
+  height: 8px;
+  width: 12px;
+  border-radius: 999px;
+  border: none;
 }
 .profile-summary-grid {
   display: grid;
@@ -1017,4 +1015,115 @@ strong {
   .header-section-title {
     font-size: 0.75rem;
   }
+}
+
+.routine-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  min-width: 0;
+}
+.routine-title-actions {
+  display: flex;
+  gap: 4px;
+}
+.routine-icon-control {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 12px;
+}
+.routine-delete {
+  --destructive-solid: #dc2626;
+  --destructive-solid-hover: #b91c1c;
+  align-self: flex-start;
+}
+.routine-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+.routine-status-row small {
+  color: var(--muted-foreground);
+}
+.routine-activation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.routine-switch {
+  display: inline-flex;
+  align-items: center;
+  width: 52px;
+  height: 30px;
+  padding: 3px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #6b7280;
+  transition: background-color 180ms ease;
+  outline: none;
+}
+.routine-switch[data-checked] {
+  background: #22c55e;
+}
+.routine-switch:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+.routine-switch-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 1px 3px #0003;
+  transform: translateX(0);
+  transition: transform 180ms ease;
+}
+.routine-switch-thumb[data-checked] {
+  transform: translateX(22px);
+}
+.routine-add-day {
+  margin-top: 12px;
+  width: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .routine-switch,
+  .routine-switch-thumb {
+    transition: none;
+  }
+}
+
+.library-create {
+  margin-inline-start: auto;
+  padding-inline: 10px;
+  font-size: 0.8rem;
+}
+.exercise-results > p {
+  font-size: 0.75rem;
+}
+
+.clock-face {
+  overflow-wrap: anywhere;
+}
+.result-action {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+.result-action:hover {
+  filter: brightness(1.1);
+}
+.result-action:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+.result-action:disabled {
+  cursor: default;
 }

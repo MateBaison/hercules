@@ -8,11 +8,37 @@ export class CombatAudio {
   async play(signal: CombatSignal) {
     if (!this.context) return;
     if (this.context.state === "suspended") await this.context.resume();
-    const patterns: Record<CombatSignal, number[][]> = {
-      round: [
-        [660, 0, 0.35],
-        [880, 0.16, 0.5],
-      ],
+    if (signal === "round" || signal === "rest") {
+      // Inharmonic partials and a sharp attack imitate a struck boxing bell.
+      const strikes = signal === "round" ? 3 : 2;
+      for (let strike = 0; strike < strikes; strike++) {
+        for (const [frequency, volume] of [
+          [520, 0.13],
+          [1435, 0.07],
+          [2808, 0.035],
+          [4644, 0.015],
+        ]) {
+          const oscillator = this.context.createOscillator();
+          const gain = this.context.createGain();
+          const start = this.context.currentTime + strike * 0.22;
+          oscillator.type = "sine";
+          oscillator.frequency.setValueAtTime(frequency!, start);
+          gain.gain.setValueAtTime(0.001, start);
+          gain.gain.linearRampToValueAtTime(volume!, start + 0.004);
+          gain.gain.exponentialRampToValueAtTime(0.001, start + 1.3);
+          oscillator.connect(gain);
+          gain.connect(this.context.destination);
+          oscillator.start(start);
+          oscillator.stop(start + 1.35);
+          oscillator.onended = () => {
+            oscillator.disconnect();
+            gain.disconnect();
+          };
+        }
+      }
+      return;
+    }
+    const patterns: Record<"warning" | "finish", number[][]> = {
       warning: [
         [1100, 0, 0.12],
         [1100, 0.23, 0.12],
@@ -33,7 +59,7 @@ export class CombatAudio {
       const oscillator = this.context.createOscillator(),
         gain = this.context.createGain(),
         start = this.context.currentTime + offset;
-      oscillator.type = signal === "round" ? "sine" : "triangle";
+      oscillator.type = "triangle";
       oscillator.frequency.setValueAtTime(frequency, start);
       gain.gain.setValueAtTime(0, start);
       gain.gain.linearRampToValueAtTime(0.22, start + 0.015);

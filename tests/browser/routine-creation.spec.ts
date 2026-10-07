@@ -22,14 +22,12 @@ test("custom goals, automatic routines, editable days and independent sharing co
     .getByRole("combobox", { name: "Objetivo", exact: true })
     .selectOption("Ganar masa muscular");
   await page.getByRole("button", { name: "Guardar", exact: true }).click();
-  const custom = page
-    .locator(".routine-card")
-    .filter({
-      has: page.getByRole("button", {
-        name: "Renombrar Custom example",
-        exact: true,
-      }),
-    });
+  const custom = page.locator(".routine-card").filter({
+    has: page.getByRole("button", {
+      name: "Renombrar Custom example",
+      exact: true,
+    }),
+  });
   await custom
     .getByRole("button", { name: "Agregar día", exact: true })
     .click();
@@ -81,4 +79,53 @@ test("custom goals, automatic routines, editable days and independent sharing co
   expect(routines[1].goal).toBe("Ganar masa muscular");
   expect(routines[2].id).not.toBe(routines[3].id);
   expect(routines[2].days[0].id).not.toBe(routines[3].days[0].id);
+});
+
+test("routine activation slides, supports keyboard and persists an inactive selection", async ({
+  page,
+}, info) => {
+  await page.request.get("http://127.0.0.1:54329/__reset");
+  await page.route("**/*", (route) =>
+    new URL(route.request().url()).hostname === "127.0.0.1"
+      ? route.continue()
+      : route.abort(),
+  );
+  await login(page);
+  const routine = page.locator(".routine-card").first();
+  const toggle = routine.getByRole("switch");
+  await expect(toggle).toBeChecked();
+  await toggle.click();
+  await expect(toggle).not.toBeChecked();
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          JSON.parse(
+            localStorage.getItem(
+              "mrgymson-user-11111111-1111-4111-8111-111111111111",
+            )!,
+          ).selected,
+      ),
+    )
+    .toBeNull();
+  await page.reload();
+  await expect(toggle).not.toBeChecked();
+  await toggle.focus();
+  await page.keyboard.press("Space");
+  await expect(toggle).toBeChecked();
+  const add = await routine
+    .getByRole("button", { name: "Agregar día", exact: true })
+    .boundingBox();
+  const days = await routine.locator(".routine-day").last().boundingBox();
+  expect(add!.y).toBeGreaterThan(days!.y + days!.height);
+  await page.screenshot({
+    path: `artifacts/routine-controls-${info.project.name}.png`,
+    animations: "disabled",
+    fullPage: true,
+  });
+  page.once("dialog", (dialog) => dialog.dismiss());
+  await routine
+    .getByRole("button", { name: "Eliminar rutina", exact: true })
+    .click();
+  await expect(routine).toBeVisible();
 });
