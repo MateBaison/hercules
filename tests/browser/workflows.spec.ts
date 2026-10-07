@@ -66,7 +66,9 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
       .evaluate((node) => node.scrollWidth <= node.clientWidth),
   ).toBe(true);
   await page.keyboard.press("Escape");
-  await page.getByLabel("Descanso entre series", { exact: true }).check();
+  await page
+    .getByRole("switch", { name: "Descanso entre series", exact: true })
+    .check();
   await page.getByLabel("Segundos", { exact: true }).fill("15");
   await page.screenshot({
     path: `artifacts/set-types-${info.project.name}.png`,

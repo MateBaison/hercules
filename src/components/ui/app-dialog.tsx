@@ -10,12 +10,14 @@ export function AppDialog({
   open,
   onClose,
   title,
+  titleAction,
   description = "",
   children,
 }: {
   open: boolean;
   onClose: () => void;
   title: string;
+  titleAction?: React.ReactNode;
   description?: string;
   children: React.ReactNode;
 }) {
@@ -28,7 +30,10 @@ export function AppDialog({
     >
       <DialogContent className="w-[calc(100%-2rem)] max-w-[680px] sm:max-w-[680px] p-5">
         <DialogHeader>
-          <DialogTitle className="pr-8 text-xl font-bold">{title}</DialogTitle>
+          <div className="flex items-center gap-2 pr-8">
+            <DialogTitle className="text-xl font-bold">{title}</DialogTitle>
+            {titleAction}
+          </div>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         {children}

@@ -94,6 +94,10 @@ test("previous sets copy both quantity and weight with unit conversion", () => {
   expect(
     previousSets(snapshot, "press-militar", "reps", Date.now())[0],
   ).toEqual({ kg: 20, value: 12 });
+  snapshot.sessions[0]!.exercises![0]!.performedSets![0]!.type = "warmup";
+  expect(
+    previousSets(snapshot, "press-militar", "reps", Date.now())[0],
+  ).toEqual({ kg: 20, value: 12, type: "warmup" });
   expect(blankSet("seconds")).toEqual({
     kg: null,
     seconds: null,

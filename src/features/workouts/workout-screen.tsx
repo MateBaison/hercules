@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import { Switch } from "@base-ui/react/switch";
 import { useRouter } from "next/navigation";
-import { Timer, Check } from "lucide-react";
+import { Timer } from "lucide-react";
 import { useApp } from "@/state/app-provider";
 import {
   buildSession,
@@ -233,21 +234,21 @@ export function WorkoutScreen() {
       </div>
       <section className="panel">
         <div className="workout-rest-controls">
-          <label className="workout-rest-toggle">
-            <input
-              type="checkbox"
-              aria-label={t("Descanso entre series", "Rest between sets")}
-              checked={enabled}
-              onChange={(event) => {
-                change((draft) => {
-                  draft.settings.restEnabled = event.target.checked;
-                });
-                if (!event.target.checked) setRestEnd(0);
-              }}
-            />
-            <Check aria-hidden="true" className="rest-check-icon" />
-            <span>{t("Descanso", "Rest")}</span>
-          </label>
+          <span id="workout-rest-label">{t("Descanso", "Rest")}</span>
+          <Switch.Root
+            render={<button type="button" />}
+            className="routine-switch"
+            aria-label={t("Descanso entre series", "Rest between sets")}
+            checked={enabled}
+            onCheckedChange={(checked) => {
+              change((draft) => {
+                draft.settings.restEnabled = checked;
+              });
+              if (!checked) setRestEnd(0);
+            }}
+          >
+            <Switch.Thumb className="routine-switch-thumb" />
+          </Switch.Root>
           <label className="workout-rest-duration">
             <Input
               aria-label={t("Segundos", "Seconds")}

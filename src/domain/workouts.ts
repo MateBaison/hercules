@@ -96,6 +96,7 @@ export function previousSets(
       .map((set) => ({
         kg: Math.round((Number(set.kg) || 0) * factor * 10) / 10,
         value: Number(set[metric]),
+        ...(set.type ? { type: set.type } : {}),
       })) ?? []
   );
 }

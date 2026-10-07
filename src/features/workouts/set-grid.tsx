@@ -71,19 +71,20 @@ export function SetGrid({
         open={editingType !== null}
         onClose={() => setEditingType(null)}
         title={t("Tipo de serie", "Set type")}
-      >
-        <div className="flex justify-end">
+        titleAction={
           <Button
             type="button"
             variant="ghost"
             size="icon"
+            className="set-type-help"
             aria-label={t("Ayuda sobre tipos de serie", "Help with set types")}
             aria-expanded={showHelp}
             onClick={() => setShowHelp(!showHelp)}
           >
             <CircleHelp />
           </Button>
-        </div>
+        }
+      >
         <div className="space-y-3">
           {types.map((type) => (
             <div key={type.id}>
@@ -137,7 +138,6 @@ export function SetGrid({
         </select>
       </label>
       <div className="set-grid-heading">
-        <span>{t("Tipo", "Type")}</span>
         <span>{t("Series", "Sets")}</span>
         <span>{t("Anterior", "Previous")}</span>
         <span>{snapshot.settings.weight ?? "kg"}</span>
@@ -146,23 +146,10 @@ export function SetGrid({
             ? t("Segundos", "Seconds")
             : t("Repeticiones", "Repetitions")}
         </span>
+        <span>{t("Tipo", "Type")}</span>
       </div>
       {entry.sets.map((set, number) => (
         <div className="set-grid-row" key={number} data-set-row={number}>
-          <button
-            type="button"
-            className="set-type-letter set-type-control"
-            data-set-type={
-              types.find((type) => type.id === set.type)?.id ?? "normal"
-            }
-            aria-label={`${t("Tipo de serie", "Set type")} ${index + 1} ${t("serie", "set")} ${number + 1}`}
-            onClick={() => {
-              setEditingType(number);
-              setShowHelp(false);
-            }}
-          >
-            {types.find((type) => type.id === set.type)?.letter ?? "N"}
-          </button>
           <b>{number + 1}</b>
           <button
             type="button"
@@ -176,6 +163,7 @@ export function SetGrid({
                   const current = draft.sets[number];
                   if (current) {
                     current.kg = old.kg;
+                    current.type = old.type ?? "normal";
                     current[metric] = old.value;
                     current.entered = true;
                   }
@@ -238,6 +226,20 @@ export function SetGrid({
               });
             }}
           />
+          <button
+            type="button"
+            className="set-type-letter set-type-control"
+            data-set-type={
+              types.find((type) => type.id === set.type)?.id ?? "normal"
+            }
+            aria-label={`${t("Tipo de serie", "Set type")} ${index + 1} ${t("serie", "set")} ${number + 1}`}
+            onClick={() => {
+              setEditingType(number);
+              setShowHelp(false);
+            }}
+          >
+            {types.find((type) => type.id === set.type)?.letter ?? "N"}
+          </button>
         </div>
       ))}
       <div className="set-tools my-4 flex justify-between gap-2">
