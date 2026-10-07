@@ -1189,6 +1189,9 @@ input[type="range"] {
 .profile-photo-remove:hover {
   background: #b91c1c;
 }
+.personal-form label [data-slot="input"] {
+  margin-top: 4px;
+}
 .personal-form select {
   appearance: none;
   padding-inline-end: 40px;
