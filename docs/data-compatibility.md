@@ -27,3 +27,5 @@ Historical set editing preserves untouched original fields/totals where only met
 ## Optional menstrual calendar
 
 `profile.menstrualCalendar` optionally stores `enabled` and an array of local calendar dates (`YYYY-MM-DD`) with menstrual bleeding. Existing accounts need no new fields. Unknown metadata is preserved. Disabling the feature keeps recorded dates; clearing them requires profile saving. These private dates are included in full account backups but excluded from routine sharing and workout posters. This basic calendar does not predict phases, fertility or prescribe training changes.
+
+When the menstrual calendar is enabled, selecting a routine day offers an optional pre-workout wellbeing check (pain, energy and sleep). Answers and advice are transient and never added to account snapshots or shared outputs. Advice does not automatically alter routines, recorded loads or session data. Severe pain receives guidance to rest and seek medical advice. Clinical reference: https://www.nhs.uk/symptoms/period-pain/ . The advice uses reported symptoms, not inferred cycle phases.

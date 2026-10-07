@@ -481,3 +481,56 @@ test("menstrual calendar is optional and dates persist", async ({
     calendar.getByRole("button", { name: label!, exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
 });
+
+test("optional menstrual readiness check offers advice before starting", async ({
+  page,
+}, info) => {
+  await page.goto("/profile");
+  await page
+    .getByRole("combobox", { name: "Género", exact: true })
+    .selectOption("mujer");
+  await page
+    .getByRole("region", { name: "Calendario menstrual" })
+    .getByRole("switch")
+    .click();
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.goto("/home");
+  await page
+    .getByRole("button", { name: "Iniciar entrenamiento", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: /Rutina principal · Pecho y tríceps/ })
+    .click();
+  const dialog = page.getByRole("dialog", { name: "¿Cómo te sentís hoy?" });
+  await dialog
+    .getByRole("combobox", { name: "Dolor o molestias", exact: true })
+    .selectOption("strong");
+  await dialog.getByRole("button", { name: "Ver recomendación" }).click();
+  await expect(
+    dialog.getByText("Priorizá tu bienestar", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    dialog.getByRole("button", { name: "Iniciar entrenamiento", exact: true }),
+  ).toHaveCount(0);
+  await dialog.getByRole("button", { name: "Cambiar respuestas" }).click();
+  await dialog
+    .getByRole("combobox", { name: "Dolor o molestias", exact: true })
+    .selectOption("none");
+  await dialog
+    .getByRole("combobox", { name: "Energía", exact: true })
+    .selectOption("low");
+  await dialog.getByRole("button", { name: "Ver recomendación" }).click();
+  await expect(
+    dialog.getByText("Considerá una sesión más liviana", { exact: true }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: `artifacts/readiness-${info.project.name}.png`,
+  });
+  await dialog
+    .getByRole("button", { name: "Iniciar entrenamiento", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/workout$/);
+});

@@ -16,6 +16,7 @@ import { muscleGroups, type MuscleGroup } from "@/domain/schemas/exercise";
 import { decodeRoutine, encodeRoutine, importRoutine } from "@/domain/sharing";
 import { INCOMING_ROUTINE_KEY } from "@/lib/storage/account-cache";
 import { CalendarPanel } from "@/features/calendar/calendar-panel";
+import { ReadinessDialog } from "@/features/workouts/readiness-dialog";
 
 type Editor = { type: "new" | "rename" | "day"; rid?: string } | null;
 export function RoutinesHome() {
@@ -41,6 +42,10 @@ export function RoutinesHome() {
       snapshot.routines.find((routine) => routine.id === snapshot.selected) ??
       snapshot.routines[0],
     workout = snapshot.workout;
+  const [pendingStart, setPendingStart] = useState<{
+    rid: string;
+    did: string;
+  } | null>(null);
   useEffect(() => {
     const token = sessionStorage.getItem(INCOMING_ROUTINE_KEY);
     if (!token) return;
@@ -52,11 +57,17 @@ export function RoutinesHome() {
       notify("El enlace de rutina no es válido.");
     }
   }, [notify]);
-  const begin = (rid: string, did: string) => {
+  const start = (rid: string, did: string) => {
     if (change((draft) => startWorkout(draft, rid, did))) {
       setQuick(false);
       router.push("/workout");
     }
+  };
+  const begin = (rid: string, did: string) => {
+    if (snapshot.profile.menstrualCalendar?.enabled) {
+      setQuick(false);
+      setPendingStart({ rid, did });
+    } else start(rid, did);
   };
   const openEditor = (value: Editor, initial = "") => {
     setEditor(value);
@@ -71,6 +82,16 @@ export function RoutinesHome() {
     activeDay = activeRoutine?.days.find((day) => day.id === workout?.did);
   return (
     <>
+      {pendingStart && (
+        <ReadinessDialog
+          open
+          onClose={() => setPendingStart(null)}
+          onStart={() => {
+            start(pendingStart.rid, pendingStart.did);
+            setPendingStart(null);
+          }}
+        />
+      )}
       {workout ? (
         <section className="active-workout hero-panel mb-5">
           <span className="eyebrow">
