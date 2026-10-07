@@ -77,7 +77,7 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
         }}
       />
       <div className="profile-summary-grid">
-        <div>
+        <div className="profile-photo-controls">
           {safePhoto(draft.photo) ? (
             <img
               src={draft.photo}
@@ -92,7 +92,7 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
           <Button
             type="button"
             variant="secondary"
-            className="profile-photo-pick mt-2"
+            className="profile-photo-pick"
             disabled={busy}
             onClick={() => photoInput.current?.click()}
           >
@@ -127,8 +127,8 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
           {safePhoto(draft.photo) && (
             <Button
               type="button"
-              variant="ghost"
-              className="profile-photo-pick mt-2"
+              variant="destructive-solid"
+              className="profile-photo-pick profile-photo-remove"
               disabled={busy}
               onClick={() =>
                 setDraft((previous) => ({ ...previous, photo: "" }))
