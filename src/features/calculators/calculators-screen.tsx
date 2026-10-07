@@ -299,7 +299,7 @@ export function CalculatorsScreen() {
         {section === "macros" && macros && (
           <>
             <Result
-              color="maintain"
+              color="daily"
               label="Objetivo diario"
               value={`${calories} kcal`}
             />
@@ -320,18 +320,38 @@ export function CalculatorsScreen() {
                 value={`${macros.daily.fat} g`}
               />
             </div>
-            <div className="result-card">
-              <h3>Por comida · {meals} comidas</h3>
-              <p>
-                {macros.perMeal.calories} kcal · {macros.perMeal.carbs} g
-                carbohidratos · {macros.perMeal.protein} g proteínas ·{" "}
-                {macros.perMeal.fat} g grasas
-              </p>
-              <small>
+            <section
+              className="macro-meal-results"
+              aria-labelledby="macro-meal-title"
+            >
+              <h3 id="macro-meal-title">Por comida · {meals} comidas</h3>
+              <Result
+                color="daily"
+                label="Calorías por comida"
+                value={`${macros.perMeal.calories} kcal`}
+              />
+              <div className="result-grid">
+                <Result
+                  color="carbs"
+                  label="Carbohidratos por comida"
+                  value={`${macros.perMeal.carbs} g`}
+                />
+                <Result
+                  color="protein"
+                  label="Proteínas por comida"
+                  value={`${macros.perMeal.protein} g`}
+                />
+                <Result
+                  color="fat"
+                  label="Grasas por comida"
+                  value={`${macros.perMeal.fat} g`}
+                />
+              </div>
+              <p className="text-sm text-muted-foreground">
                 Reparto equivalente orientativo; no hace falta que todas las
                 comidas sean iguales.
-              </small>
-            </div>
+              </p>
+            </section>
           </>
         )}
         {section === "maximum" && maximum !== null && (

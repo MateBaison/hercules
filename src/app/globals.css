@@ -72,15 +72,43 @@
   background: #173244;
   border-color: #327ba0;
 }
-.result-maintain,
-.result-protein {
+.result-maintain {
   background: #16382b;
   border-color: #34785a;
 }
-.result-gain,
-.result-fat {
+.result-gain {
   background: #422d1b;
   border-color: #9c6338;
+}
+.result-protein {
+  background: #422d1b;
+  border-color: #9c6338;
+}
+.result-protein strong {
+  color: #e8b783;
+}
+.result-fat {
+  background: #403712;
+  border-color: #b59b24;
+}
+.result-fat strong {
+  color: #facc15;
+}
+.result-daily {
+  background: #322345;
+  border-color: #8d62c7;
+}
+.result-daily strong {
+  color: #cfb6ff;
+}
+.macro-meal-results {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.macro-meal-results > h3 {
+  font-size: 1.1rem;
+  font-weight: 750;
 }
 .table-scroll {
   max-width: 100%;

@@ -119,7 +119,15 @@ test("four calculators expose colored results and a weight-goal range", async ({
   await expect(
     page.getByRole("heading", { name: "Por comida · 3 comidas" }),
   ).toBeVisible();
-  await expect(page.locator(".result-protein")).toBeVisible();
+  await expect(page.locator(".result-protein").first()).toBeVisible();
+  await expect(page.locator(".macro-meal-results .result-card")).toHaveCount(4);
+  await expect(
+    page.locator(".macro-meal-results .result-protein"),
+  ).toContainText("g");
+  await page.screenshot({
+    path: `artifacts/macros-${info.project.name}.png`,
+    fullPage: true,
+  });
   await page
     .getByRole("button", { name: "Una repetición máxima", exact: true })
     .click();
