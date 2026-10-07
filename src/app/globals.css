@@ -1227,22 +1227,25 @@ input[type="range"] {
   display: contents;
 }
 .menstrual-calendar-control {
-  grid-column: 1 / -1;
-  justify-self: end;
+  grid-column: 2;
+  justify-self: stretch;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 6px;
   min-width: 0;
   min-height: 50px;
-  padding: 10px 12px;
+  padding: 8px;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--secondary);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-align: center;
-  white-space: nowrap;
+}
+.menstrual-calendar-control strong {
+  flex: 1;
+  min-width: 0;
 }
 .menstrual-calendar-control .routine-switch {
   flex-shrink: 0;
