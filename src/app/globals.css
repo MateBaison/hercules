@@ -1229,11 +1229,13 @@ input[type="range"] {
 .menstrual-calendar-control {
   grid-column: 2;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
   min-width: 0;
   font-size: 0.85rem;
+  text-align: center;
 }
 .menstrual-calendar-control .routine-switch {
   flex-shrink: 0;

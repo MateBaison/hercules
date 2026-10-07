@@ -31,7 +31,7 @@ export function MenstrualCalendar({
     >
       <div className="menstrual-calendar-control">
         <strong id="menstrual-calendar-label">
-          {t("Activar calendario menstrual", "Enable menstrual calendar")}
+          {t("Calendario menstrual", "Menstrual calendar")}
         </strong>
         <Switch.Root
           render={<button type="button" />}
