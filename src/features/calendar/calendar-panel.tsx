@@ -133,13 +133,18 @@ export function CalendarPanel() {
             ),
             colors = [
               ...new Set(recorded.map((session) => color(session.color))),
-            ];
+            ],
+            menstrualTraining =
+              snapshot.profile.menstrualCalendar?.enabled === true &&
+              recorded.length > 0 &&
+              snapshot.profile.menstrualCalendar.dates?.includes(date) === true;
           return (
             <button
               type="button"
               key={date}
               data-calendar-date={date}
-              aria-label={`${date}, ${recorded.length} entrenamientos`}
+              aria-label={`${date}, ${recorded.length} entrenamientos${menstrualTraining ? t(", sangrado menstrual registrado", ", recorded menstrual bleeding") : ""}`}
+              data-menstrual-training={menstrualTraining || undefined}
               className={date === localDateKey(new Date()) ? "today" : ""}
               style={
                 colors.length
@@ -169,6 +174,17 @@ export function CalendarPanel() {
           );
         })}
       </div>
+      {snapshot.profile.menstrualCalendar?.enabled && (
+        <p className="mt-3 text-sm text-muted-foreground">
+          <span aria-hidden="true" style={{ color: "#f472b6" }}>
+            ▢
+          </span>{" "}
+          {t(
+            "Borde rosa: entrenamiento con sangrado menstrual registrado.",
+            "Pink border: workout with recorded menstrual bleeding.",
+          )}
+        </p>
+      )}
       <AppDialog
         open={selectedDate !== null && !editing && !picking}
         onClose={() => setSelectedDate(null)}

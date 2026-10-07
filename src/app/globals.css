@@ -882,6 +882,9 @@ label input[type="checkbox"] {
   padding-bottom: 8px;
   font-size: 0.7rem;
 }
+.calendar-grid button[data-menstrual-training="true"] {
+  box-shadow: inset 0 0 0 2px #f472b6;
+}
 .calendar-dots {
   display: flex;
   justify-content: center;
