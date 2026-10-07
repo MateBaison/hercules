@@ -1,11 +1,12 @@
 "use client";
 import { localeFor } from "@/data/translations";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/state/app-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ProfilePhotoEditor } from "./profile-photo-editor";
 import { compressedPhoto, safePhoto } from "@/lib/browser/photos";
 const codes =
   "ADAEAFAGAIALAMAOAQARASATAUAWAXAZBABBBDBEBFBGBHBIBJBLBMBNBOBQBRBSBTBVBWBYBZCACCCDCFCGCHCICKCLCMCNCOCRCUCVCWCXCYCZDEDJDKDMDODZECEEEGEHERESETFIFJFKFMFOFRGAGBGDGEGFGGGHGIGLGMGNGPGQGRGSGTGUGWGYHKHMHNHRHTHUIDIEILIMINIOIQIRISITJEJMJOJPKEKGKHKIKMKNKPKRKWKYKZLALBLCLILKLRLSLTLULVLYMAMCMDMEMFMGMHMKMLMMMNMOMPMQMRMSMTMUMVMWMXMYMZNANCNENFNGNINLNONPNRNUNZOMPAPEPFPGPHPKPLPMPNPRPSPTPWPYQARERORSRURWSASBSCSDSESGSHSISJSKSLSMSNSOSRSSSTSVSXSYSZTCTDTFTGTHTJTKTLTMTNTOTRTTTVTWTZUAUGUMUSUYUZVAVCVEVGVIVNVUWFWSYEYTZAZMZWXK".match(
@@ -14,6 +15,8 @@ const codes =
 export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
   const { snapshot, user, change, flush, notify, t } = useApp(),
     router = useRouter();
+  const photoInput = useRef<HTMLInputElement>(null);
+  const [photoSource, setPhotoSource] = useState<string | null>(null);
   const [draft, setDraft] = useState(snapshot.profile),
     [busy, setBusy] = useState(false),
     [country, setCountry] = useState(snapshot.profile.country ?? "");
@@ -29,7 +32,7 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
     setDraft((previous) => ({ ...previous, [key]: value }));
   return (
     <form
-      className="space-y-4"
+      className="personal-form space-y-4"
       onSubmit={async (event) => {
         event.preventDefault();
         const name = z.string().trim().min(1).max(80).safeParse(draft.name);
@@ -65,6 +68,14 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
           );
       }}
     >
+      <ProfilePhotoEditor
+        source={photoSource}
+        onClose={() => setPhotoSource(null)}
+        onApply={(photo) => {
+          setDraft((previous) => ({ ...previous, photo }));
+          setPhotoSource(null);
+        }}
+      />
       <div className="profile-summary-grid">
         <div>
           {safePhoto(draft.photo) ? (
@@ -78,33 +89,54 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
               {draft.name?.slice(0, 1).toUpperCase() ?? "H"}
             </div>
           )}
-          <label className="mt-2 block text-xs">
-            Cambiar foto
-            <input
-              className="mt-2 max-w-24 text-xs"
-              type="file"
-              aria-label="Cambiar foto"
-              accept="image/*"
+          <Button
+            type="button"
+            variant="secondary"
+            className="profile-photo-pick mt-2"
+            disabled={busy}
+            onClick={() => photoInput.current?.click()}
+          >
+            {t("Elegir foto", "Choose photo")}
+          </Button>
+          <input
+            ref={photoInput}
+            className="sr-only"
+            type="file"
+            aria-label="Cambiar foto"
+            accept="image/*"
+            disabled={busy}
+            onChange={async (event) => {
+              const file = event.target.files?.[0];
+              event.target.value = "";
+              if (!file) return;
+              setBusy(true);
+              try {
+                const photo = await compressedPhoto(file, 1200);
+                setPhotoSource(photo);
+              } catch (error) {
+                notify(
+                  error instanceof Error
+                    ? error.message
+                    : "No se pudo cargar la foto.",
+                );
+              } finally {
+                setBusy(false);
+              }
+            }}
+          />
+          {safePhoto(draft.photo) && (
+            <Button
+              type="button"
+              variant="ghost"
+              className="profile-photo-pick mt-2"
               disabled={busy}
-              onChange={async (event) => {
-                const file = event.target.files?.[0];
-                if (!file) return;
-                setBusy(true);
-                try {
-                  const photo = await compressedPhoto(file, 360);
-                  setDraft((previous) => ({ ...previous, photo }));
-                } catch (error) {
-                  notify(
-                    error instanceof Error
-                      ? error.message
-                      : "No se pudo cargar la foto.",
-                  );
-                } finally {
-                  setBusy(false);
-                }
-              }}
-            />
-          </label>
+              onClick={() =>
+                setDraft((previous) => ({ ...previous, photo: "" }))
+              }
+            >
+              {t("Eliminar foto", "Remove photo")}
+            </Button>
+          )}
         </div>
         <div className="space-y-3">
           <label className="block">

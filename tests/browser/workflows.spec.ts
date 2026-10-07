@@ -331,3 +331,95 @@ test("profile dirty-only saving and units remain account-linked on a second brow
     ),
   ).toBe(true);
 });
+
+test("profile photos can be cropped, cancelled and removed with persisted saves", async ({
+  page,
+}, info) => {
+  await page.goto("/profile");
+  const encoded = await page.evaluate(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 120;
+    canvas.height = 80;
+    const ctx = canvas.getContext("2d")!;
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, 60, 80);
+    ctx.fillStyle = "blue";
+    ctx.fillRect(60, 0, 60, 80);
+    return canvas.toDataURL("image/png").split(",")[1]!;
+  });
+  const fixture = {
+    name: "profile.png",
+    mimeType: "image/png",
+    buffer: Buffer.from(encoded, "base64"),
+  };
+  await page.getByLabel("Cambiar foto", { exact: true }).setInputFiles(fixture);
+  await expect(
+    page.getByRole("dialog", { name: "Recortar y ajustar foto" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Cancelar", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Guardar cambios", exact: true }),
+  ).toHaveCount(0);
+  await page.getByLabel("Cambiar foto", { exact: true }).setInputFiles(fixture);
+  const zoom = page.getByRole("slider", { name: "Zoom de la foto" });
+  await zoom.focus();
+  await page.keyboard.press("Home");
+  for (let i = 0; i < 20; i++) await page.keyboard.press("ArrowRight");
+  await page
+    .getByRole("slider", { name: "Posición horizontal de la foto" })
+    .focus();
+  await page.keyboard.press("End");
+  await page.screenshot({
+    path: `artifacts/profile-crop-${info.project.name}.png`,
+    animations: "disabled",
+  });
+  await page
+    .getByRole("button", { name: "Usar esta foto", exact: true })
+    .click();
+  const photo = page.getByRole("img", { name: "Foto de perfil", exact: true });
+  await expect(photo).toBeVisible();
+  const cropped = await photo.evaluate(async (element) => {
+    const image = element as HTMLImageElement;
+    await image.decode();
+    const canvas = document.createElement("canvas");
+    canvas.width = 1;
+    canvas.height = 1;
+    const ctx = canvas.getContext("2d")!;
+    ctx.drawImage(image, 0, 0, 1, 1);
+    return {
+      width: image.naturalWidth,
+      height: image.naturalHeight,
+      pixel: Array.from(ctx.getImageData(0, 0, 1, 1).data),
+    };
+  });
+  expect(cropped.width).toBe(360);
+  expect(cropped.height).toBe(360);
+  expect(cropped.pixel[2]!).toBeGreaterThan(200);
+  expect(cropped.pixel[0]!).toBeLessThan(40);
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.reload();
+  await expect(photo).toBeVisible();
+  expect(
+    await page
+      .getByRole("button", { name: "Elegir foto", exact: true })
+      .evaluate((el) => el.scrollWidth <= el.clientWidth),
+  ).toBe(true);
+  await page.screenshot({
+    path: `artifacts/profile-photo-${info.project.name}.png`,
+    fullPage: true,
+    animations: "disabled",
+  });
+  await page
+    .getByRole("button", { name: "Eliminar foto", exact: true })
+    .click();
+  await expect(photo).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.reload();
+  await expect(photo).toHaveCount(0);
+});
