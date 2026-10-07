@@ -150,62 +150,64 @@ export function RoutinesHome() {
                 >
                   <Share data-icon="inline-start" />
                 </Button>
+                <Switch.Root
+                  nativeButton
+                  render={<button type="button" />}
+                  className="routine-switch"
+                  aria-label={`${t("Activar rutina", "Activate routine")}: ${routine.name}`}
+                  title={
+                    snapshot.selected === routine.id
+                      ? t("Desactivar rutina", "Deactivate routine")
+                      : t("Activar rutina", "Activate routine")
+                  }
+                  checked={snapshot.selected === routine.id}
+                  onClick={(event) => event.stopPropagation()}
+                  onCheckedChange={(checked) =>
+                    change((draft) => {
+                      draft.selected = checked ? routine.id : null;
+                    })
+                  }
+                >
+                  <Switch.Thumb className="routine-switch-thumb" />
+                </Switch.Root>
               </span>
             </span>
-            <Button
-              type="button"
-              variant="destructive-solid"
-              size="icon-xl"
-              className="routine-delete routine-icon-control"
-              aria-label={t("Eliminar rutina", "Delete routine")}
-              title={t("Eliminar rutina", "Delete routine")}
-              onClick={(event) => {
-                event.preventDefault();
-                if (
-                  confirm(
-                    t(
-                      "¿Eliminar esta rutina? El historial se conserva; su entrenamiento en curso se cancelará.",
-                      "Delete this routine? History is preserved; its active workout will be cancelled.",
-                    ),
+            <span className="routine-delete-group">
+              <small>
+                {routine.days.length} {t("días", "days")}
+              </small>
+              <Button
+                type="button"
+                variant="destructive-solid"
+                size="icon-xl"
+                className="routine-delete routine-icon-control"
+                aria-label={t("Eliminar rutina", "Delete routine")}
+                title={t("Eliminar rutina", "Delete routine")}
+                onClick={(event) => {
+                  event.preventDefault();
+                  if (
+                    confirm(
+                      t(
+                        "¿Eliminar esta rutina? El historial se conserva; su entrenamiento en curso se cancelará.",
+                        "Delete this routine? History is preserved; its active workout will be cancelled.",
+                      ),
+                    )
                   )
-                )
-                  change((draft) => {
-                    draft.routines = draft.routines.filter(
-                      (item) => item.id !== routine.id,
-                    );
-                    if (draft.workout?.rid === routine.id) draft.workout = null;
-                    if (draft.selected === routine.id)
-                      draft.selected = draft.routines[0]?.id ?? null;
-                  });
-              }}
-            >
-              <Trash2 data-icon="inline-start" />
-            </Button>
-          </summary>
-          <div className="routine-status-row">
-            <label className="routine-activation">
-              <Switch.Root
-                className="routine-switch"
-                aria-label={`${t("Activar rutina", "Activate routine")}: ${routine.name}`}
-                checked={snapshot.selected === routine.id}
-                onCheckedChange={(checked) =>
-                  change((draft) => {
-                    draft.selected = checked ? routine.id : null;
-                  })
-                }
+                    change((draft) => {
+                      draft.routines = draft.routines.filter(
+                        (item) => item.id !== routine.id,
+                      );
+                      if (draft.workout?.rid === routine.id)
+                        draft.workout = null;
+                      if (draft.selected === routine.id)
+                        draft.selected = draft.routines[0]?.id ?? null;
+                    });
+                }}
               >
-                <Switch.Thumb className="routine-switch-thumb" />
-              </Switch.Root>
-              <span>
-                {snapshot.selected === routine.id
-                  ? t("Activa", "Active")
-                  : t("Inactiva", "Inactive")}
-              </span>
-            </label>
-            <small>
-              {routine.days.length} {t("días", "days")}
-            </small>
-          </div>
+                <Trash2 data-icon="inline-start" />
+              </Button>
+            </span>
+          </summary>
           {routine.days.map((day) => (
             <details className="routine-day" key={day.id}>
               <summary className="font-bold">

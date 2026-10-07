@@ -862,9 +862,9 @@ label input[type="checkbox"] {
   min-height: 8px;
 }
 .calendar-dots i {
-  height: 8px;
-  width: 12px;
-  border-radius: 999px;
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
   border: none;
 }
 .profile-summary-grid {
@@ -1026,6 +1026,7 @@ strong {
 }
 .routine-title-actions {
   display: flex;
+  align-items: center;
   gap: 4px;
 }
 .routine-icon-control {
@@ -1040,23 +1041,16 @@ strong {
   --destructive-solid-hover: #b91c1c;
   align-self: flex-start;
 }
-.routine-status-row {
+.routine-delete-group {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  margin: 8px 0;
+  gap: 8px;
+  flex-shrink: 0;
+  align-self: flex-start;
 }
-.routine-status-row small {
+.routine-delete-group small {
   color: var(--muted-foreground);
-}
-.routine-activation {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  font-size: 0.85rem;
-  cursor: pointer;
+  white-space: nowrap;
 }
 .routine-switch {
   display: inline-flex;
