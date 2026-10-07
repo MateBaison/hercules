@@ -1165,6 +1165,19 @@ input[type="range"] {
   accent-color: var(--primary);
 }
 
+.timer-duration-button {
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.timer-duration-button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 6px;
+}
 .profile-photo-pick {
   width: 100%;
   min-height: 32px;
@@ -1191,6 +1204,12 @@ input[type="range"] {
 }
 .personal-form label [data-slot="input"] {
   margin-top: 4px;
+}
+.personal-form .profile-account-email {
+  background: #242730;
+  color: var(--muted-foreground);
+  border-color: #353a45;
+  cursor: default;
 }
 .personal-form select {
   appearance: none;

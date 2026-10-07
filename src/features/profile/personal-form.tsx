@@ -154,8 +154,19 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
               type="email"
               value={user.email}
               readOnly
+              className="profile-account-email"
               autoComplete="email"
+              aria-describedby="profile-email-help"
             />
+            <small
+              id="profile-email-help"
+              className="mt-2 block text-muted-foreground"
+            >
+              {t(
+                "Correo de tu cuenta. Para cambiarlo, será necesario contactar a soporte.",
+                "Account email. Changing it will require contacting support.",
+              )}
+            </small>
           </label>
         </div>
       </div>

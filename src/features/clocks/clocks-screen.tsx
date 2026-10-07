@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import { AppDialog } from "@/components/ui/app-dialog";
 import { useClock } from "./clock-provider";
 import { useApp } from "@/state/app-provider";
 import { combatPresets, timeFormat, type CombatConfig } from "@/domain/combat";
@@ -6,6 +8,12 @@ import { routePoints } from "@/domain/tracking";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 export function ClocksScreen() {
+  const [editingTimer, setEditingTimer] = useState(false);
+  const [duration, setDuration] = useState({
+    hours: "0",
+    minutes: "0",
+    seconds: "30",
+  });
   const clock = useClock(),
     { snapshot, change, t } = useApp(),
     combat = clock.combat,
@@ -72,8 +80,93 @@ export function ClocksScreen() {
       {clock.section === "timer" && (
         <section className="panel">
           <div className="clock-face" role="timer" aria-label="Timer">
-            {timeFormat(clock.timer.remaining)}
+            <button
+              type="button"
+              className="timer-duration-button"
+              aria-label={t("Editar tiempo del timer", "Edit timer duration")}
+              onClick={() => {
+                const seconds = Math.ceil(clock.timer.remaining);
+                setDuration({
+                  hours: String(Math.floor(seconds / 3600)),
+                  minutes: String(Math.floor(seconds / 60) % 60),
+                  seconds: String(seconds % 60),
+                });
+                setEditingTimer(true);
+              }}
+            >
+              {timeFormat(clock.timer.remaining)}
+            </button>
           </div>
+          <AppDialog
+            open={editingTimer}
+            onClose={() => setEditingTimer(false)}
+            title={t("Tiempo del timer", "Timer duration")}
+            description={t(
+              "Elegí la duración. Al guardar, el timer queda listo para iniciar.",
+              "Choose a duration. Saving prepares the timer to start.",
+            )}
+          >
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                const seconds =
+                  Number(duration.hours) * 3600 +
+                  Number(duration.minutes) * 60 +
+                  Number(duration.seconds);
+                if (!Number.isInteger(seconds) || seconds <= 0) return;
+                clock.preset(seconds);
+                setEditingTimer(false);
+              }}
+            >
+              <div className="grid grid-cols-3 gap-3">
+                {(
+                  [
+                    ["hours", t("Horas", "Hours"), 999],
+                    ["minutes", t("Minutos", "Minutes"), 59],
+                    ["seconds", t("Segundos", "Seconds"), 59],
+                  ] as const
+                ).map(([key, label, max]) => (
+                  <label key={key}>
+                    {label}
+                    <Input
+                      type="number"
+                      min={0}
+                      max={max}
+                      step={1}
+                      required
+                      value={duration[key]}
+                      onChange={(event) =>
+                        setDuration((previous) => ({
+                          ...previous,
+                          [key]: event.target.value,
+                        }))
+                      }
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="mt-4 flex justify-end gap-3">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => setEditingTimer(false)}
+                >
+                  {t("Cancelar", "Cancel")}
+                </Button>
+                <Button
+                  type="submit"
+                  disabled={
+                    Number(duration.hours) * 3600 +
+                      Number(duration.minutes) * 60 +
+                      Number(duration.seconds) <=
+                    0
+                  }
+                >
+                  {t("Guardar tiempo", "Save duration")}
+                </Button>
+              </div>
+            </form>
+          </AppDialog>
           <div className="my-4 flex flex-wrap justify-center gap-2">
             {[
               [15, "15seg"],

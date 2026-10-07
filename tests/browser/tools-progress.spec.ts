@@ -216,3 +216,25 @@ test("timer plays its end signal once", async ({ page }) => {
     ),
   ).toBe(3);
 });
+
+test("timer duration can be edited from the clock", async ({ page }) => {
+  await page.getByRole("button", { name: "Timer", exact: true }).click();
+  await page.getByRole("button", { name: "Editar tiempo del timer" }).click();
+  const dialog = page.getByRole("dialog");
+  await dialog.getByLabel("Minutos", { exact: true }).fill("2");
+  await dialog.getByLabel("Segundos", { exact: true }).fill("45");
+  await dialog.getByRole("button", { name: "Guardar tiempo" }).click();
+  await expect(page.getByRole("timer", { name: "Timer" })).toHaveText("02:45");
+  await page.getByRole("button", { name: "Editar tiempo del timer" }).click();
+  await dialog.getByLabel("Minutos", { exact: true }).fill("0");
+  await dialog.getByLabel("Segundos", { exact: true }).fill("0");
+  await expect(
+    dialog.getByRole("button", { name: "Guardar tiempo" }),
+  ).toBeDisabled();
+  await dialog.getByRole("button", { name: "Cancelar", exact: true }).click();
+  await expect(page.getByRole("timer", { name: "Timer" })).toHaveText("02:45");
+  await page.getByRole("button", { name: "Iniciar", exact: true }).click();
+  await expect(page.getByRole("timer", { name: "Timer" })).not.toHaveText(
+    "02:45",
+  );
+});
