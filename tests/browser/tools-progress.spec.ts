@@ -177,3 +177,34 @@ test("progress renders empty-state analytics without removed time totals", async
     ),
   ).toBe(true);
 });
+
+test("timer plays its end signal once", async ({ page }) => {
+  await page.evaluate(() => {
+    const counted = window as typeof window & { timerTones: number };
+    counted.timerTones = 0;
+    const original = OscillatorNode.prototype.start;
+    OscillatorNode.prototype.start = function (when?: number) {
+      counted.timerTones++;
+      original.call(this, when);
+    };
+  });
+  await page.getByRole("button", { name: "Timer", exact: true }).click();
+  await page.getByRole("button", { name: "15seg", exact: true }).click();
+  await page.getByRole("button", { name: "Iniciar", exact: true }).click();
+  await expect(page.getByRole("timer", { name: "Timer" })).toHaveText("00:00", {
+    timeout: 20_000,
+  });
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => (window as typeof window & { timerTones: number }).timerTones,
+      ),
+    )
+    .toBe(3);
+  await page.waitForTimeout(500);
+  expect(
+    await page.evaluate(
+      () => (window as typeof window & { timerTones: number }).timerTones,
+    ),
+  ).toBe(3);
+});

@@ -513,18 +513,18 @@ main > h1 {
   object-fit: contain;
 }
 .exercise-results {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   margin: 8px 0 14px;
 }
 .exercise-results details {
   position: relative;
-  max-width: 120px;
 }
 .exercise-results summary {
   cursor: pointer;
+  white-space: nowrap;
   min-height: 44px;
   padding: 11px 14px;
   border: 1px solid var(--border);

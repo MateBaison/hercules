@@ -148,6 +148,19 @@ test("catalog groups, non-floating search, equipment filters, images, modal and 
     .getByRole("button", { name: "Mancuernas", exact: true })
     .click();
   await expect(page.locator("details")).not.toHaveAttribute("open");
+  expect(
+    await page.locator(".exercise-results summary").evaluate((summary) => {
+      const range = document.createRange();
+      range.selectNodeContents(summary);
+      return new Set(
+        Array.from(range.getClientRects(), (rect) => Math.round(rect.top)),
+      ).size;
+    }),
+  ).toBe(1);
+  await page.screenshot({
+    path: `artifacts/library-filter-${testInfo.project.name}.png`,
+    animations: "disabled",
+  });
   expect(await page.locator(".exercise-card").count()).toBeGreaterThan(0);
   await page.getByLabel("Buscar ejercicios").fill("no existe este ejercicio");
   await expect(page.locator(".exercise-card")).toHaveCount(0);

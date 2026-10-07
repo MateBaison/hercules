@@ -45,6 +45,9 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
     [section, setSection] = useState("stopwatch"),
     [sw, setSw] = useState({ running: false, elapsed: 0, started: 0 }),
     [timer, setTimer] = useState({ running: false, remaining: 30, end: 0 });
+  const timerRef = useRef(timer);
+  const timerAnnounced = useRef(0);
+  timerRef.current = timer;
   const [track, setTrack] = useState<Track>({
     mode: "run",
     running: false,
@@ -131,6 +134,16 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
       const time = Date.now();
       setNow(time);
       if (combat.current.state.running) signal(combat.current.advance(time));
+      const countdown = timerRef.current;
+      if (
+        countdown.running &&
+        time >= countdown.end &&
+        timerAnnounced.current !== countdown.end
+      ) {
+        timerAnnounced.current = countdown.end;
+        void audio.current.play("timer").catch(() => {});
+        navigator.vibrate?.([200, 100, 200]);
+      }
       setTimer((previous) =>
         previous.running
           ? {
@@ -181,7 +194,15 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
           ),
         resetSw: () => setSw({ running: false, elapsed: 0, started: 0 }),
         timer,
-        toggleTimer: () =>
+        toggleTimer: () => {
+          if (!timerRef.current.running && timerRef.current.remaining > 0) {
+            timerAnnounced.current = 0;
+            void audio.current
+              .unlock()
+              .catch(() =>
+                notify("El sonido no está disponible en este navegador."),
+              );
+          }
           setTimer((previous) =>
             previous.running
               ? {
@@ -199,7 +220,8 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
                     end: Date.now() + previous.remaining * 1000,
                   }
                 : previous,
-          ),
+          );
+        },
         preset: (seconds) =>
           setTimer({ running: false, remaining: seconds, end: 0 }),
         combat: combat.current,
