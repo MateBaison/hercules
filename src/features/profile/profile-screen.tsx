@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { languages } from "@/data/translations";
 import { useApp } from "@/state/app-provider";
 import { AppDialog } from "@/components/ui/app-dialog";
@@ -22,6 +22,7 @@ const languageNames: Record<string, string> = {
   pt: "🇵🇹 Português",
 };
 export function ProfileScreen() {
+  const importInput = useRef<HTMLInputElement>(null);
   const { snapshot, change, user, notify, t } = useApp(),
     [settings, setSettings] = useState(false),
     [social, setSocial] = useState({
@@ -96,63 +97,73 @@ export function ProfileScreen() {
         <p className="mb-3 text-sm text-muted-foreground">
           La copia incluye perfil, historial y fotos. Guardala de forma privada.
         </p>
-        <Button
-          variant="secondary"
-          onClick={() => {
-            const url = URL.createObjectURL(
-                new Blob([JSON.stringify(snapshot)], {
-                  type: "application/json",
-                }),
-              ),
-              link = document.createElement("a");
-            link.href = url;
-            link.download = "hercules-datos.json";
-            link.click();
-            setTimeout(() => URL.revokeObjectURL(url), 30_000);
-          }}
-        >
-          Exportar copia
-        </Button>
-        <label className="mt-4 block">
-          Importar copia
-          <Input
-            type="file"
-            accept="application/json,.json"
-            onChange={async (event) => {
-              const file = event.target.files?.[0];
-              if (!file) return;
-              if (file.size > 25 * 1024 * 1024)
-                return notify("La copia supera 25 MB.");
-              const read = readSnapshotJson(await file.text());
-              if (!read.ok)
-                return notify(
-                  "La copia no es válida. No se reemplazó ningún dato.",
-                );
-              if (
-                !confirm(
-                  "¿Reemplazar los datos de esta cuenta con la copia? Se conservará una recuperación local de los datos actuales.",
-                )
-              )
-                return;
-              try {
-                backupRawCache(localStorage, accountCacheKey(user.id));
-              } catch {
-                return notify(
-                  "No hay espacio para conservar la recuperación. No importamos datos.",
-                );
-              }
-              if (
-                change((draft) => {
-                  Object.keys(draft).forEach((key) => {
-                    delete draft[key];
-                  });
-                  Object.assign(draft, read.snapshot);
-                })
-              )
-                notify("Copia importada; sincronizando…");
+        <div className="flex flex-wrap gap-3">
+          <Button
+            variant="secondary"
+            onClick={() => {
+              const url = URL.createObjectURL(
+                  new Blob([JSON.stringify(snapshot)], {
+                    type: "application/json",
+                  }),
+                ),
+                link = document.createElement("a");
+              link.href = url;
+              link.download = "hercules-datos.json";
+              link.click();
+              setTimeout(() => URL.revokeObjectURL(url), 30_000);
             }}
-          />
-        </label>
+          >
+            Exportar copia
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={() => importInput.current?.click()}
+          >
+            {t("Importar copia", "Import backup")}
+          </Button>
+        </div>
+        <Input
+          ref={importInput}
+          className="sr-only"
+          aria-label={t("Importar copia de datos", "Import data backup")}
+          type="file"
+          accept="application/json,.json"
+          onChange={async (event) => {
+            const file = event.target.files?.[0];
+            event.target.value = "";
+            if (!file) return;
+            if (file.size > 25 * 1024 * 1024)
+              return notify("La copia supera 25 MB.");
+            const read = readSnapshotJson(await file.text());
+            if (!read.ok)
+              return notify(
+                "La copia no es válida. No se reemplazó ningún dato.",
+              );
+            if (
+              !confirm(
+                "¿Reemplazar los datos de esta cuenta con la copia? Se conservará una recuperación local de los datos actuales.",
+              )
+            )
+              return;
+            try {
+              backupRawCache(localStorage, accountCacheKey(user.id));
+            } catch {
+              return notify(
+                "No hay espacio para conservar la recuperación. No importamos datos.",
+              );
+            }
+            if (
+              change((draft) => {
+                Object.keys(draft).forEach((key) => {
+                  delete draft[key];
+                });
+                Object.assign(draft, read.snapshot);
+              })
+            )
+              notify("Copia importada; sincronizando…");
+          }}
+        />
       </section>
       <AccountPanel />
       <AppDialog
