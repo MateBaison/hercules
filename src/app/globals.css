@@ -1222,3 +1222,31 @@ input[type="range"] {
 [dir="rtl"] .personal-form select {
   background-position: left 14px center;
 }
+
+.menstrual-calendar {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.menstrual-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  text-align: center;
+}
+.menstrual-days button {
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--secondary);
+}
+.menstrual-days button[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.menstrual-days button:disabled {
+  opacity: 0.35;
+}
+.menstrual-days button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}

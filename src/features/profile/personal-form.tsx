@@ -7,6 +7,7 @@ import { useApp } from "@/state/app-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProfilePhotoEditor } from "./profile-photo-editor";
+import { MenstrualCalendar } from "./menstrual-calendar";
 import { compressedPhoto, safePhoto } from "@/lib/browser/photos";
 const codes =
   "ADAEAFAGAIALAMAOAQARASATAUAWAXAZBABBBDBEBFBGBHBIBJBLBMBNBOBQBRBSBTBVBWBYBZCACCCDCFCGCHCICKCLCMCNCOCRCUCVCWCXCYCZDEDJDKDMDODZECEEEGEHERESETFIFJFKFMFOFRGAGBGDGEGFGGGHGIGLGMGNGPGQGRGSGTGUGWGYHKHMHNHRHTHUIDIEILIMINIOIQIRISITJEJMJOJPKEKGKHKIKMKNKPKRKWKYKZLALBLCLILKLRLSLTLULVLYMAMCMDMEMFMGMHMKMLMMMNMOMPMQMRMSMTMUMVMWMXMYMZNANCNENFNGNINLNONPNRNUNZOMPAPEPFPGPHPKPLPMPNPRPSPTPWPYQARERORSRURWSASBSCSDSESGSHSISJSKSLSMSNSOSRSSSTSVSXSYSZTCTDTFTGTHTJTKTLTMTNTOTRTTTVTWTZUAUGUMUSUYUZVAVCVEVGVIVNVUWFWSYEYTZAZMZWXK".match(
@@ -198,41 +199,6 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
           </datalist>
         </label>
         <label>
-          {t("Género", "Gender")}
-          <select
-            value={draft.gender ?? ""}
-            onChange={(event) => set("gender", event.target.value)}
-          >
-            <option value="">
-              {t("Prefiero no decirlo", "Prefer not to say")}
-            </option>
-            <option value="hombre">{t("Hombre", "Male")}</option>
-            <option value="mujer">{t("Mujer", "Female")}</option>
-            <option value="no_binario">{t("No binario", "Non-binary")}</option>
-            <option value="otro">{t("Otro", "Other")}</option>
-          </select>
-        </label>
-        <label>
-          {t("Peso", "Weight")} ({snapshot.settings.weight})
-          <select
-            value={Number(draft.weight) || 75}
-            onChange={(event) => set("weight", Number(event.target.value))}
-          >
-            {[
-              ...new Set([
-                Number(draft.weight) || 75,
-                ...Array.from({ length: 801 }, (_, index) => 25 + index * 0.5),
-              ]),
-            ]
-              .sort((a, b) => a - b)
-              .map((weight) => (
-                <option key={weight} value={weight}>
-                  {weight}
-                </option>
-              ))}
-          </select>
-        </label>
-        <label>
           {t("Altura", "Height")} ({snapshot.settings.height})
           <select
             value={Number(draft.height) || 175}
@@ -257,7 +223,55 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
               ))}
           </select>
         </label>
+        <label>
+          {t("Peso", "Weight")} ({snapshot.settings.weight})
+          <select
+            value={Number(draft.weight) || 75}
+            onChange={(event) => set("weight", Number(event.target.value))}
+          >
+            {[
+              ...new Set([
+                Number(draft.weight) || 75,
+                ...Array.from({ length: 801 }, (_, index) => 25 + index * 0.5),
+              ]),
+            ]
+              .sort((a, b) => a - b)
+              .map((weight) => (
+                <option key={weight} value={weight}>
+                  {weight}
+                </option>
+              ))}
+          </select>
+        </label>
+        <label>
+          {t("Género", "Gender")}
+          <select
+            value={draft.gender ?? ""}
+            onChange={(event) => set("gender", event.target.value)}
+          >
+            <option value="">
+              {t("Prefiero no decirlo", "Prefer not to say")}
+            </option>
+            <option value="hombre">{t("Hombre", "Male")}</option>
+            <option value="mujer">{t("Mujer", "Female")}</option>
+            <option value="no_binario">{t("No binario", "Non-binary")}</option>
+            <option value="otro">{t("Otro", "Other")}</option>
+          </select>
+        </label>
       </div>
+      {(["mujer", "no_binario", "otro"].includes(draft.gender ?? "") ||
+        draft.menstrualCalendar?.enabled ||
+        (draft.menstrualCalendar?.dates?.length ?? 0) > 0) && (
+        <MenstrualCalendar
+          value={draft.menstrualCalendar}
+          onChange={(value) =>
+            setDraft((previous) => ({
+              ...previous,
+              menstrualCalendar: { ...previous.menstrualCalendar, ...value },
+            }))
+          }
+        />
+      )}
       {(changed || onboarding) && (
         <Button type="submit" className="w-full" disabled={busy}>
           {busy

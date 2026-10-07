@@ -73,6 +73,12 @@ export const profileSchema = z.looseObject({
   birth: z.string().optional(),
   country: z.string().optional(),
   gender: z.string().optional(),
+  menstrualCalendar: z
+    .looseObject({
+      enabled: z.boolean().optional(),
+      dates: z.array(z.string()).optional(),
+    })
+    .optional(),
   photo: z.string().optional(),
   // Some historical profile forms persisted strings. Do not coerce or lose originals.
   weight: z.union([nonnegative, z.string()]).optional(),

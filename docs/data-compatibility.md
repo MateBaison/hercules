@@ -23,3 +23,7 @@ Saved data uses tolerant Zod readers; new commands use bounded/strict input sche
 New Vercel origins cannot access the old site's storage/cookies. Reauthentication restores cloud data only; explicit export/import handles unsynced old-origin data. Profile JSON exports include private records/photos and must not be publicly shared. Routine links and workout posters intentionally omit private profile fields, body weights, photos and exercise notes.
 
 Historical set editing preserves untouched original fields/totals where only metadata changes. Calendar copies receive independent IDs/date and omit original photos/body weights. All optimized image assets and original baseline files are verified by SHA-256.
+
+## Optional menstrual calendar
+
+`profile.menstrualCalendar` optionally stores `enabled` and an array of local calendar dates (`YYYY-MM-DD`) with menstrual bleeding. Existing accounts need no new fields. Unknown metadata is preserved. Disabling the feature keeps recorded dates; clearing them requires profile saving. These private dates are included in full account backups but excluded from routine sharing and workout posters. This basic calendar does not predict phases, fertility or prescribe training changes.

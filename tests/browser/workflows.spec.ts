@@ -423,3 +423,52 @@ test("profile photos can be cropped, cancelled and removed with persisted saves"
   await page.reload();
   await expect(photo).toHaveCount(0);
 });
+
+test("menstrual calendar is optional and dates persist", async ({
+  page,
+}, info) => {
+  await page.goto("/profile");
+  const calendar = page.getByRole("region", { name: "Calendario menstrual" });
+  const gender = page.getByRole("combobox", { name: "Género", exact: true });
+  await gender.selectOption("hombre");
+  await expect(calendar).toHaveCount(0);
+  for (const value of ["mujer", "no_binario", "otro"]) {
+    await gender.selectOption(value);
+    await expect(calendar).toBeVisible();
+    await expect(calendar.getByRole("switch")).not.toBeChecked();
+  }
+  await calendar.getByRole("switch").click();
+  const day = calendar.locator(".menstrual-days button:not(:disabled)").first();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.screenshot({
+    path: `artifacts/menstrual-calendar-${info.project.name}.png`,
+    fullPage: true,
+  });
+  const label = await day.getAttribute("aria-label");
+  await day.click();
+  await expect(day).toHaveAttribute("aria-pressed", "true");
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.reload();
+  await expect(calendar.getByRole("switch")).toBeChecked();
+  await expect(
+    calendar.getByRole("button", { name: label!, exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await calendar.getByRole("switch").click();
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.reload();
+  await expect(calendar.getByRole("switch")).not.toBeChecked();
+  await calendar.getByRole("switch").click();
+  await expect(
+    calendar.getByRole("button", { name: label!, exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
+});

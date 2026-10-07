@@ -123,7 +123,7 @@ export function ProfileScreen() {
             {t("Importar copia", "Import backup")}
           </Button>
         </div>
-        <Input
+        <input
           ref={importInput}
           className="sr-only"
           aria-label={t("Importar copia de datos", "Import data backup")}

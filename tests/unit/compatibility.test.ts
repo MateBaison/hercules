@@ -256,3 +256,19 @@ describe("Phase 2 legacy-data safety", () => {
     expect(next.revision).toBe(1);
   });
 });
+
+test("optional menstrual records preserve account compatibility and metadata", () => {
+  const original = createDefaultSnapshot();
+  expect(readSnapshot(original).ok).toBe(true);
+  original.profile.menstrualCalendar = {
+    enabled: true,
+    dates: ["2026-10-01"],
+    customMetadata: "preserved",
+  };
+  const read = readSnapshot(original);
+  expect(read.ok).toBe(true);
+  if (read.ok)
+    expect(read.snapshot.profile.menstrualCalendar).toEqual(
+      original.profile.menstrualCalendar,
+    );
+});
