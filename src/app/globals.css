@@ -812,10 +812,7 @@ label input[type="checkbox"] {
 .set-grid-heading,
 .set-grid-row {
   display: grid;
-  grid-template-columns: 28px 24px minmax(0, 1.2fr) minmax(0, 1fr) minmax(
-      0,
-      1fr
-    );
+  grid-template-columns: 24px minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) 22px;
   gap: 5px;
   align-items: center;
   margin: 10px 0;
