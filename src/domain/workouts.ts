@@ -165,10 +165,15 @@ export function buildSession(
               ((Number(set.kg) || 0) > 0 ||
                 Number(set[metric]) !== (metric === "seconds" ? 30 : 10)))),
       )
-      .map((set) => ({
-        kg: Number(set.kg) || 0,
-        [metric]: Number(set[metric]),
-      }));
+      .map(
+        (
+          set,
+        ): { kg: number; reps?: number; seconds?: number; type?: string } => ({
+          ...(set.type ? { type: set.type } : {}),
+          kg: Number(set.kg) || 0,
+          [metric]: Number(set[metric]),
+        }),
+      );
     const exerciseVolume =
       metric === "seconds"
         ? 0

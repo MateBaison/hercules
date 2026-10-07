@@ -26,7 +26,7 @@ test("workout blanks are not logged; entered reps and seconds keep distinct metr
   if (!workout) throw new Error("No workout");
   const first = workout.entries[0];
   if (!first) throw new Error("No entry");
-  first.sets[0] = { kg: 20, reps: 12, entered: true };
+  first.sets[0] = { kg: 20, reps: 12, entered: true, type: "drop" };
   first.note = "Private note";
   workout.entries.push({
     id: "plancha",
@@ -40,6 +40,7 @@ test("workout blanks are not logged; entered reps and seconds keep distinct metr
     extras,
   );
   expect(session.sets).toBe(2);
+  expect(session.exercises?.[0]?.performedSets?.[0]?.type).toBe("drop");
   expect(session.volume).toBe(240);
   expect(session.exercises?.at(-1)?.performedSets?.[0]?.seconds).toBe(45);
   expect(session.exercises?.[0]?.note).toBe("Private note");

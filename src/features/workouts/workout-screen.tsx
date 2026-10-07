@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Timer } from "lucide-react";
+import { Timer, Check } from "lucide-react";
 import { useApp } from "@/state/app-provider";
 import {
   buildSession,
@@ -232,10 +232,11 @@ export function WorkoutScreen() {
         </Button>
       </div>
       <section className="panel">
-        <div className="flex flex-wrap items-center gap-3">
-          <label className="flex items-center gap-2">
+        <div className="workout-rest-controls">
+          <label className="workout-rest-toggle">
             <input
               type="checkbox"
+              aria-label={t("Descanso entre series", "Rest between sets")}
               checked={enabled}
               onChange={(event) => {
                 change((draft) => {
@@ -244,11 +245,12 @@ export function WorkoutScreen() {
                 if (!event.target.checked) setRestEnd(0);
               }}
             />
-            {t("Descanso entre series", "Rest between sets")}
+            <Check aria-hidden="true" className="rest-check-icon" />
+            <span>{t("Descanso", "Rest")}</span>
           </label>
-          <label className="max-w-24">
-            {t("Segundos", "Seconds")}
+          <label className="workout-rest-duration">
             <Input
+              aria-label={t("Segundos", "Seconds")}
               type="number"
               min={5}
               max={3600}
@@ -263,6 +265,7 @@ export function WorkoutScreen() {
                 })
               }
             />
+            <span>{t("segundos", "seconds")}</span>
           </label>
           {enabled && (
             <button

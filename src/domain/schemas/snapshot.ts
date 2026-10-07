@@ -7,6 +7,7 @@ const optionalValue = nonnegative.nullable().optional();
 
 // Tolerant persisted-data readers: never strip metadata or retired exercise IDs.
 export const savedSetSchema = z.looseObject({
+  type: z.string().optional(),
   kg: optionalValue,
   reps: optionalValue,
   seconds: optionalValue,

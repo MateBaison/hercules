@@ -812,8 +812,11 @@ label input[type="checkbox"] {
 .set-grid-heading,
 .set-grid-row {
   display: grid;
-  grid-template-columns: 34px minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
-  gap: 8px;
+  grid-template-columns: 28px 24px minmax(0, 1.2fr) minmax(0, 1fr) minmax(
+      0,
+      1fr
+    );
+  gap: 5px;
   align-items: center;
   margin: 10px 0;
   text-align: center;
@@ -883,7 +886,7 @@ label input[type="checkbox"] {
   font-size: 0.7rem;
 }
 .calendar-grid button[data-menstrual-training="true"] {
-  box-shadow: inset 0 0 0 2px #f472b6;
+  box-shadow: inset 0 0 0 4px #c4b5fd;
 }
 .calendar-dots {
   display: flex;
@@ -1286,4 +1289,80 @@ input[type="range"] {
 .menstrual-days button:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
+}
+
+.set-type-letter {
+  font-weight: 800;
+}
+.set-type-letter[data-set-type="normal"] {
+  color: #a5b4fc;
+}
+.set-type-letter[data-set-type="warmup"] {
+  color: #facc15;
+}
+.set-type-letter[data-set-type="failure"] {
+  color: #fb7185;
+}
+.set-type-letter[data-set-type="drop"] {
+  color: #38bdf8;
+}
+.set-type-control {
+  min-height: 44px;
+  border-radius: 9px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+}
+.workout-rest-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+.workout-rest-toggle,
+.workout-rest-duration {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.workout-rest-duration input {
+  width: 62px;
+  min-height: 40px;
+  padding-inline: 6px;
+  text-align: center;
+}
+.workout-rest-toggle {
+  position: relative;
+  cursor: pointer;
+}
+.workout-rest-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+}
+.rest-check-icon {
+  width: 28px;
+  height: 28px;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted-foreground);
+  background: var(--secondary);
+}
+.workout-rest-toggle input:checked + .rest-check-icon {
+  color: white;
+  background: #16a34a;
+  border-color: #16a34a;
+}
+.workout-rest-toggle input:focus-visible + .rest-check-icon {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.workout-rest-controls .rest-start {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
 }

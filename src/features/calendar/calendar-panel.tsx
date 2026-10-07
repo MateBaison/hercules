@@ -176,12 +176,12 @@ export function CalendarPanel() {
       </div>
       {snapshot.profile.menstrualCalendar?.enabled && (
         <p className="mt-3 text-sm text-muted-foreground">
-          <span aria-hidden="true" style={{ color: "#f472b6" }}>
+          <span aria-hidden="true" style={{ color: "#c4b5fd" }}>
             ▢
           </span>{" "}
           {t(
-            "Borde rosa: entrenamiento con sangrado menstrual registrado.",
-            "Pink border: workout with recorded menstrual bleeding.",
+            "Borde violeta: entrenamiento con sangrado menstrual registrado.",
+            "Purple border: workout with recorded menstrual bleeding.",
           )}
         </p>
       )}

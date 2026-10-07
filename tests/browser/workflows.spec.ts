@@ -22,6 +22,17 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
     .getByRole("button", { name: /Rutina principal · Pecho y tríceps/ })
     .click();
   await expect(page).toHaveURL(/\/workout$/);
+  await page
+    .getByRole("button", { name: "Tipo de serie 1 serie 1", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Ayuda sobre tipos de serie" })
+    .click();
+  await expect(page.getByText(/Usá una carga liviana/)).toBeVisible();
+  await page.getByRole("button", { name: /Descendente/ }).click();
+  await expect(
+    page.getByRole("button", { name: "Tipo de serie 1 serie 1", exact: true }),
+  ).toHaveText("D");
   await page.getByLabel("Peso 1 serie 1", { exact: true }).fill("20");
   await page.getByLabel("Repeticiones 1 serie 1", { exact: true }).fill("12");
   await page
@@ -57,6 +68,10 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
   await page.keyboard.press("Escape");
   await page.getByLabel("Descanso entre series", { exact: true }).check();
   await page.getByLabel("Segundos", { exact: true }).fill("15");
+  await page.screenshot({
+    path: `artifacts/set-types-${info.project.name}.png`,
+    fullPage: true,
+  });
   await page
     .getByRole("button", { name: "Iniciar descanso", exact: true })
     .click();

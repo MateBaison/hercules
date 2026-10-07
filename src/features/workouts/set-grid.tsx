@@ -1,4 +1,7 @@
 "use client";
+import { useState } from "react";
+import { CircleHelp } from "lucide-react";
+import { AppDialog } from "@/components/ui/app-dialog";
 import { useApp } from "@/state/app-provider";
 import {
   blankSet,
@@ -22,8 +25,100 @@ export function SetGrid({
   const { snapshot, t } = useApp(),
     metric = metricFor(snapshot, entry.id, entry),
     previous = previousSets(snapshot, entry.id, metric, started);
+  const [editingType, setEditingType] = useState<number | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
+  const types = [
+    {
+      id: "warmup",
+      letter: "C",
+      name: t("Calentamiento", "Warm-up"),
+      help: t(
+        "Usá una carga liviana para preparar el movimiento y practicar la técnica antes de las series de trabajo, sin agotarte.",
+        "Use a light load to prepare the movement and practice technique before working sets, without tiring yourself out.",
+      ),
+    },
+    {
+      id: "normal",
+      letter: "N",
+      name: t("Normal", "Normal"),
+      help: t(
+        "Realizá las repeticiones previstas con una carga adecuada y buena técnica. Descansá antes de la siguiente serie.",
+        "Perform your planned repetitions with an appropriate load and good technique. Rest before the next set.",
+      ),
+    },
+    {
+      id: "failure",
+      letter: "F",
+      name: t("Fallo", "Failure"),
+      help: t(
+        "Llegás al límite de repeticiones que podés completar con buena técnica. Registrá solo las repeticiones completas y no fuerces una repetición insegura; usá asistencia o protecciones si corresponde.",
+        "Reach the limit of repetitions you can complete with good form. Log completed repetitions only; do not force an unsafe repetition. Use a spotter or safety equipment when appropriate.",
+      ),
+    },
+    {
+      id: "drop",
+      letter: "D",
+      name: t("Descendente", "Drop set"),
+      help: t(
+        "Después de una serie exigente, bajá el peso y continuá con poco o ningún descanso, manteniendo la técnica. Registrá cada tramo con su peso y repeticiones en una fila separada.",
+        "After a demanding set, reduce the load and continue with little or no rest while maintaining form. Record each segment's load and repetitions in a separate row.",
+      ),
+    },
+  ];
   return (
     <>
+      <AppDialog
+        open={editingType !== null}
+        onClose={() => setEditingType(null)}
+        title={t("Tipo de serie", "Set type")}
+      >
+        <div className="flex justify-end">
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label={t("Ayuda sobre tipos de serie", "Help with set types")}
+            aria-expanded={showHelp}
+            onClick={() => setShowHelp(!showHelp)}
+          >
+            <CircleHelp />
+          </Button>
+        </div>
+        <div className="space-y-3">
+          {types.map((type) => (
+            <div key={type.id}>
+              <Button
+                type="button"
+                variant="secondary"
+                className="w-full"
+                aria-pressed={
+                  editingType !== null &&
+                  (entry.sets[editingType]?.type ?? "normal") === type.id
+                }
+                onClick={() => {
+                  const number = editingType;
+                  if (number !== null)
+                    onChange((draft) => {
+                      const set = draft.sets[number];
+                      if (set) set.type = type.id;
+                    });
+                  setEditingType(null);
+                }}
+              >
+                <span className="set-type-letter" data-set-type={type.id}>
+                  {type.letter}
+                </span>
+                {type.name}
+              </Button>
+              {showHelp && (
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {type.help}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </AppDialog>
       <label className="block text-sm text-muted-foreground">
         {t("Cómo registrar", "Tracking metric")}
         <select
@@ -42,6 +137,7 @@ export function SetGrid({
         </select>
       </label>
       <div className="set-grid-heading">
+        <span>{t("Tipo", "Type")}</span>
         <span>{t("Series", "Sets")}</span>
         <span>{t("Anterior", "Previous")}</span>
         <span>{snapshot.settings.weight ?? "kg"}</span>
@@ -53,6 +149,20 @@ export function SetGrid({
       </div>
       {entry.sets.map((set, number) => (
         <div className="set-grid-row" key={number} data-set-row={number}>
+          <button
+            type="button"
+            className="set-type-letter set-type-control"
+            data-set-type={
+              types.find((type) => type.id === set.type)?.id ?? "normal"
+            }
+            aria-label={`${t("Tipo de serie", "Set type")} ${index + 1} ${t("serie", "set")} ${number + 1}`}
+            onClick={() => {
+              setEditingType(number);
+              setShowHelp(false);
+            }}
+          >
+            {types.find((type) => type.id === set.type)?.letter ?? "N"}
+          </button>
           <b>{number + 1}</b>
           <button
             type="button"
