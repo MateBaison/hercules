@@ -435,7 +435,7 @@ export function RoutinesHome() {
                   ))}
                 </div>
                 <label>
-                  Días por semana
+                  {t("Días por semana", "Days per week")}
                   <select
                     value={days}
                     onChange={(event) => setDays(Number(event.target.value))}
@@ -450,7 +450,7 @@ export function RoutinesHome() {
               </>
             ) : (
               <label className="block">
-                Nombre
+                {t("Nombre", "Name")}
                 <Input
                   required
                   maxLength={100}
@@ -460,7 +460,7 @@ export function RoutinesHome() {
               </label>
             )}
             <Button type="submit">
-              {mode === "auto" ? "Crear rutina" : "Guardar"}
+              {mode === "auto" ? "Crear rutina" : t("Guardar", "Save")}
             </Button>
           </form>
         )}
@@ -525,7 +525,7 @@ export function RoutinesHome() {
               setSuperset(null);
           }}
         >
-          Crear superserie
+          {t("Crear superserie", "Create superset")}
         </Button>
         <Button
           variant="secondary"
@@ -539,7 +539,10 @@ export function RoutinesHome() {
             setSuperset(null);
           }}
         >
-          Quitar superseries de este día
+          {t(
+            "Quitar superseries de este día",
+            "Remove supersets from this day",
+          )}
         </Button>
       </AppDialog>
       <AppDialog
@@ -548,7 +551,11 @@ export function RoutinesHome() {
         title="Compartir rutina"
         description="Se comparte una copia editable; no tu perfil, historial, pesos ni notas privadas."
       >
-        <Input aria-label="Enlace de rutina" readOnly value={share} />
+        <Input
+          aria-label={t("Enlace de rutina", "Routine link")}
+          readOnly
+          value={share}
+        />
         <Button
           onClick={async () => {
             try {
@@ -559,7 +566,7 @@ export function RoutinesHome() {
             }
           }}
         >
-          Copiar enlace
+          {t("Copiar enlace", "Copy link")}
         </Button>
         {typeof navigator !== "undefined" && navigator.share && (
           <Button
@@ -570,7 +577,7 @@ export function RoutinesHome() {
                 .catch(() => {});
             }}
           >
-            Compartir…
+            {t("Compartir…", "Share…")}
           </Button>
         )}
       </AppDialog>
@@ -580,10 +587,13 @@ export function RoutinesHome() {
           setIncoming("");
           sessionStorage.removeItem(INCOMING_ROUTINE_KEY);
         }}
-        title="Rutina compartida"
+        title={t("Rutina compartida", "Shared routine")}
       >
         <p>
-          Se agregará una copia editable sin modificar tus rutinas actuales.
+          {t(
+            "Se agregará una copia editable sin modificar tus rutinas actuales.",
+            "An editable copy will be added without changing your current routines.",
+          )}
         </p>
         <Button
           onClick={() => {
@@ -594,7 +604,7 @@ export function RoutinesHome() {
             }
           }}
         >
-          Agregar a mis rutinas
+          {t("Agregar a mis rutinas", "Add to my routines")}
         </Button>
       </AppDialog>
     </>

@@ -14,7 +14,7 @@ import {
 } from "@/domain/calculations/calculators";
 
 export function CalculatorsScreen() {
-  const { snapshot } = useApp(),
+  const { snapshot, t } = useApp(),
     profile = snapshot.profile,
     units = snapshot.settings;
   const [section, setSection] = useState("calories"),
@@ -107,37 +107,37 @@ export function CalculatorsScreen() {
               setError("");
             }}
           >
-            {label}
+            {t(String(label), String(label))}
           </button>
         ))}
       </div>
       <section className="panel">
         <h2>
           {section === "calories"
-            ? "Calculadora de calorías"
+            ? t("Calculadora de calorías", "Calorie calculator")
             : section === "macros"
-              ? "Calculadora de macros"
+              ? t("Calculadora de macros", "Macro calculator")
               : section === "maximum"
-                ? "Una repetición máxima"
-                : "Estimación de objetivo de peso"}
+                ? t("Una repetición máxima", "One-rep max")
+                : t("Estimación de objetivo de peso", "Weight goal estimate")}
         </h2>
         <div className="form-grid">
           {(section === "calories" || section === "goal") && (
             <>
               <label>
-                Sexo
+                {t("Sexo", "Sex")}
                 <select
                   value={sex}
                   onChange={(event) =>
                     setSex(event.target.value === "female" ? "female" : "male")
                   }
                 >
-                  <option value="male">Masculino</option>
-                  <option value="female">Femenino</option>
+                  <option value="male">{t("Masculino", "Male")}</option>
+                  <option value="female">{t("Femenino", "Female")}</option>
                 </select>
               </label>
               <label>
-                Edad
+                {t("Edad", "Age")}
                 <Input
                   type="number"
                   value={age}
@@ -145,7 +145,8 @@ export function CalculatorsScreen() {
                 />
               </label>
               <label>
-                Peso ({units.weight ?? "kg"})
+                {t("Peso (", "Weight (")}
+                {units.weight ?? "kg"})
                 <Input
                   type="number"
                   step="0.1"
@@ -154,7 +155,8 @@ export function CalculatorsScreen() {
                 />
               </label>
               <label>
-                Altura ({units.height ?? "cm"})
+                {t("Altura (", "Height (")}
+                {units.height ?? "cm"})
                 <Input
                   type="number"
                   step="0.1"
@@ -163,7 +165,7 @@ export function CalculatorsScreen() {
                 />
               </label>
               <label>
-                Actividad
+                {t("Actividad", "Activity")}
                 <select
                   value={activity}
                   onChange={(event) =>
@@ -180,14 +182,15 @@ export function CalculatorsScreen() {
                     [1.9, "Muy alta"],
                   ].map(([value, label]) => (
                     <option key={value} value={value}>
-                      {label}
+                      {t(String(label), String(label))}
                     </option>
                   ))}
                 </select>
               </label>
               {section === "goal" && (
                 <label>
-                  Peso deseado ({units.weight ?? "kg"})
+                  {t("Peso deseado (", "Target weight (")}
+                  {units.weight ?? "kg"})
                   <Input
                     type="number"
                     step="0.1"
@@ -201,7 +204,7 @@ export function CalculatorsScreen() {
           {section === "macros" && (
             <>
               <label>
-                Objetivo diario (kcal)
+                {t("Objetivo diario (kcal)", "Daily target (kcal)")}
                 <Input
                   type="number"
                   value={calories}
@@ -209,7 +212,7 @@ export function CalculatorsScreen() {
                 />
               </label>
               <label>
-                Comidas por día
+                {t("Comidas por día", "Meals per day")}
                 <Input
                   type="number"
                   value={meals}
@@ -217,17 +220,23 @@ export function CalculatorsScreen() {
                 />
               </label>
               <label>
-                Distribución
+                {t("Distribución", "Distribution")}
                 <select
                   value={split}
                   onChange={(event) =>
                     setSplit(event.target.value as typeof split)
                   }
                 >
-                  <option value="balanced">Equilibrada</option>
-                  <option value="protein">Alta en proteína</option>
-                  <option value="lowerCarb">Menos carbohidratos</option>
-                  <option value="keto">Cetogénica</option>
+                  <option value="balanced">
+                    {t("Equilibrada", "Balanced")}
+                  </option>
+                  <option value="protein">
+                    {t("Alta en proteína", "High protein")}
+                  </option>
+                  <option value="lowerCarb">
+                    {t("Menos carbohidratos", "Lower carbohydrate")}
+                  </option>
+                  <option value="keto">{t("Cetogénica", "Ketogenic")}</option>
                 </select>
               </label>
             </>
@@ -235,7 +244,8 @@ export function CalculatorsScreen() {
           {section === "maximum" && (
             <>
               <label>
-                Peso levantado ({units.weight ?? "kg"})
+                {t("Peso levantado (", "Lifted weight (")}
+                {units.weight ?? "kg"})
                 <Input
                   type="number"
                   step="0.1"
@@ -244,7 +254,7 @@ export function CalculatorsScreen() {
                 />
               </label>
               <label>
-                Repeticiones (1–10)
+                {t("Repeticiones (1–10)", "Repetitions (1–10)")}
                 <Input
                   type="number"
                   value={reps}
@@ -270,7 +280,7 @@ export function CalculatorsScreen() {
           <div className="result-grid">
             <Result
               color="loss"
-              label="Bajar de peso"
+              label={t("Bajar de peso", "Lose weight")}
               onSelect={
                 targets.loss >= 1200
                   ? () => useCaloriesForMacros(targets.loss)
@@ -284,13 +294,13 @@ export function CalculatorsScreen() {
             />
             <Result
               color="maintain"
-              label="Mantenerse"
+              label={t("Mantenerse", "Maintain weight")}
               onSelect={() => useCaloriesForMacros(targets.maintenance)}
               value={`${targets.maintenance} kcal/día`}
             />
             <Result
               color="gain"
-              label="Subir de peso"
+              label={t("Subir de peso", "Gain weight")}
               onSelect={() => useCaloriesForMacros(targets.gain)}
               value={`${targets.gain} kcal/día`}
             />
@@ -300,23 +310,23 @@ export function CalculatorsScreen() {
           <>
             <Result
               color="daily"
-              label="Objetivo diario"
+              label={t("Objetivo diario", "Daily target")}
               value={`${calories} kcal`}
             />
             <div className="result-grid">
               <Result
                 color="carbs"
-                label="Carbohidratos"
+                label={t("Carbohidratos", "Carbohydrates")}
                 value={`${macros.daily.carbs} g`}
               />
               <Result
                 color="protein"
-                label="Proteínas"
+                label={t("Proteínas", "Protein")}
                 value={`${macros.daily.protein} g`}
               />
               <Result
                 color="fat"
-                label="Grasas"
+                label={t("Grasas", "Fat")}
                 value={`${macros.daily.fat} g`}
               />
             </div>
@@ -324,32 +334,40 @@ export function CalculatorsScreen() {
               className="macro-meal-results"
               aria-labelledby="macro-meal-title"
             >
-              <h3 id="macro-meal-title">Por comida · {meals} comidas</h3>
+              <h3 id="macro-meal-title">
+                {t("Por comida ·", "Per meal ·")} {meals}{" "}
+                {t("comidas", "meals")}
+              </h3>
               <Result
                 color="daily"
-                label="Calorías por comida"
+                label={t("Calorías por comida", "Calories per meal")}
                 value={`${macros.perMeal.calories} kcal`}
               />
               <div className="result-grid">
                 <Result
                   color="carbs"
-                  label="Carbohidratos por comida"
+                  label={t(
+                    "Carbohidratos por comida",
+                    "Carbohydrates per meal",
+                  )}
                   value={`${macros.perMeal.carbs} g`}
                 />
                 <Result
                   color="protein"
-                  label="Proteínas por comida"
+                  label={t("Proteínas por comida", "Protein per meal")}
                   value={`${macros.perMeal.protein} g`}
                 />
                 <Result
                   color="fat"
-                  label="Grasas por comida"
+                  label={t("Grasas por comida", "Fat per meal")}
                   value={`${macros.perMeal.fat} g`}
                 />
               </div>
               <p className="text-sm text-muted-foreground">
-                Reparto equivalente orientativo; no hace falta que todas las
-                comidas sean iguales.
+                {t(
+                  "Reparto equivalente orientativo; no hace falta que todas las comidas sean iguales.",
+                  "Approximate equal portions; meals do not all need to be the same.",
+                )}
               </p>
             </section>
           </>
@@ -373,16 +391,22 @@ export function CalculatorsScreen() {
             <>
               <Result
                 color="maintain"
-                label="Rango orientativo, no una fecha garantizada"
+                label={t(
+                  "Rango orientativo, no una fecha garantizada",
+                  "Estimated range, not a guaranteed date",
+                )}
                 value={`${goal.fastWeeks}–${goal.slowWeeks} semanas`}
               />
               <div className="table-scroll">
                 <table>
                   <thead>
                     <tr>
-                      <th>Peso ({units.weight ?? "kg"})</th>
-                      <th>Semanas</th>
-                      <th>Ingesta estimada</th>
+                      <th>
+                        {t("Peso (", "Weight (")}
+                        {units.weight ?? "kg"})
+                      </th>
+                      <th>{t("Semanas", "Weeks")}</th>
+                      <th>{t("Ingesta estimada", "Estimated intake")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -407,17 +431,18 @@ export function CalculatorsScreen() {
                 </table>
               </div>
               <p>
-                El rango usa un cambio semanal gradual del peso; no predice
-                cuánto será grasa o músculo. La actividad, adherencia, salud y
-                retención de líquidos pueden cambiar el resultado.
+                {t(
+                  "El rango usa un cambio semanal gradual del peso; no predice cuánto será grasa o músculo. La actividad, adherencia, salud y retención de líquidos pueden cambiar el resultado.",
+                  "The range uses gradual weekly weight change; it does not predict how much will be fat or muscle. Activity, adherence, health and water retention can affect the result.",
+                )}
               </p>
             </>
           ))}
         <p className="mt-5 text-sm text-muted-foreground">
-          Estimaciones para adultos, no indicaciones médicas. Hacé ajustes y
-          chequeos cada 2–3 semanas según la evolución real. Si tenés una
-          condición de salud, embarazo o antecedentes de trastornos
-          alimentarios, consultá con un profesional.
+          {t(
+            "Estimaciones para adultos, no indicaciones médicas. Hacé ajustes y chequeos cada 2–3 semanas según la evolución real. Si tenés una condición de salud, embarazo o antecedentes de trastornos alimentarios, consultá con un profesional.",
+            "Estimates for adults, not medical prescriptions. Review and adjust every 2–3 weeks based on actual changes. Consult a professional if you have a health condition, are pregnant or have a history of eating disorders.",
+          )}
         </p>
       </section>
     </>
@@ -434,22 +459,26 @@ function Result({
   value: string;
   onSelect?: () => void;
 }) {
+  const { t } = useApp();
+  const translatedLabel = t(label, label);
   if (onSelect)
     return (
       <button
         type="button"
         className={`result-card result-${color} result-action`}
         onClick={onSelect}
-        aria-label={`${label}: ${value}. Usar en macros`}
+        aria-label={`${translatedLabel}: ${value}. ${t("Usar en macros", "Use for macros")}`}
       >
-        <h3>{label}</h3>
+        <h3>{translatedLabel}</h3>
         <strong>{value}</strong>
-        <small className="mt-2 block">Usar en macros →</small>
+        <small className="mt-2 block">
+          {t("Usar en macros →", "Use for macros →")}
+        </small>
       </button>
     );
   return (
     <div className={`result-card result-${color}`}>
-      <h3>{label}</h3>
+      <h3>{translatedLabel}</h3>
       <strong>{value}</strong>
     </div>
   );

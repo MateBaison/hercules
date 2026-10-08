@@ -16,7 +16,8 @@ Saved data uses tolerant Zod readers; new commands use bounded/strict input sche
 - Original raw cache backups use `<key>:migration-backup-v1:<timestamp>`. Divergent copies require an explicit choice and preserve fingerprinted local/cloud conflict backups. A failed backup blocks replacement.
 - Profile, workout completion and sign-out can flush explicitly. Upload errors remain visible; a pending local save must not be called a successful cloud save.
 - Full photo-heavy payloads go directly browser → Supabase under the user's session/RLS. Server summary reads select only small profile fields. No service-role key is used.
-- No realtime merge/CAS is introduced: simultaneous devices keep the existing last-write-wins limitation. Recovery on loading a divergent pending copy is not a guarantee against concurrent writes.
+- Browser saves now use conditional updates against the loaded `updated_at` revision, or an insert for an absent account row. Stale updates and duplicate inserts reconcile again and require an explicit choice with backups. This uses existing RLS and columns; no hosted schema migration is required. It is not a realtime merge, and old clients still using unconditional upserts must be refreshed.
+- Clean accounts check the small `updated_at` field on focus/visibility and every 30 seconds while visible, loading full snapshots only when it changes. Pending edits and uploads are not replaced by polling. A clean cache matching its saved base accepts a newer cloud copy; unrelated or pending divergent copies still require a choice.
 
 ## Origin handoff
 
@@ -33,3 +34,7 @@ When the menstrual calendar is enabled, selecting a routine day offers an option
 Performed sets may include a `type` string (`warmup`, `normal`, `failure`, `drop`). Missing or unrecognized values display as normal; historical values remain readable. Selecting a type alone does not mark a set as entered or completed. Completed sessions and account backups retain the type; volume/count calculations remain unchanged.
 
 In-workout exercise replacement only edits the active workout. Entered/done sets remain under their original exercise; pending sets become a new entry when needed. Saved routines and historical sessions are unchanged. Suggestions reuse the pending count and comparable quantity, or target-exercise history with weight-unit conversion. There is no inferred conversion of loads across exercises, or repetitions to seconds. Suggested values remain `entered: false` / `done: false` until the user records them. Type names/letters are localized while stored identifiers stay stable.
+
+## Weekly training time
+
+Session `duration` retains its historical unit, minutes. New completed workouts record elapsed time from `workout.started` to saving, including rests and time with the app in the background. Unknown historical durations remain null/absent and are explicitly excluded from weekly time totals. Calendar copies retain their existing null-duration behavior. Week boundaries and daily grouping use local dates, Monday through Sunday.

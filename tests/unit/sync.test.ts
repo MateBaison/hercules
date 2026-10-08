@@ -198,3 +198,119 @@ test("overlapping recovery reads ignore stale results and preserve both conflict
   ).toBe("Local");
   ctl.dispose();
 });
+
+test("clean devices refresh cloud changes without a conflict", async () => {
+  let remote = createDefaultSnapshot();
+  const storage = store();
+  const ctl = new SyncController(
+    id,
+    {
+      load: async () => remote,
+      save: async (value) => {
+        remote = structuredClone(value);
+      },
+    },
+    storage,
+    () => () => {},
+  );
+  await ctl.start();
+  ctl.edit((value) => {
+    value.profile.name = "Saved here";
+  });
+  await ctl.flush();
+  remote = structuredClone(remote);
+  remote.profile.name = "Saved on phone";
+  await ctl.refresh();
+  expect(ctl.view.status).toBe("synced");
+  expect(ctl.view.snapshot?.profile.name).toBe("Saved on phone");
+  expect(JSON.parse(storage.getItem(accountCacheKey(id))!).profile.name).toBe(
+    "Saved on phone",
+  );
+  ctl.dispose();
+});
+
+test("pending edits are not replaced by automatic refresh", async () => {
+  const remote = createDefaultSnapshot();
+  let reads = 0;
+  const ctl = new SyncController(
+    id,
+    {
+      load: async () => {
+        reads++;
+        return remote;
+      },
+      save: async () => {},
+    },
+    store(),
+    () => () => {},
+  );
+  await ctl.start();
+  ctl.edit((value) => {
+    value.profile.name = "Pending";
+  });
+  await ctl.refresh();
+  expect(reads).toBe(1);
+  expect(ctl.view.snapshot?.profile.name).toBe("Pending");
+  ctl.dispose();
+});
+
+test("a rejected stale upload requires a choice and backs up both devices", async () => {
+  const { RemoteStateChanged } =
+    await import("../../src/lib/supabase/state-repository");
+  const storage = store();
+  let remote = createDefaultSnapshot(),
+    writes = 0;
+  const ctl = new SyncController(
+    id,
+    {
+      load: async () => remote,
+      save: async () => {
+        writes++;
+        throw new RemoteStateChanged();
+      },
+    },
+    storage,
+    () => () => {},
+  );
+  await ctl.start();
+  ctl.edit((value) => {
+    value.profile.name = "Here";
+  });
+  remote = structuredClone(remote);
+  remote.profile.name = "Other device";
+  expect(await ctl.flush()).toBe(false);
+  expect(ctl.view.status).toBe("conflict");
+  expect(writes).toBe(1);
+  expect(
+    JSON.parse(
+      storage.getItem(
+        `${accountCacheKey(id)}:cloud-conflict:${fingerprint(remote)}`,
+      )!,
+    ).profile.name,
+  ).toBe("Other device");
+  expect(() => ctl.edit(() => {})).toThrow();
+  ctl.resolve("cloud");
+  expect(ctl.view.snapshot?.profile.name).toBe("Other device");
+  ctl.dispose();
+});
+
+test("automatic cloud refresh waits for unsaved form drafts", async () => {
+  let remote = createDefaultSnapshot();
+  const ctl = new SyncController(
+    id,
+    { load: async () => remote, save: async () => {} },
+    store(),
+    () => () => {},
+  );
+  await ctl.start();
+  const release = ctl.holdRefresh();
+  remote = structuredClone(remote);
+  remote.profile.name = "Remote change";
+  await ctl.refresh();
+  expect(ctl.view.snapshot?.profile.name).not.toBe("Remote change");
+  release();
+  release();
+  await ctl.refresh();
+  expect(ctl.view.snapshot?.profile.name).toBe("Remote change");
+  ctl.dispose();
+});

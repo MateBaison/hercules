@@ -812,7 +812,9 @@ label input[type="checkbox"] {
 .set-grid-heading,
 .set-grid-row {
   display: grid;
-  grid-template-columns: 24px minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) 22px;
+  grid-template-columns:
+    24px minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr)
+    22px;
   gap: 5px;
   align-items: center;
   margin: 10px 0;
@@ -1249,6 +1251,8 @@ input[type="range"] {
   text-align: center;
 }
 .menstrual-calendar-control strong {
+  font-size: 0.875rem;
+  line-height: 1.2;
   flex: 1;
   min-width: 0;
 }
@@ -1339,4 +1343,67 @@ input[type="range"] {
   width: 36px;
   height: 36px;
   flex-shrink: 0;
+}
+.workout-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.workout-toolbar button {
+  flex: 1 1 140px;
+  white-space: normal;
+}
+.set-grid-heading > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 360px) {
+  .workout-rest-controls {
+    gap: 5px;
+    font-size: 0.72rem;
+  }
+  .workout-rest-duration {
+    gap: 4px;
+  }
+  .workout-rest-duration input {
+    width: 48px;
+  }
+}
+.weekly-duration-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+.weekly-duration-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border-radius: 12px;
+  background: var(--secondary);
+  text-align: center;
+  font-size: 0.85rem;
+}
+.weekly-duration-day small {
+  color: var(--muted-foreground);
+}
+@media (max-width: 600px) {
+  .weekly-duration-days {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 360px) {
+  .weekly-duration-days {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.bottom-nav a span {
+  max-width: 100%;
+  padding-inline: 2px;
+  overflow-wrap: anywhere;
+  text-align: center;
+  line-height: 1.2;
 }

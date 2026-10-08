@@ -9,6 +9,7 @@ const ids = [
 const records = new Map<string, unknown>(),
   tokens = new Map<string, string>();
 const writes: string[] = [];
+const revisions = new Map<string, string>();
 function user(id: string) {
   return {
     id,
@@ -47,6 +48,7 @@ function session(id: string) {
 }
 function reset(newAccount = false) {
   records.clear();
+  revisions.clear();
   writes.length = 0;
   for (const id of ids) {
     if (!id) continue;
@@ -55,6 +57,7 @@ function reset(newAccount = false) {
       newAccount && id === ids[0] ? "" : id === ids[0] ? "Test" : "Second";
     snapshot.profile.onboardingComplete = !(newAccount && id === ids[0]);
     records.set(id, snapshot);
+    revisions.set(id, "2026-10-06T12:00:00Z");
   }
 }
 reset();
@@ -65,7 +68,10 @@ const server = createServer(async (request, response) => {
     "Access-Control-Allow-Headers",
     "authorization, apikey, content-type, prefer, x-client-info, x-supabase-api-version",
   );
-  response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  response.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, OPTIONS",
+  );
   const send = (body: unknown, status = 200) => {
     response.writeHead(status, { "Content-Type": "application/json" });
     response.end(JSON.stringify(body));
@@ -155,17 +161,37 @@ const server = createServer(async (request, response) => {
       send({ message: "Not authenticated" }, 401);
       return;
     }
-    if (request.method === "POST") {
+    if (request.method === "POST" || request.method === "PATCH") {
       const body = z
-        .object({ user_id: z.string(), payload: z.unknown() })
+        .object({
+          user_id: z.string(),
+          payload: z.unknown(),
+          updated_at: z.string(),
+        })
         .parse(raw);
       if (body.user_id !== owner) {
         send({ message: "RLS rejected" }, 403);
         return;
       }
+      if (request.method === "POST" && records.has(owner)) {
+        send({ code: "23505", message: "Duplicate account" }, 409);
+        return;
+      }
+      if (
+        request.method === "PATCH" &&
+        (url.searchParams.get("user_id") !== `eq.${owner}` ||
+          url.searchParams.get("updated_at") !== `eq.${revisions.get(owner)}`)
+      ) {
+        send([]);
+        return;
+      }
       records.set(owner, body.payload);
+      revisions.set(owner, body.updated_at);
       writes.push(owner);
-      send(null, 201);
+      send(
+        [{ updated_at: body.updated_at }],
+        request.method === "POST" ? 201 : 200,
+      );
       return;
     }
     if (url.searchParams.get("user_id") !== `eq.${owner}`) {
@@ -192,7 +218,7 @@ const server = createServer(async (request, response) => {
           complete: profile.onboardingComplete ?? null,
         },
       ]);
-    } else send([{ payload: snapshot, updated_at: "2026-10-06T12:00:00Z" }]);
+    } else send([{ payload: snapshot, updated_at: revisions.get(owner) }]);
     return;
   }
   send({ message: "Unknown test endpoint" }, 404);

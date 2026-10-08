@@ -10,7 +10,7 @@ import {
   writeCache,
   type StoragePort,
 } from "@/lib/storage/account-cache";
-import type { StateRepository } from "./state-repository";
+import { RemoteStateChanged, type StateRepository } from "./state-repository";
 import { z } from "zod";
 import { fingerprint } from "@/lib/storage/fingerprint";
 
@@ -66,6 +66,14 @@ export class SyncController {
       this.listeners.delete(listener);
     };
   }
+  get language() {
+    return (
+      this.view.snapshot?.settings.language ??
+      this.local?.settings.language ??
+      this.cloud?.settings.language ??
+      "es"
+    );
+  }
   get hasCloud() {
     return this.cloud !== null;
   }
@@ -80,6 +88,54 @@ export class SyncController {
       this.metaKey,
       JSON.stringify({ pending: this.pending, base: this.base }),
     );
+  }
+  private refreshing = false;
+  private refreshHolds = 0;
+  holdRefresh() {
+    this.refreshHolds++;
+    let released = false;
+    return () => {
+      if (!released) {
+        released = true;
+        this.refreshHolds--;
+      }
+    };
+  }
+  async refresh() {
+    if (
+      this.disposed ||
+      this.refreshing ||
+      this.flight ||
+      this.pending ||
+      this.refreshHolds > 0 ||
+      !this.ready ||
+      this.view.status !== "synced"
+    )
+      return;
+    this.refreshing = true;
+    try {
+      if (this.repo.changed && !(await this.repo.changed(this.abort.signal)))
+        return;
+      // Input may have arrived while the lightweight revision check was running.
+      if (
+        this.pending ||
+        this.refreshHolds > 0 ||
+        this.flight ||
+        this.disposed ||
+        this.view.status !== "synced"
+      )
+        return;
+      await this.start();
+    } catch {
+      if (this.view.status === "synced")
+        this.emit(
+          this.view.snapshot,
+          "offline",
+          "No pudimos comprobar cambios en otros dispositivos. Tu copia local se conserva.",
+        );
+    } finally {
+      this.refreshing = false;
+    }
   }
   async start() {
     if (this.disposed) return;
@@ -164,7 +220,9 @@ export class SyncController {
       if (
         this.local &&
         encoded(this.local) !== cloudEncoded &&
-        (!this.pending || this.base !== cloudEncoded)
+        (this.pending
+          ? this.base !== cloudEncoded
+          : this.base !== encoded(this.local))
       ) {
         try {
           const cloudKey = `${this.key}:cloud-conflict:${cloudEncoded}`,
@@ -314,7 +372,12 @@ export class SyncController {
             : "Sincronizado con tu cuenta",
         );
         return true;
-      } catch {
+      } catch (error) {
+        if (error instanceof RemoteStateChanged) {
+          // Reconcile only after the upload promise has settled; keep the local copy.
+          this.cloudReady = false;
+          return false;
+        }
         this.emit(
           this.view.snapshot,
           "offline",
@@ -325,6 +388,7 @@ export class SyncController {
     })();
     const success = await this.flight;
     this.flight = null;
+    if (!success && !this.cloudReady && !this.disposed) await this.start();
     if (success && this.pending) return this.flush();
     return success;
   }

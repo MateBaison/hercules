@@ -128,3 +128,40 @@ export function weeklyData(
     return { start, sessions: sessions.length, groups: counts };
   });
 }
+
+// Historical duration is stored in minutes. Unknown durations stay unknown.
+export function weeklySummary(snapshot: Snapshot, now = new Date()) {
+  const monday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+  const days = Array.from({ length: 7 }, (_, index) => {
+    const date = new Date(monday);
+    date.setDate(date.getDate() + index);
+    const end = new Date(date);
+    end.setDate(end.getDate() + 1);
+    const sessions = snapshot.sessions.filter((session) => {
+      const instant = new Date(session.date);
+      return instant >= date && instant < end;
+    });
+    const unknown = sessions.filter(
+      (session) => session.duration == null,
+    ).length;
+    return {
+      date,
+      sessions: sessions.length,
+      minutes: sessions.reduce(
+        (sum, session) => sum + (session.duration ?? 0),
+        0,
+      ),
+      unknown,
+      sets: sessions.reduce((sum, session) => sum + (session.sets ?? 0), 0),
+    };
+  });
+  return {
+    start: monday,
+    days,
+    sessions: days.reduce((sum, day) => sum + day.sessions, 0),
+    minutes: days.reduce((sum, day) => sum + day.minutes, 0),
+    unknown: days.reduce((sum, day) => sum + day.unknown, 0),
+    trainedDays: days.filter((day) => day.sessions > 0).length,
+  };
+}

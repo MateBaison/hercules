@@ -497,6 +497,12 @@ test("menstrual calendar is optional and dates persist", async ({
   await expect(
     calendar.getByRole("button", { name: label!, exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
+  await gender.selectOption("hombre");
+  await expect(calendar).toHaveCount(0);
+  await gender.selectOption("mujer");
+  await expect(
+    calendar.getByRole("button", { name: label!, exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
 });
 
 test("optional menstrual readiness check offers advice before starting", async ({
@@ -601,4 +607,149 @@ test("exercise replacement preserves logged sets and offers a time-based alterna
   await expect(
     page.getByLabel("Segundos 2 serie 1", { exact: true }),
   ).toHaveValue("30");
+});
+
+test("weekly summary and translated screens fit a narrow viewport", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.goto("/progress");
+  await expect(
+    page.getByRole("heading", { name: "Resumen semanal" }),
+  ).toBeVisible();
+  await expect(page.locator(".weekly-duration-day")).toHaveCount(7);
+  await page.screenshot({
+    path: "artifacts/weekly-summary-narrow.png",
+    fullPage: true,
+  });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.goto("/profile");
+  await page
+    .getByRole("button", { name: "Configuración", exact: true })
+    .click();
+  await page
+    .getByRole("combobox", { name: "Idioma", exact: true })
+    .selectOption("en");
+  await page
+    .getByRole("button", { name: "Guardar configuración", exact: true })
+    .click();
+  await page.goto("/tools");
+  await page.getByRole("button", { name: "Calculators", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Calories", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Calorie calculator", exact: true }),
+  ).toBeVisible();
+  await page.goto("/home");
+  await page
+    .getByRole("button", { name: "Start workout", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: /Rutina principal/ })
+    .first()
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Supersets", exact: true }),
+  ).toBeVisible();
+  await page.screenshot({
+    path: "artifacts/workout-narrow-english.png",
+    fullPage: true,
+  });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  for (const [language, heading, direction] of [
+    ["fr", "Résumé de la semaine", "ltr"],
+    ["ar", "ملخص أسبوعي", "rtl"],
+  ] as const) {
+    await page.goto("/profile");
+    await page.locator(".page-heading button").click();
+    await page.locator('select[name="language"]').selectOption(language);
+    await page.getByRole("dialog").locator('button[type="submit"]').click();
+    await page.goto("/progress");
+    await expect(page.getByRole("heading", { name: heading })).toBeVisible();
+    await expect(page.locator("html")).toHaveAttribute("dir", direction);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  }
+  await page.screenshot({
+    path: "artifacts/weekly-summary-narrow-arabic.png",
+    fullPage: true,
+  });
+});
+
+test("two browser devices preserve drafts and require a choice for conflicting edits", async ({
+  page,
+  browser,
+}) => {
+  await page.goto("/profile");
+  const second = await browser.newContext();
+  try {
+    const other = await second.newPage();
+    await other.route("**/*", (route) =>
+      new URL(route.request().url()).hostname === "127.0.0.1"
+        ? route.continue()
+        : route.abort(),
+    );
+    await login(other);
+    await other.goto("http://127.0.0.1:3010/profile");
+    await other
+      .getByLabel("Nombre", { exact: true })
+      .fill("Draft on device two");
+    await page
+      .getByLabel("Nombre", { exact: true })
+      .fill("Saved on device one");
+    await page
+      .getByRole("button", { name: "Guardar cambios", exact: true })
+      .click();
+    await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+    await other.bringToFront();
+    // Headless Chromium does not reliably emit native window-focus events.
+    await other.evaluate(() => window.dispatchEvent(new Event("focus")));
+    await expect(other.getByLabel("Nombre", { exact: true })).toHaveValue(
+      "Draft on device two",
+    );
+    await other
+      .getByRole("button", { name: "Guardar cambios", exact: true })
+      .click();
+    await expect(
+      other.getByRole("heading", { name: "Elegir copia de tus datos" }),
+    ).toBeVisible();
+    expect(
+      await other.evaluate(
+        () =>
+          Object.keys(localStorage).filter((key) =>
+            /:(cloud|local)-conflict:/.test(key),
+          ).length,
+      ),
+    ).toBe(2);
+    await other.getByRole("button", { name: "Usar nube", exact: true }).click();
+    await expect(other.getByLabel("Nombre", { exact: true })).toHaveValue(
+      "Saved on device one",
+    );
+    await page.bringToFront();
+    await page.getByLabel("Nombre", { exact: true }).fill("New cloud update");
+    await page
+      .getByRole("button", { name: "Guardar cambios", exact: true })
+      .click();
+    await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+    await other.bringToFront();
+    // Headless Chromium does not reliably emit native window-focus events.
+    await other.evaluate(() => window.dispatchEvent(new Event("focus")));
+    await expect(other.getByLabel("Nombre", { exact: true })).toHaveValue(
+      "New cloud update",
+    );
+  } finally {
+    await second.close();
+  }
 });

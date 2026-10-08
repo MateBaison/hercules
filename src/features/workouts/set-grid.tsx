@@ -159,7 +159,7 @@ export function SetGrid({
             type="button"
             className="previous-set"
             disabled={!previous[number]}
-            aria-label={`Usar datos anteriores ${index + 1} serie ${number + 1}`}
+            aria-label={`${t("Usar datos anteriores", "Use previous values")} ${index + 1} ${t("serie", "set")} ${number + 1}`}
             onClick={() => {
               const old = previous[number];
               if (old)
@@ -193,7 +193,7 @@ export function SetGrid({
             min={0}
             step={0.5}
             inputMode="decimal"
-            aria-label={`Peso ${index + 1} serie ${number + 1}`}
+            aria-label={`${t("Peso", "Weight")} ${index + 1} ${t("serie", "set")} ${number + 1}`}
             value={set.kg ?? ""}
             onChange={(event) => {
               const value =
@@ -214,7 +214,7 @@ export function SetGrid({
             min={0}
             step={1}
             inputMode="numeric"
-            aria-label={`${metric === "seconds" ? "Segundos" : "Repeticiones"} ${index + 1} serie ${number + 1}`}
+            aria-label={`${metric === "seconds" ? t("Segundos", "Seconds") : t("Repeticiones", "Repetitions")} ${index + 1} ${t("serie", "set")} ${number + 1}`}
             value={set[metric] ?? ""}
             onChange={(event) => {
               const value =

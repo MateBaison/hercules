@@ -1,6 +1,6 @@
 "use client";
 import { localeFor } from "@/data/translations";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/state/app-provider";
@@ -14,7 +14,7 @@ const codes =
     /../g,
   ) ?? [];
 export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
-  const { snapshot, user, change, flush, notify, t } = useApp(),
+  const { snapshot, user, change, flush, notify, t, holdRefresh } = useApp(),
     router = useRouter();
   const photoInput = useRef<HTMLInputElement>(null);
   const [photoSource, setPhotoSource] = useState<string | null>(null);
@@ -29,6 +29,10 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
     .map((code) => displayNames.of(code) ?? code)
     .sort((a, b) => a.localeCompare(b));
   const changed = JSON.stringify(draft) !== JSON.stringify(snapshot.profile);
+  useEffect(
+    () => (changed ? holdRefresh() : undefined),
+    [changed, holdRefresh],
+  );
   const set = (key: string, value: string | number) =>
     setDraft((previous) => ({ ...previous, [key]: value }));
   return (
@@ -103,7 +107,7 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
             ref={photoInput}
             className="sr-only"
             type="file"
-            aria-label="Cambiar foto"
+            aria-label={t("Cambiar foto", "Change photo")}
             accept="image/*"
             disabled={busy}
             onChange={async (event) => {
@@ -153,6 +157,7 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
             {t("Email de contacto", "Contact email")}
             <Input
               type="email"
+              aria-label={t("Email de contacto", "Contact email")}
               value={user.email}
               readOnly
               className="profile-account-email"
@@ -258,24 +263,28 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
             <option value="otro">{t("Otro", "Other")}</option>
           </select>
         </label>
-        {(["mujer", "no_binario", "otro"].includes(draft.gender ?? "") ||
-          draft.menstrualCalendar?.enabled ||
-          (draft.menstrualCalendar?.dates?.length ?? 0) > 0) && (
-          <MenstrualCalendar
-            value={draft.menstrualCalendar}
-            onChange={(value) =>
-              setDraft((previous) => ({
-                ...previous,
-                menstrualCalendar: { ...previous.menstrualCalendar, ...value },
-              }))
-            }
-          />
-        )}
+        {!["hombre", "male"].includes(draft.gender ?? "") &&
+          (["mujer", "no_binario", "otro"].includes(draft.gender ?? "") ||
+            draft.menstrualCalendar?.enabled ||
+            (draft.menstrualCalendar?.dates?.length ?? 0) > 0) && (
+            <MenstrualCalendar
+              value={draft.menstrualCalendar}
+              onChange={(value) =>
+                setDraft((previous) => ({
+                  ...previous,
+                  menstrualCalendar: {
+                    ...previous.menstrualCalendar,
+                    ...value,
+                  },
+                }))
+              }
+            />
+          )}
       </div>
       {(changed || onboarding) && (
         <Button type="submit" className="w-full" disabled={busy}>
           {busy
-            ? "Guardando…"
+            ? t("Guardando…", "Saving…")
             : onboarding
               ? t("Crear perfil y entrar", "Create profile and enter")
               : t("Guardar cambios", "Save changes")}

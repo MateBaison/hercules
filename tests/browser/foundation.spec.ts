@@ -68,7 +68,9 @@ test("welcome, all navigation routes, active tab, brand home and reload", async 
     ).toBe(true);
   }
   await page.goto("/workout");
-  await page.getByRole("link", { name: "HERCULES — volver al inicio" }).click();
+  await page
+    .getByRole("link", { name: /HERCULES — volver al inicio/i })
+    .click();
   await expect(page).toHaveURL(/\/home$/);
   await page.reload();
   await expect(page.getByRole("navigation")).toBeVisible();

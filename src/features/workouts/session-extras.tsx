@@ -164,7 +164,7 @@ export function SessionExtras({
                 })
               }
             >
-              Quitar foto
+              {t("Quitar foto", "Remove photo")}
             </Button>
           </div>
         ))}

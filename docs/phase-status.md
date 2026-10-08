@@ -42,3 +42,13 @@ Selected original browser journeys passed on mobile/desktop: automatic/custom ro
 Older harness failures were not hidden: `test_mrgymson.js` omits a later audio script; `test_auth_mrgymson.js` has a DOM stub without `.after()`; `test_onboarding_mrgymson.js` has stale welcome expectations; `test_calendar_autosave_browser.js` assumes a single input instead of the current list. These are not recorded as passes. New real-browser tests cover the migrated journeys separately.
 
 See [deployment and rollback](deployment-and-rollback.md) for the external release gate.
+
+## Follow-up: October 8, 2026
+
+The current browser repository uses revision-conditional updates and duplicate-insert detection, with explicit backed-up conflict resolution. Clean accounts refresh on focus and at a 30-second visible-page interval. These supersede the migration-era last-write-wins statement above for updated clients; real multi-device provider validation remains a separate manual gate.
+
+New UI messages have a separate translation overlay for all seven additional languages, preserving archived dictionaries. The weekly progress summary counts sessions, trained days and known duration per local day. New workout completions record elapsed minutes, including rests. Unknown durations are not invented. Menstrual controls are hidden for masculine profiles while stored dates are preserved.
+
+Hosted authentication was inspected: public signups and email confirmation are enabled, Google is enabled, Apple is disabled, and custom SMTP is not configured. The user deferred SMTP setup. Apple web login remains blocked by the absence of an Apple Developer membership/eligible exemption. No provider secrets or paid services were created.
+
+Verification for this follow-up: 50 unit tests (7,536 assertions), strict typecheck, the optimized webpack test build and 187 baseline checksums passed. The full 52-case browser run passed 46 cases; six old auth assertions were then updated for the current email field/sign-out label and revision-based PATCH uploads and passed on rerun. The final targeted run passed 16 cases across mobile and desktop, including 320px English/French/Arabic layouts, workout autosave, stored menstrual dates under gender changes, account isolation, sign-out failure handling, draft preservation and explicit conflict resolution. Native focus was simulated in the headless multi-context test because Chromium does not reliably emit it there. No real account data was changed during testing.

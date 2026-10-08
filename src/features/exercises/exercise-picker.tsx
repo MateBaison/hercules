@@ -71,10 +71,10 @@ export function ExercisePicker({
             ← {t("Zonas musculares", "Muscle groups")}
           </Button>
           <Input
-            aria-label="Buscar ejercicio"
+            aria-label={t("Buscar ejercicio", "Search exercise")}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Buscar…"
+            placeholder={t("Buscar…", "Search…")}
           />
           <div className="space-y-2">
             {list.map((exercise) => (

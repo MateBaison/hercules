@@ -66,7 +66,7 @@ export function ExerciseDetails({
             </Button>
             <Button
               variant="ghost"
-              aria-label="Favorito"
+              aria-label={t("Favorito", "Favorite")}
               aria-pressed={snapshot.favorites.includes(exercise.id)}
               onClick={() =>
                 change((draft) => {

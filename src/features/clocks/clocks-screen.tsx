@@ -64,22 +64,30 @@ export function ClocksScreen() {
       </div>
       {clock.section === "stopwatch" && (
         <section className="panel">
-          <div className="clock-face" role="timer" aria-label="Cronómetro">
+          <div
+            className="clock-face"
+            role="timer"
+            aria-label={t("Cronómetro", "Stopwatch")}
+          >
             {timeFormat(elapsed / 1000)}
           </div>
           <div className="flex justify-center gap-3">
             <Button onClick={clock.toggleSw}>
-              {clock.sw.running ? "Pausar" : "Iniciar"}
+              {clock.sw.running ? t("Pausar", "Pause") : t("Iniciar", "Start")}
             </Button>
             <Button variant="secondary" onClick={clock.resetSw}>
-              Reiniciar
+              {t("Reiniciar", "Reset")}
             </Button>
           </div>
         </section>
       )}
       {clock.section === "timer" && (
         <section className="panel">
-          <div className="clock-face" role="timer" aria-label="Timer">
+          <div
+            className="clock-face"
+            role="timer"
+            aria-label={t("Timer", "Timer")}
+          >
             <button
               type="button"
               className="timer-duration-button"
@@ -186,10 +194,12 @@ export function ClocksScreen() {
           </div>
           <div className="flex justify-center gap-3">
             <Button onClick={clock.toggleTimer}>
-              {clock.timer.running ? "Pausar" : "Iniciar"}
+              {clock.timer.running
+                ? t("Pausar", "Pause")
+                : t("Iniciar", "Start")}
             </Button>
             <Button variant="secondary" onClick={() => clock.preset(30)}>
-              Reiniciar
+              {t("Reiniciar", "Reset")}
             </Button>
           </div>
         </section>
@@ -198,18 +208,19 @@ export function ClocksScreen() {
         <section className="panel">
           <p className="text-center text-orange-300">
             {phase === "done"
-              ? "Sesión terminada"
+              ? t("Sesión terminada", "Session finished")
               : phase === "prep"
-                ? "Preparación"
+                ? t("Preparación", "Preparation")
                 : phase === "work"
-                  ? "Trabajo"
-                  : "Descanso"}{" "}
-            · Ronda {combat.state.round}/{combat.config.rounds}
+                  ? t("Trabajo", "Work")
+                  : t("Descanso", "Rest")}{" "}
+            {t("· Ronda", "· Round")} {combat.state.round}/
+            {combat.config.rounds}
           </p>
           <div
             className="clock-face combat-face"
             role="timer"
-            aria-label="Combate"
+            aria-label={t("Combate", "Combat")}
           >
             {timeFormat(combat.state.remaining)}
           </div>
@@ -229,7 +240,7 @@ export function ClocksScreen() {
                 {mode === "muay-thai"
                   ? "Muay Thai"
                   : mode === "boxeo"
-                    ? "Boxeo"
+                    ? t("Boxeo", "Boxing")
                     : mode.toUpperCase()}
               </button>
             ))}
@@ -238,14 +249,17 @@ export function ClocksScreen() {
             {(["rounds", "work", "rest", "prep"] as const).map(
               (field, index) => (
                 <label key={field}>
-                  {
+                  {t(
                     [
                       "Rondas",
                       "Trabajo (seg)",
                       "Descanso (seg)",
                       "Preparación (seg)",
-                    ][index]
-                  }
+                    ][index]!,
+                    ["Rounds", "Work (sec)", "Rest (sec)", "Preparation (sec)"][
+                      index
+                    ]!,
+                  )}
                   <Input
                     type="number"
                     min={field === "rounds" || field === "work" ? 1 : 0}
@@ -275,17 +289,22 @@ export function ClocksScreen() {
                 })
               }
             />
-            Sonido: inicio de round, últimos 15 segundos y final
+            {t(
+              "Sonido: inicio de round, últimos 15 segundos y final",
+              "Sound: round start, final 15 seconds and end",
+            )}
           </label>
           <div className="flex justify-center gap-3">
             <Button onClick={clock.toggleCombat}>
-              {combat.state.running ? "Pausar" : "Iniciar"}
+              {combat.state.running
+                ? t("Pausar", "Pause")
+                : t("Iniciar", "Start")}
             </Button>
             <Button
               variant="secondary"
               onClick={() => clock.configureCombat(combat.config)}
             >
-              Reiniciar
+              {t("Reiniciar", "Reset")}
             </Button>
           </div>
         </section>
@@ -297,17 +316,17 @@ export function ClocksScreen() {
               variant="secondary"
               onClick={() => clock.configureTrack({ mode: "run" })}
             >
-              Correr
+              {t("Correr", "Running")}
             </Button>
             <Button
               variant="secondary"
               onClick={() => clock.configureTrack({ mode: "cycle" })}
             >
-              Ciclismo
+              {t("Ciclismo", "Cycling")}
             </Button>
           </div>
           <label>
-            Preparación inicial (seg)
+            {t("Preparación inicial (seg)", "Initial preparation (sec)")}
             <Input
               type="number"
               min={0}
@@ -323,14 +342,15 @@ export function ClocksScreen() {
           </label>
           {track.preparing && (
             <p className="my-3">
-              Preparación: {timeFormat((track.prepEnd - clock.now) / 1000)}
+              {t("Preparación:", "Preparation:")}
+              {timeFormat((track.prepEnd - clock.now) / 1000)}
             </p>
           )}
           <svg
             viewBox="0 0 320 210"
             className="route-map"
             role="img"
-            aria-label="Ruta realizada"
+            aria-label={t("Ruta realizada", "Recorded route")}
           >
             <polyline
               points={routePoints(track.points)}
@@ -343,13 +363,13 @@ export function ClocksScreen() {
           <div className="metric-grid">
             <div>
               <strong>{timeFormat(track.elapsed)}</strong>
-              <small>Tiempo</small>
+              <small>{t("Tiempo", "Time")}</small>
             </div>
             <div>
               <strong>
                 {distance.toFixed(2)} {snapshot.settings.distance}
               </strong>
-              <small>Distancia</small>
+              <small>{t("Distancia", "Distance")}</small>
             </div>
             <div>
               <strong>{pace}</strong>
@@ -363,7 +383,7 @@ export function ClocksScreen() {
                 )}{" "}
                 kcal
               </strong>
-              <small>Estimación</small>
+              <small>{t("Estimación", "Estimate")}</small>
             </div>
           </div>
           <div className="mt-5 flex justify-center gap-3">
@@ -379,13 +399,14 @@ export function ClocksScreen() {
               disabled={track.running || track.preparing}
               onClick={clock.resetTrack}
             >
-              Reiniciar
+              {t("Reiniciar", "Reset")}
             </Button>
           </div>
           <p className="mt-4 text-sm text-muted-foreground">
-            La ruta queda en el reloj durante esta sesión. No es tracking
-            nativo: el navegador puede limitar el GPS o el sonido en segundo
-            plano.
+            {t(
+              "La ruta queda en el reloj durante esta sesión. No es tracking nativo: el navegador puede limitar el GPS o el sonido en segundo plano.",
+              "The route stays in the clock for this session. Browser tracking may limit GPS or sound in the background.",
+            )}
           </p>
         </section>
       )}

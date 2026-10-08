@@ -26,16 +26,16 @@ test("server gates require auth; OTP rejects invalid codes, restores cookies and
   await expect(page).toHaveURL(/\/home$/);
   await page.goto("/profile");
   await expect(
-    page.getByText("test@example.invalid", { exact: true }),
+    page.getByRole("textbox", { name: "Email de contacto", exact: true }),
   ).toBeVisible();
   const response = await page.request.get("/api/account/summary");
   expect(response.status()).toBe(200);
   expect(response.headers()["cache-control"]).toContain("no-store");
   await page.reload();
   await expect(
-    page.getByRole("button", { name: "Cerrar sesión" }),
+    page.getByRole("button", { name: "Salir de la cuenta" }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Cerrar sesión" }).click();
+  await page.getByRole("button", { name: "Salir de la cuenta" }).click();
   await page
     .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
     .click();
@@ -81,7 +81,7 @@ test("account switches isolate caches and restore each account's own cloud data"
     .click();
   await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
   await page
-    .getByRole("button", { name: "Cerrar sesión", exact: true })
+    .getByRole("button", { name: "Salir de la cuenta", exact: true })
     .click();
   await page
     .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
@@ -93,10 +93,10 @@ test("account switches isolate caches and restore each account's own cloud data"
     "Second",
   );
   await expect(
-    page.getByText("second@example.invalid", { exact: true }),
+    page.getByRole("textbox", { name: "Email de contacto", exact: true }),
   ).toBeVisible();
   await page
-    .getByRole("button", { name: "Cerrar sesión", exact: true })
+    .getByRole("button", { name: "Salir de la cuenta", exact: true })
     .click();
   await page
     .getByRole("button", { name: "Confirmar cierre de sesión", exact: true })
@@ -170,7 +170,9 @@ test("header sign-out preserves unsynced edits and requires a second confirmatio
   await login(page);
   await page.goto("/profile");
   await page.route("**/rest/v1/mrgymson_state*", (route) =>
-    route.request().method() === "POST" ? route.abort() : route.continue(),
+    ["POST", "PATCH"].includes(route.request().method())
+      ? route.abort()
+      : route.continue(),
   );
   await page
     .getByLabel("Nombre", { exact: true })

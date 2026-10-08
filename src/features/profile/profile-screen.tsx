@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { languages } from "@/data/translations";
 import { useApp } from "@/state/app-provider";
 import { AppDialog } from "@/components/ui/app-dialog";
@@ -23,7 +23,7 @@ const languageNames: Record<string, string> = {
 };
 export function ProfileScreen() {
   const importInput = useRef<HTMLInputElement>(null);
-  const { snapshot, change, user, notify, t } = useApp(),
+  const { snapshot, change, user, notify, t, holdRefresh } = useApp(),
     [settings, setSettings] = useState(false),
     [social, setSocial] = useState({
       instagram: snapshot.profile.instagram ?? "",
@@ -32,6 +32,10 @@ export function ProfileScreen() {
   const dirtySocial =
     social.instagram !== (snapshot.profile.instagram ?? "") ||
     social.snapchat !== (snapshot.profile.snapchat ?? "");
+  useEffect(
+    () => (dirtySocial || settings ? holdRefresh() : undefined),
+    [dirtySocial, settings, holdRefresh],
+  );
   return (
     <>
       <div className="page-heading flex items-center justify-between">
@@ -40,7 +44,7 @@ export function ProfileScreen() {
         </div>
         <Button
           variant="secondary"
-          aria-label="Configuración"
+          aria-label={t("Configuración", "Settings")}
           onClick={() => setSettings(true)}
         >
           ⚙
@@ -87,15 +91,20 @@ export function ProfileScreen() {
                   notify("Cambios guardados");
               }}
             >
-              Guardar cambios de redes
+              {t("Guardar cambios de redes", "Save social links")}
             </Button>
           )}
         </div>
       </details>
       <section className="panel">
-        <h2 className="mb-3 font-bold">Copia de tus datos</h2>
+        <h2 className="mb-3 font-bold">
+          {t("Copia de tus datos", "Data backup")}
+        </h2>
         <p className="mb-3 text-sm text-muted-foreground">
-          La copia incluye perfil, historial y fotos. Guardala de forma privada.
+          {t(
+            "La copia incluye perfil, historial y fotos. Guardala de forma privada.",
+            "The backup includes your profile, history and photos. Store it privately.",
+          )}
         </p>
         <div className="flex flex-wrap gap-3">
           <Button
@@ -113,7 +122,7 @@ export function ProfileScreen() {
               setTimeout(() => URL.revokeObjectURL(url), 30_000);
             }}
           >
-            Exportar copia
+            {t("Exportar copia", "Export backup")}
           </Button>
           <Button
             type="button"
@@ -216,28 +225,28 @@ export function ProfileScreen() {
           }}
         >
           <label className="block">
-            Peso
+            {t("Peso", "Weight")}
             <select name="weight" defaultValue={snapshot.settings.weight}>
               <option value="kg">kg</option>
               <option value="lb">lb</option>
             </select>
           </label>
           <label className="block">
-            Altura
+            {t("Altura", "Height")}
             <select name="height" defaultValue={snapshot.settings.height}>
               <option value="cm">cm</option>
               <option value="ft">ft</option>
             </select>
           </label>
           <label className="block">
-            Distancia
+            {t("Distancia", "Distance")}
             <select name="distance" defaultValue={snapshot.settings.distance}>
               <option value="km">km</option>
               <option value="mi">mi</option>
             </select>
           </label>
           <label className="block">
-            Idioma
+            {t("Idioma", "Language")}
             <select name="language" defaultValue={snapshot.settings.language}>
               {languages.map((language) => (
                 <option key={language} value={language}>
@@ -246,7 +255,9 @@ export function ProfileScreen() {
               ))}
             </select>
           </label>
-          <Button type="submit">Guardar configuración</Button>
+          <Button type="submit">
+            {t("Guardar configuración", "Save settings")}
+          </Button>
         </form>
       </AppDialog>
     </>

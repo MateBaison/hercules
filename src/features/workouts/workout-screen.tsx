@@ -149,7 +149,7 @@ export function WorkoutScreen() {
           <button
             type="button"
             className="picker-thumb"
-            aria-label={`Ampliar ${exercise?.name ?? entry.id}`}
+            aria-label={`${t("Ampliar", "Enlarge")} ${exercise?.name ?? entry.id}`}
             onClick={(event) => {
               event.preventDefault();
               if (exercise) setImage(exercise);
@@ -160,7 +160,7 @@ export function WorkoutScreen() {
           <span className="min-w-0 flex-1">
             <strong>{exercise?.name ?? entry.id}</strong>
             <small className="block text-muted-foreground">
-              {entry.superset ? "Superserie · " : ""}
+              {entry.superset ? `${t("Superserie", "Superset")} · ` : ""}
               {entry.sets.length} {t("series", "sets")}
             </small>
           </span>
@@ -184,7 +184,7 @@ export function WorkoutScreen() {
       )}
       <div className="workout-banner">
         <span className="eyebrow">
-          {day?.name ?? "Entrenamiento"} · {workout.index + 1}/
+          {day?.name ?? t("Entrenamiento", "Workout")} · {workout.index + 1}/
           {workout.entries.length}
         </span>
         <h1>
@@ -197,13 +197,13 @@ export function WorkoutScreen() {
         <button
           type="button"
           className="mb-4 w-full"
-          aria-label={`Ampliar ${selectedExercise.name}`}
+          aria-label={`${t("Ampliar", "Enlarge")} ${selectedExercise.name}`}
           onClick={() => setImage(selectedExercise)}
         >
           <ExerciseVisual exercise={selectedExercise} large />
         </button>
       )}
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="workout-toolbar">
         <Button
           variant="secondary"
           onClick={() =>
@@ -217,31 +217,24 @@ export function WorkoutScreen() {
             : t("Vista individual", "Individual view")}
         </Button>
         {!individual && (
-          <>
-            <Button
-              variant="secondary"
-              onClick={() =>
-                change((draft) => {
-                  if (draft.workout)
-                    draft.workout.openExercises = draft.workout.entries.map(
-                      (_, index) => index,
-                    );
-                })
-              }
-            >
-              Desplegar todos
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() =>
-                change((draft) => {
-                  if (draft.workout) draft.workout.openExercises = [];
-                })
-              }
-            >
-              Cerrar todos
-            </Button>
-          </>
+          <Button
+            variant="secondary"
+            onClick={() =>
+              change((draft) => {
+                if (!draft.workout) return;
+                const allOpen =
+                  draft.workout.openExercises?.length ===
+                  draft.workout.entries.length;
+                draft.workout.openExercises = allOpen
+                  ? []
+                  : draft.workout.entries.map((_, index) => index);
+              })
+            }
+          >
+            {workout.openExercises?.length === workout.entries.length
+              ? t("Cerrar todos", "Collapse all")
+              : t("Desplegar todos", "Expand all")}
+          </Button>
         )}
         <Button
           variant="secondary"
@@ -250,7 +243,7 @@ export function WorkoutScreen() {
             setMembers([]);
           }}
         >
-          Superseries
+          {t("Superseries", "Supersets")}
         </Button>
       </div>
       <section className="panel">
@@ -298,7 +291,7 @@ export function WorkoutScreen() {
                   ? `conic-gradient(#ff8a4c ${Math.min(100, (1 - remaining / Math.max(1, rest.duration)) * 100)}%, #191d26 0)`
                   : undefined,
               }}
-              aria-label="Iniciar descanso"
+              aria-label={t("Iniciar descanso", "Start rest")}
               onClick={() => setRestEnd(Date.now() + restSeconds * 1000)}
             >
               <Timer />
@@ -327,7 +320,7 @@ export function WorkoutScreen() {
             return [
               <section className="panel superset-group" key={entry.superset}>
                 <div className="mb-2 flex items-center justify-between gap-3">
-                  <strong>Superserie</strong>
+                  <strong>{t("Superserie", "Superset")}</strong>
                   <Button
                     variant="secondary"
                     onClick={() => {
@@ -355,11 +348,14 @@ export function WorkoutScreen() {
                         });
                     }}
                   >
-                    Alternar ejercicio
+                    {t("Alternar ejercicio", "Switch exercise")}
                   </Button>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Una serie de cada ejercicio; después, descanso.
+                  {t(
+                    "Una serie de cada ejercicio; después, descanso.",
+                    "One set of each exercise, then rest.",
+                  )}
                 </p>
                 {indices.map((number) => {
                   const item = workout.entries[number];
@@ -407,10 +403,14 @@ export function WorkoutScreen() {
                   draft.workout.entries,
                   {
                     routine: routine?.name ?? "Rutina",
-                    day: day?.name ?? "Entrenamiento",
+                    day: day?.name ?? t("Entrenamiento", "Workout"),
                   },
                   new Date().toISOString(),
                   extras,
+                );
+                record.duration = Math.max(
+                  0,
+                  Math.round((Date.now() - draft.workout.started) / 60000),
                 );
                 draft.sessions.unshift(record);
                 draft.workout = null;
@@ -422,13 +422,13 @@ export function WorkoutScreen() {
             }
           }}
         >
-          Guardar entrenamiento
+          {t("Guardar entrenamiento", "Save workout")}
         </Button>
       </AppDialog>
       <AppDialog
         open={supersetOpen}
         onClose={() => setSupersetOpen(false)}
-        title="Superseries"
+        title={t("Superseries", "Supersets")}
       >
         {workout.entries.map((entry, index) => (
           <label className="flex min-h-12 items-center gap-3" key={index}>
@@ -458,7 +458,7 @@ export function WorkoutScreen() {
             setSupersetOpen(false);
           }}
         >
-          Crear superserie
+          {t("Crear superserie", "Create superset")}
         </Button>
         <Button
           variant="secondary"
@@ -471,7 +471,7 @@ export function WorkoutScreen() {
             setSupersetOpen(false);
           }}
         >
-          Quitar superseries
+          {t("Quitar superseries", "Remove supersets")}
         </Button>
       </AppDialog>
     </>

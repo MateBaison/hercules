@@ -1,5 +1,12 @@
 "use client";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { browserClient } from "@/lib/supabase/browser";
@@ -19,6 +26,7 @@ type AccountContext = {
   change: (edit: (draft: Snapshot) => void) => boolean;
   flush: () => Promise<boolean>;
   retry: () => Promise<void>;
+  holdRefresh: () => () => void;
   t: (es: string, en: string) => string;
   notify: (message: string) => void;
 };
@@ -43,6 +51,10 @@ export function AppProvider({
   const [notice, setNotice] = useState("");
   const controller = useRef<SyncController | null>(null);
   const router = useRouter();
+  const holdRefresh = useCallback(
+    () => controller.current?.holdRefresh() ?? (() => {}),
+    [],
+  );
   useEffect(() => {
     const client = browserClient(),
       sync = new SyncController(
@@ -70,11 +82,20 @@ export function AppProvider({
     const retry = () => {
       void sync.start();
     };
+    const refresh = () => {
+      if (document.visibilityState === "visible") void sync.refresh();
+    };
+    const interval = window.setInterval(refresh, 30000);
+    window.addEventListener("focus", refresh);
+    document.addEventListener("visibilitychange", refresh);
     window.addEventListener("online", retry);
     return () => {
       unsubscribe();
       auth.data.subscription.unsubscribe();
       window.removeEventListener("online", retry);
+      window.removeEventListener("focus", refresh);
+      document.removeEventListener("visibilitychange", refresh);
+      window.clearInterval(interval);
       sync.dispose();
       controller.current = null;
     };
@@ -90,13 +111,23 @@ export function AppProvider({
     document.documentElement.dir =
       view.snapshot.settings.language === "ar" ? "rtl" : "ltr";
   }, [view.snapshot?.settings.language]);
+  const t = (es: string, en: string) =>
+    translate(
+      view.snapshot?.settings.language ?? controller.current?.language ?? "es",
+      es,
+      en,
+    );
   const header = (
     <AppHeader
-      language={view.snapshot?.settings.language}
+      language={
+        view.snapshot?.settings.language ?? controller.current?.language
+      }
       accountAction={
         <SignOutButton
           iconOnly
-          language={view.snapshot?.settings.language}
+          language={
+            view.snapshot?.settings.language ?? controller.current?.language
+          }
           flush={() => controller.current?.flush() ?? Promise.resolve(false)}
         />
       }
@@ -107,20 +138,20 @@ export function AppProvider({
       <>
         {header}
         <section className="hero-panel">
-          <h1>Elegir copia de tus datos</h1>
-          <p>{view.message}</p>
+          <h1>{t("Elegir copia de tus datos", "Choose a data copy")}</h1>
+          <p>{t(view.message, view.message)}</p>
           <div className="flex flex-wrap gap-3">
             <Button
               disabled={!controller.current?.hasCloud}
               onClick={() => controller.current?.resolve("cloud")}
             >
-              Usar nube
+              {t("Usar nube", "Use cloud")}
             </Button>
             <Button
               variant="secondary"
               onClick={() => controller.current?.resolve("local")}
             >
-              Usar dispositivo
+              {t("Usar dispositivo", "Use device")}
             </Button>
           </div>
         </section>
@@ -133,17 +164,17 @@ export function AppProvider({
         <section className="hero-panel" role="status">
           <h1>
             {view.status === "error"
-              ? "No pudimos cargar tu cuenta"
-              : "Cargando…"}
+              ? t("No pudimos cargar tu cuenta", "Could not load your account")
+              : t("Cargando…", "Loading…")}
           </h1>
-          <p>{view.message}</p>
+          <p>{t(view.message, view.message)}</p>
           {view.status === "error" && (
             <Button
               onClick={() => {
                 void controller.current?.start();
               }}
             >
-              Reintentar conexión
+              {t("Reintentar conexión", "Retry connection")}
             </Button>
           )}
         </section>
@@ -155,7 +186,7 @@ export function AppProvider({
         snapshot: view.snapshot,
         user,
         status: view.status,
-        message: view.message,
+        message: t(view.message, view.message),
         change: (edit) => {
           try {
             if (!controller.current) return false;
@@ -170,8 +201,8 @@ export function AppProvider({
         },
         flush: () => controller.current?.flush() ?? Promise.resolve(false),
         retry: () => controller.current?.start() ?? Promise.resolve(),
-        t: (es, en) =>
-          translate(view.snapshot?.settings.language ?? "es", es, en),
+        holdRefresh,
+        t,
         notify: setNotice,
       }}
     >
@@ -192,7 +223,7 @@ export function AppProvider({
           className="sync-indicator"
           data-sync-status={view.status}
         >
-          {view.message}
+          {t(view.message, view.message)}
         </div>
         {children}
         {notice && (

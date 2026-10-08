@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useApp } from "@/state/app-provider";
 import {
   ChartNoAxesCombined,
   House,
@@ -17,8 +18,12 @@ const destinations = [
 ] as const;
 export function BottomNav() {
   const pathname = usePathname();
+  const { t } = useApp();
   return (
-    <nav className="bottom-nav" aria-label="Navegación principal">
+    <nav
+      className="bottom-nav"
+      aria-label={t("Navegación principal", "Main navigation")}
+    >
       {destinations.map(({ href, label, icon: Icon }) => (
         <Link
           key={href}
@@ -30,7 +35,7 @@ export function BottomNav() {
           }
         >
           <Icon size={21} aria-hidden="true" />
-          <span>{label}</span>
+          <span>{t(label, label)}</span>
         </Link>
       ))}
     </nav>

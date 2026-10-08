@@ -9,14 +9,19 @@ export function ExerciseVisual({
   exercise: CatalogExercise;
   large?: boolean;
 }) {
-  const { snapshot } = useApp();
+  const { snapshot, t } = useApp();
   if (exercise.custom)
     return (
-      <div className="custom-visual" aria-label="Ejercicio personalizado">
+      <div
+        className="custom-visual"
+        aria-label={t("Ejercicio personalizado", "Custom exercise")}
+      >
         ＋
         <small>
-          Personalizado ·{" "}
-          {exercise.tracking === "seconds" ? "Segundos" : "Repeticiones"}
+          {t("Personalizado ·", "Custom ·")}{" "}
+          {exercise.tracking === "seconds"
+            ? t("Segundos", "Seconds")
+            : t("Repeticiones", "Repetitions")}
         </small>
       </div>
     );

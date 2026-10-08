@@ -31,7 +31,7 @@ HERCULES is a fitness application migrated from a hosted HTML app to a server-re
 - Make persisted UI edits through `useApp().change(...)`, and use the existing flush/retry/status APIs. Do not create a second upload path or mutate the context snapshot directly.
 - Preserve immediate local persistence, serialized 900ms-debounced uploads, edits made during uploads, and cancellation on account disposal. Complete initial cloud reading/reconciliation before uploads; failed reads must block cloud writes until recovery.
 - Divergent local/cloud copies require an explicit choice and successful backups before replacement. Malformed snapshots must produce an error, not silently become an empty account. Distinguish local saves from confirmed cloud saves in the UI.
-- Keep full photo-heavy snapshots on the browser-to-Supabase path; server account summaries select small profile fields. The current model is full-snapshot last-write-wins across devices, without realtime merging or compare-and-swap.
+- Keep full photo-heavy snapshots on the browser-to-Supabase path; server account summaries select small profile fields. Browser writes use `updated_at` conditional updates (or insert for a missing row); stale writes must reconcile and preserve conflict backups before an explicit choice. Clean accounts refresh on focus and every 30 seconds while visible. There is no realtime merging; older clients with unconditional upserts must refresh.
 
 ## Compatibility and UI conventions
 

@@ -98,7 +98,7 @@ export function CalendarPanel() {
       <div className="mb-4 flex items-center justify-between gap-2">
         <Button
           variant="ghost"
-          aria-label="Mes anterior"
+          aria-label={t("Mes anterior", "Previous month")}
           onClick={() => setMonth(new Date(year, number - 1, 1))}
         >
           ‹
@@ -109,7 +109,7 @@ export function CalendarPanel() {
         </h2>
         <Button
           variant="ghost"
-          aria-label="Mes siguiente"
+          aria-label={t("Mes siguiente", "Next month")}
           onClick={() => setMonth(new Date(year, number + 1, 1))}
         >
           ›
@@ -218,7 +218,7 @@ export function CalendarPanel() {
                 </strong>
                 {exercise.performedSets?.map((set, number) => (
                   <p className="text-sm text-muted-foreground" key={number}>
-                    Serie {number + 1}: {set.kg ?? 0}{" "}
+                    {t("Serie", "Set")} {number + 1}: {set.kg ?? 0}{" "}
                     {session.weightUnit ?? "kg"} ×{" "}
                     {set.seconds != null
                       ? `${set.seconds} s`
@@ -231,7 +231,7 @@ export function CalendarPanel() {
             {session.comment && <p className="my-3">{session.comment}</p>}
             {session.bodyWeightStartKg != null && (
               <p>
-                Peso inicial:{" "}
+                {t("Peso inicial:", "Starting weight:")}{" "}
                 {Math.round(
                   session.bodyWeightStartKg *
                     (snapshot.settings.weight === "lb" ? 2.20462 : 1) *
@@ -242,7 +242,7 @@ export function CalendarPanel() {
             )}
             {session.bodyWeightEndKg != null && (
               <p>
-                Peso final:{" "}
+                {t("Peso final:", "Final weight:")}{" "}
                 {Math.round(
                   session.bodyWeightEndKg *
                     (snapshot.settings.weight === "lb" ? 2.20462 : 1) *
@@ -270,13 +270,13 @@ export function CalendarPanel() {
                   if (selectedDate) edit(selectedDate, session);
                 }}
               >
-                Editar
+                {t("Editar", "Edit")}
               </Button>
               <Button
                 variant="secondary"
                 onClick={() => setClipboard([structuredClone(session)])}
               >
-                Copiar
+                {t("Copiar", "Copy")}
               </Button>
               <Button
                 variant="secondary"
@@ -291,7 +291,7 @@ export function CalendarPanel() {
                   );
                 }}
               >
-                Compartir imagen
+                {t("Compartir imagen", "Share image")}
               </Button>
               <Button
                 variant="ghost"
@@ -304,7 +304,7 @@ export function CalendarPanel() {
                     });
                 }}
               >
-                Eliminar
+                {t("Eliminar", "Delete")}
               </Button>
             </div>
           </details>
@@ -322,7 +322,7 @@ export function CalendarPanel() {
             variant="secondary"
             onClick={() => setClipboard(structuredClone(sessions))}
           >
-            Copiar todo el día
+            {t("Copiar todo el día", "Copy entire day")}
           </Button>
         )}
         {clipboard.length > 0 && (
@@ -340,7 +340,7 @@ export function CalendarPanel() {
                 });
             }}
           >
-            Pegar entrenamientos copiados
+            {t("Pegar entrenamientos copiados", "Paste copied workouts")}
           </Button>
         )}
         <Button
@@ -357,7 +357,7 @@ export function CalendarPanel() {
         title={editing?.id ? "Editar entrenamiento" : "Agregar entrenamiento"}
       >
         <label>
-          Fecha
+          {t("Fecha", "Date")}
           <Input
             type="date"
             value={editing?.date ?? ""}
@@ -370,7 +370,7 @@ export function CalendarPanel() {
         </label>
         <div className="form-grid">
           <label>
-            Rutina
+            {t("Rutina", "Routine")}
             <Input
               value={names.routine}
               onChange={(event) =>
@@ -379,7 +379,7 @@ export function CalendarPanel() {
             />
           </label>
           <label>
-            Nombre del día
+            {t("Nombre del día", "Day name")}
             <Input
               value={names.day}
               onChange={(event) =>
@@ -427,13 +427,13 @@ export function CalendarPanel() {
                   );
                 }}
               >
-                Quitar ejercicio
+                {t("Quitar ejercicio", "Remove exercise")}
               </Button>
             </details>
           );
         })}
         <Button variant="secondary" onClick={() => setPicking(true)}>
-          Agregar ejercicios
+          {t("Agregar ejercicios", "Add exercises")}
         </Button>
         <SessionExtras value={extras} onChange={setExtras} />
         <Button
@@ -481,7 +481,7 @@ export function CalendarPanel() {
             }
           }}
         >
-          Guardar entrenamiento
+          {t("Guardar entrenamiento", "Save workout")}
         </Button>
       </AppDialog>
       {picking && (

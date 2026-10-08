@@ -65,7 +65,7 @@ export function ExerciseLibrary() {
         <div
           className="muscle-chips"
           role="group"
-          aria-label="Zonas musculares"
+          aria-label={t("Zonas musculares", "Muscle groups")}
         >
           {(["Todos", "Favoritos", ...muscleGroups] as const).map((muscle) => (
             <button
@@ -113,7 +113,11 @@ export function ExerciseLibrary() {
             {t("Filtrar", "Filter")}
             {equipment !== "Todos" ? ` · ${equipment}` : ""}
           </summary>
-          <div className="equipment-menu" role="group" aria-label="Equipo">
+          <div
+            className="equipment-menu"
+            role="group"
+            aria-label={t("Equipo", "Equipment")}
+          >
             {equipmentFilters.map((filter) => (
               <button
                 type="button"
@@ -208,7 +212,12 @@ export function ExerciseLibrary() {
             )),
           )}
           {!snapshot.routines.some((routine) => routine.days.length) && (
-            <p>Primero creá una rutina con al menos un día en Inicio.</p>
+            <p>
+              {t(
+                "Primero creá una rutina con al menos un día en Inicio.",
+                "First create a routine with at least one day on Home.",
+              )}
+            </p>
           )}
         </div>
       </AppDialog>
@@ -250,11 +259,11 @@ export function ExerciseLibrary() {
           }}
         >
           <label className="block">
-            Nombre
+            {t("Nombre", "Name")}
             <Input name="name" required maxLength={100} />
           </label>
           <label className="block">
-            Grupo muscular
+            {t("Grupo muscular", "Muscle group")}
             <select name="group">
               {muscleGroups.map((muscle) => (
                 <option key={muscle}>{muscle}</option>
@@ -262,7 +271,7 @@ export function ExerciseLibrary() {
             </select>
           </label>
           <label className="block">
-            Equipamiento
+            {t("Equipamiento", "Equipment")}
             <select name="equipment">
               {equipmentFilters
                 .filter((item) => item !== "Todos")
@@ -272,24 +281,34 @@ export function ExerciseLibrary() {
             </select>
           </label>
           <label className="block">
-            Cómo registrar las series
+            {t("Cómo registrar las series", "How to track sets")}
             <select name="tracking">
-              <option value="reps">Repeticiones</option>
-              <option value="seconds">Tiempo (segundos)</option>
+              <option value="reps">{t("Repeticiones", "Repetitions")}</option>
+              <option value="seconds">
+                {t("Tiempo (segundos)", "Time (seconds)")}
+              </option>
             </select>
           </label>
           <label className="block">
-            Instrucciones (opcional)
+            {t("Instrucciones (opcional)", "Instructions (optional)")}
             <textarea
               name="steps"
               maxLength={3000}
-              placeholder="Una indicación por línea"
+              placeholder={t(
+                "Una indicación por línea",
+                "One instruction per line",
+              )}
             />
           </label>
           <p className="text-sm text-muted-foreground">
-            No se genera una imagen técnica automáticamente.
+            {t(
+              "No se genera una imagen técnica automáticamente.",
+              "A technique image is not generated automatically.",
+            )}
           </p>
-          <Button type="submit">Guardar ejercicio</Button>
+          <Button type="submit">
+            {t("Guardar ejercicio", "Save exercise")}
+          </Button>
         </form>
       </AppDialog>
     </>

@@ -9,6 +9,7 @@ import {
   groups,
   improvement,
   weeklyData,
+  weeklySummary,
   type RecordSet,
 } from "@/domain/progress";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,9 @@ export function ProgressScreen() {
     [window, setWindow] = useState(4),
     [selected, setSelected] = useState("");
   const locale = localeFor(snapshot.settings.language);
+  const summary = weeklySummary(snapshot);
+  const duration = (minutes: number) =>
+    `${Math.floor(Math.round(minutes) / 60)} h ${Math.round(minutes) % 60} min`;
   const history = exerciseHistories(snapshot),
     catalog = catalogFor(snapshot),
     weeks = weeklyData(snapshot, window),
@@ -67,8 +71,70 @@ export function ProgressScreen() {
           "Real changes in your exercises and training habits.",
         )}
       </p>
+      <section
+        className="panel weekly-summary"
+        aria-labelledby="weekly-summary-title"
+      >
+        <h2 id="weekly-summary-title">
+          {t("Resumen semanal", "Weekly summary")}
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          {summary.start.toLocaleDateString(locale, {
+            day: "numeric",
+            month: "long",
+          })}{" "}
+          · {t("Semana de lunes a domingo", "Monday to Sunday")}
+        </p>
+        <div className="metric-grid">
+          <div>
+            <strong>{summary.sessions}</strong>
+            <small>{t("sesiones", "sessions")}</small>
+          </div>
+          <div>
+            <strong>{summary.trainedDays}</strong>
+            <small>{t("Días entrenados", "Training days")}</small>
+          </div>
+          <div>
+            <strong>{duration(summary.minutes)}</strong>
+            <small>{t("Tiempo registrado", "Recorded time")}</small>
+          </div>
+        </div>
+        <div className="weekly-duration-days">
+          {summary.days.map((day) => (
+            <div key={day.date.toISOString()} className="weekly-duration-day">
+              <strong>
+                {day.date.toLocaleDateString(locale, { weekday: "short" })}
+              </strong>
+              <span>
+                {day.sessions && day.unknown === day.sessions
+                  ? "—"
+                  : duration(day.minutes)}
+              </span>
+              <small>
+                {day.sessions} {t("sesiones", "sessions")}
+                {day.unknown ? " *" : ""}
+              </small>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-sm text-muted-foreground">
+          {t(
+            "El tiempo cuenta desde el inicio hasta que guardás el entrenamiento, incluidos los descansos.",
+            "Time runs from workout start until saving, including rests.",
+          )}
+        </p>
+        {summary.unknown > 0 && (
+          <p role="status" className="text-sm text-muted-foreground">
+            * {summary.unknown}{" "}
+            {t(
+              "sesiones sin duración registrada; no se inventa su tiempo.",
+              "sessions have no recorded duration; their time is not estimated.",
+            )}
+          </p>
+        )}
+      </section>
       <section className="panel">
-        <h2>Avances recientes</h2>
+        <h2>{t("Avances recientes", "Recent improvements")}</h2>
         {advances.length ? (
           advances.map(({ id, date, result }) => (
             <article className="result-card result-maintain" key={id}>
@@ -84,19 +150,23 @@ export function ProgressScreen() {
           ))
         ) : (
           <p>
-            Aún no hay dos sesiones comparables de un ejercicio con una mejora
-            registrada.
+            {t(
+              "Aún no hay dos sesiones comparables de un ejercicio con una mejora registrada.",
+              "There are not yet two comparable exercise sessions with a recorded improvement.",
+            )}
           </p>
         )}
         <p className="mt-3 text-sm text-muted-foreground">
-          Se comparan series del mismo ejercicio y la misma métrica, con las
-          mismas repeticiones/segundos o el mismo peso.
+          {t(
+            "Se comparan series del mismo ejercicio y la misma métrica, con las mismas repeticiones/segundos o el mismo peso.",
+            "Sets of the same exercise and metric are compared at the same repetitions/seconds or weight.",
+          )}
         </p>
       </section>
       <section className="panel">
-        <h2>Frecuencia de entrenamiento</h2>
+        <h2>{t("Frecuencia de entrenamiento", "Training frequency")}</h2>
         <label>
-          Meta semanal (opcional)
+          {t("Meta semanal (opcional)", "Weekly goal (optional)")}
           <select
             value={goal}
             onChange={(event) =>
@@ -105,10 +175,10 @@ export function ProgressScreen() {
               })
             }
           >
-            <option value={0}>Sin meta</option>
+            <option value={0}>{t("Sin meta", "No goal")}</option>
             {Array.from({ length: 7 }, (_, index) => (
               <option key={index} value={index + 1}>
-                {index + 1} sesiones
+                {index + 1} {t("sesiones", "sessions")}
               </option>
             ))}
           </select>
@@ -130,27 +200,29 @@ export function ProgressScreen() {
           ))}
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
-          La semana actual sigue en curso; esta comparación no marca días
-          perdidos.
+          {t(
+            "La semana actual sigue en curso; esta comparación no marca días perdidos.",
+            "The current week is still in progress; this comparison does not mark missed days.",
+          )}
         </p>
       </section>
       <section className="panel">
-        <h2>Series por zona muscular</h2>
+        <h2>{t("Series por zona muscular", "Sets per muscle group")}</h2>
         <label>
-          Período
+          {t("Período", "Period")}
           <select
             value={window}
             onChange={(event) => setWindow(Number(event.target.value))}
           >
-            <option value={4}>4 semanas</option>
-            <option value={8}>8 semanas</option>
+            <option value={4}>{t("4 semanas", "4 weeks")}</option>
+            <option value={8}>{t("8 semanas", "8 weeks")}</option>
           </select>
         </label>
         <div className="table-scroll">
           <table>
             <thead>
               <tr>
-                <th>Zona</th>
+                <th>{t("Zona", "Muscle group")}</th>
                 {weeks.map((week) => (
                   <th key={week.start.toISOString()}>
                     {week.start.toLocaleDateString(locale, {
@@ -164,7 +236,7 @@ export function ProgressScreen() {
             <tbody>
               {groups.map((group) => (
                 <tr key={group}>
-                  <th>{group}</th>
+                  <th>{t(group, group)}</th>
                   {weeks.map((week) => (
                     <td key={week.start.toISOString()}>{week.groups[group]}</td>
                   ))}
@@ -175,19 +247,23 @@ export function ProgressScreen() {
         </div>
         <Octagon counts={counts} />
         <p className="text-sm text-muted-foreground">
-          Cada ejercicio cuenta para su zona principal. No mide intensidad,
-          recuperación ni entrenamiento de músculos secundarios.
+          {t(
+            "Cada ejercicio cuenta para su zona principal. No mide intensidad, recuperación ni entrenamiento de músculos secundarios.",
+            "Each exercise counts towards its main muscle group. This does not measure intensity, recovery or secondary muscle training.",
+          )}
         </p>
       </section>
       <section className="panel">
-        <h2>Evolución por ejercicio</h2>
+        <h2>{t("Evolución por ejercicio", "Exercise progression")}</h2>
         <label>
-          Elegí un ejercicio
+          {t("Elegí un ejercicio", "Choose an exercise")}
           <select
             value={selected}
             onChange={(event) => setSelected(event.target.value)}
           >
-            <option value="">Seleccionar ejercicio</option>
+            <option value="">
+              {t("Seleccionar ejercicio", "Select exercise")}
+            </option>
             {[...history.keys()].map((id) => (
               <option key={id} value={id}>
                 {catalog.find((exercise) => exercise.id === id)?.name ?? id}
@@ -199,13 +275,14 @@ export function ProgressScreen() {
           <>
             {plateau && (
               <p className="result-card">
-                Sin una mejora comparable en las últimas 4 sesiones. Es una
-                señal para revisar tu entrenamiento, no un diagnóstico de
-                estancamiento.
+                {t(
+                  "Sin una mejora comparable en las últimas 4 sesiones. Es una señal para revisar tu entrenamiento, no un diagnóstico de estancamiento.",
+                  "No comparable improvement in the last 4 sessions. This is a prompt to review your training, not a diagnosis of a plateau.",
+                )}
               </p>
             )}
             <p className="my-4">
-              {records.length} sesiones ·{" "}
+              {records.length} {t("sesiones ·", "sessions ·")}{" "}
               {records.length > 1
                 ? Math.round(
                     (records.at(-1)!.date.getTime() -
@@ -213,13 +290,16 @@ export function ProgressScreen() {
                       864e5,
                   )
                 : 0}{" "}
-              días entre la primera y la última
+              {t(
+                "días entre la primera y la última",
+                "days between the first and last",
+              )}
             </p>
             <Trend
               values={records.map((record) =>
                 Math.max(...record.sets.map((set) => set.kg * factor)),
               )}
-              label={`Carga máxima (${unit})`}
+              label={`${t("Carga máxima", "Maximum load")} (${unit})`}
             />
             <Trend
               values={records
@@ -233,7 +313,10 @@ export function ProgressScreen() {
                       .map((set) => set.value),
                   ),
                 )}
-              label="Repeticiones máximas por serie"
+              label={t(
+                "Repeticiones máximas por serie",
+                "Maximum repetitions per set",
+              )}
             />
             <Trend
               values={records
@@ -247,14 +330,14 @@ export function ProgressScreen() {
                       .map((set) => set.value),
                   ),
                 )}
-              label="Segundos máximos por serie"
+              label={t("Segundos máximos por serie", "Maximum seconds per set")}
             />
             <div className="table-scroll">
               <table>
                 <thead>
                   <tr>
-                    <th>Fecha</th>
-                    <th>Series registradas</th>
+                    <th>{t("Fecha", "Date")}</th>
+                    <th>{t("Series registradas", "Recorded sets")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -271,14 +354,16 @@ export function ProgressScreen() {
               </table>
             </div>
             <p className="text-sm text-muted-foreground">
-              Los gráficos muestran máximos por sesión, no una misma serie.
-              Consultá la tabla para comparar peso y cantidad conjuntamente.
+              {t(
+                "Los gráficos muestran máximos por sesión, no una misma serie. Consultá la tabla para comparar peso y cantidad conjuntamente.",
+                "Charts show session maximums, which may come from different sets. Use the table to compare weight and quantity together.",
+              )}
             </p>
           </>
         )}
       </section>
       <details className="panel">
-        <summary>Estadísticas acumuladas</summary>
+        <summary>{t("Estadísticas acumuladas", "Overall statistics")}</summary>
         <div className="metric-grid">
           <div>
             <strong>
@@ -287,7 +372,7 @@ export function ProgressScreen() {
                 0,
               )}
             </strong>
-            <small>Series</small>
+            <small>{t("Series", "Sets")}</small>
           </div>
           <div>
             <strong>
@@ -303,7 +388,7 @@ export function ProgressScreen() {
               )}{" "}
               {unit}
             </strong>
-            <small>Volumen</small>
+            <small>{t("Volumen", "Volume")}</small>
           </div>
           <div>
             <strong>
@@ -312,7 +397,7 @@ export function ProgressScreen() {
                 0,
               )}
             </strong>
-            <small>Repeticiones</small>
+            <small>{t("Repeticiones", "Repetitions")}</small>
           </div>
         </div>
       </details>
@@ -325,13 +410,14 @@ export function ProgressScreen() {
             );
           }}
         >
-          Compartir último entrenamiento
+          {t("Compartir último entrenamiento", "Share latest workout")}
         </Button>
       )}
     </>
   );
 }
 function Octagon({ counts }: { counts: Record<string, number> }) {
+  const { t } = useApp();
   const max = Math.max(1, ...Object.values(counts)),
     point = (index: number, scale: number) => {
       const angle = -Math.PI / 2 + (index * Math.PI) / 4;
@@ -342,7 +428,7 @@ function Octagon({ counts }: { counts: Record<string, number> }) {
       className="octagon-chart"
       viewBox="0 0 360 340"
       role="img"
-      aria-label={`Series por grupo muscular: ${groups.map((group) => `${group} ${counts[group]}`).join(", ")}`}
+      aria-label={`${t("Series por zona muscular", "Sets per muscle group")}: ${groups.map((group) => `${group} ${counts[group]}`).join(", ")}`}
     >
       {[0.25, 0.5, 0.75, 1].map((level) => (
         <polygon
@@ -372,7 +458,7 @@ function Octagon({ counts }: { counts: Record<string, number> }) {
             fill="#b9c3d6"
             fontSize={12}
           >
-            {group}
+            {t(group, group)}
           </text>
         );
       })}

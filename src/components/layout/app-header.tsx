@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { translate } from "@/data/translations";
+import { localeFor, translate } from "@/data/translations";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
@@ -32,7 +32,7 @@ export function AppHeader({
       <Link
         href="/home"
         className="brand"
-        aria-label="HERCULES — volver al inicio"
+        aria-label={`HERCULES — ${translate(language, "Volver al inicio", "Go home")}`}
       >
         <img src="/assets/hercules-logo-v1.jpg" alt="" width={44} height={44} />
         <span>
@@ -41,17 +41,20 @@ export function AppHeader({
         </span>
       </Link>
       <div className="header-actions">
-        <div className="header-date" aria-label="Fecha y hora">
+        <div
+          className="header-date"
+          aria-label={translate(language, "Fecha y hora", "Date and time")}
+        >
           {now && (
             <>
               <time dateTime={now.toISOString()}>
-                {new Intl.DateTimeFormat("es", {
+                {new Intl.DateTimeFormat(localeFor(language), {
                   day: "numeric",
                   month: "short",
                 }).format(now)}
               </time>
               <span>
-                {new Intl.DateTimeFormat("es", {
+                {new Intl.DateTimeFormat(localeFor(language), {
                   hour: "2-digit",
                   minute: "2-digit",
                 }).format(now)}
