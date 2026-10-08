@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { localizedSetTypes } from "@/data/set-types";
 import { CircleHelp } from "lucide-react";
 import { AppDialog } from "@/components/ui/app-dialog";
 import { useApp } from "@/state/app-provider";
@@ -60,11 +61,14 @@ export function SetGrid({
       letter: "D",
       name: t("Descendente", "Drop set"),
       help: t(
-        "Después de una serie exigente, bajá el peso y continuá con poco o ningún descanso, manteniendo la técnica. Registrá cada tramo con su peso y repeticiones en una fila separada.",
-        "After a demanding set, reduce the load and continue with little or no rest while maintaining form. Record each segment's load and repetitions in a separate row.",
+        "Empezá con una carga que permita unas 8–12 repeticiones con buena técnica, no con tu peso máximo. Al llegar al fallo técnico, reducí un 20–25% del peso que estás usando y continuá con poco descanso. Podés hacer 1–3 bajadas. Ejemplo con 20%: 40 → 32 → 25,5 kg, ajustando a los pesos disponibles. Registrá cada tramo por separado.",
+        "Start with a load you can lift for about 8–12 controlled repetitions, not your maximum weight. At technical failure, reduce the current load by 20–25% and continue with little rest. Use 1–3 drops. Example at 20%: 40 → 32 → 25.5 kg, adjusted to available weights. Log each segment separately.",
       ),
     },
-  ];
+  ].map((type, index) => ({
+    ...type,
+    ...localizedSetTypes(snapshot.settings.language ?? "es")[index],
+  }));
   return (
     <>
       <AppDialog

@@ -18,7 +18,10 @@ import { ExerciseDetails } from "@/features/exercises/exercise-details";
 import { SetGrid } from "./set-grid";
 import { SessionExtras, emptyExtras } from "./session-extras";
 import { useRuntime } from "@/state/runtime-provider";
+import { ReplacementDialog } from "./replacement-dialog";
+import { replaceWorkoutExercise } from "@/domain/exercise-replacement";
 export function WorkoutScreen() {
+  const [replacement, setReplacement] = useState<number | null>(null);
   const { snapshot, change, notify, t } = useApp(),
     router = useRouter(),
     workout = snapshot.workout;
@@ -71,6 +74,14 @@ export function WorkoutScreen() {
       opened = workout.openExercises?.includes(index) ?? index === 0;
     const content = (
       <>
+        <Button
+          type="button"
+          variant="secondary"
+          className="mb-3"
+          onClick={() => setReplacement(index)}
+        >
+          {t("Reemplazar ejercicio", "Replace exercise")}
+        </Button>
         <SetGrid
           entry={entry}
           index={index}
@@ -161,6 +172,16 @@ export function WorkoutScreen() {
   };
   return (
     <>
+      {replacement !== null && workout.entries[replacement] && (
+        <ReplacementDialog
+          entry={workout.entries[replacement]}
+          onClose={() => setReplacement(null)}
+          onReplace={(id) => {
+            change((draft) => replaceWorkoutExercise(draft, replacement, id));
+            setReplacement(null);
+          }}
+        />
+      )}
       <div className="workout-banner">
         <span className="eyebrow">
           {day?.name ?? "Entrenamiento"} · {workout.index + 1}/

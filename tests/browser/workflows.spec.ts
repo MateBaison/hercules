@@ -551,3 +551,54 @@ test("optional menstrual readiness check offers advice before starting", async (
     .click();
   await expect(page).toHaveURL(/\/workout$/);
 });
+
+test("exercise replacement preserves logged sets and offers a time-based alternative", async ({
+  page,
+}, info) => {
+  await page
+    .getByRole("button", { name: "Iniciar entrenamiento", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: /Rutina principal · Pecho y tríceps/ })
+    .click();
+  await page.getByLabel("Peso 1 serie 1", { exact: true }).fill("20");
+  await page.getByLabel("Repeticiones 1 serie 1", { exact: true }).fill("12");
+  await page
+    .getByRole("button", { name: "Reemplazar ejercicio", exact: true })
+    .first()
+    .click();
+  const dialog = page.getByRole("dialog", {
+    name: "Reemplazar ejercicio",
+    exact: true,
+  });
+  await dialog.getByLabel("Mostrar todas las zonas", { exact: true }).check();
+  await dialog
+    .getByRole("combobox", { name: "Ejercicio alternativo", exact: true })
+    .selectOption("plancha");
+  await expect(
+    dialog.getByText("Propuesta inicial: 2 series", { exact: true }),
+  ).toBeVisible();
+  await expect(dialog.getByText(/30 segundos/).first()).toBeVisible();
+  await page.screenshot({
+    path: `artifacts/replacement-${info.project.name}.png`,
+  });
+  await dialog
+    .getByRole("button", { name: "Usar reemplazo", exact: true })
+    .click();
+  await expect(page.getByLabel("Peso 1 serie 1", { exact: true })).toHaveValue(
+    "20",
+  );
+  await expect(
+    page.getByLabel("Segundos 2 serie 1", { exact: true }),
+  ).toHaveValue("30");
+  await expect(
+    page.locator('[data-workout-entry="0"] [data-set-row]'),
+  ).toHaveCount(1);
+  await expect(
+    page.locator('[data-workout-entry="1"] [data-set-row]'),
+  ).toHaveCount(2);
+  await page.reload();
+  await expect(
+    page.getByLabel("Segundos 2 serie 1", { exact: true }),
+  ).toHaveValue("30");
+});
