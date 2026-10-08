@@ -780,6 +780,33 @@ label input[type="checkbox"] {
 }
 .active-workout {
   border-left: 4px solid var(--primary);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+.active-workout-details {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.active-workout-details p {
+  margin-bottom: 0;
+}
+.active-workout .primary-link {
+  justify-content: center;
+  white-space: nowrap;
+  padding-inline: 14px;
+}
+@media (max-width: 360px) {
+  .active-workout {
+    gap: 8px;
+    padding: 12px;
+  }
+  .active-workout .primary-link {
+    padding-inline: 10px;
+    font-size: 0.85rem;
+  }
 }
 .primary-link {
   display: inline-flex;
