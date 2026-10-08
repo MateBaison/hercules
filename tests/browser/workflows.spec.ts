@@ -753,3 +753,63 @@ test("two browser devices preserve drafts and require a choice for conflicting e
     await second.close();
   }
 });
+
+test("masculine profiles hide menstrual calendar borders and legend with saved dates", async ({
+  page,
+}) => {
+  // Seed a pending offline copy in the isolated account cache; normal reconciliation uploads it.
+  await page.evaluate(() => {
+    const key = "mrgymson-user-11111111-1111-4111-8111-111111111111";
+    const snapshot = JSON.parse(localStorage.getItem(key)!);
+    const today = new Date();
+    const date = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+    snapshot.profile.gender = "mujer";
+    snapshot.profile.menstrualCalendar = { enabled: true, dates: [date] };
+    snapshot.sessions.unshift({
+      id: "menstrual-regression-session",
+      date: today.toISOString(),
+      routine: "Test",
+      day: "Test",
+      exercises: [],
+    });
+    localStorage.setItem(key, JSON.stringify(snapshot));
+    const metaKey = key + ":sync-meta-v1";
+    const meta = JSON.parse(localStorage.getItem(metaKey)!);
+    localStorage.setItem(metaKey, JSON.stringify({ ...meta, pending: true }));
+  });
+  await page.reload();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await expect(page.locator('[data-menstrual-training="true"]')).toHaveCount(1);
+  await expect(page.getByText(/Borde violeta:/)).toBeVisible();
+  await page.goto("/profile");
+  await page
+    .getByRole("combobox", { name: "Género", exact: true })
+    .selectOption("hombre");
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.goto("/home");
+  await expect(page.locator('[data-menstrual-training="true"]')).toHaveCount(0);
+  await expect(page.getByText(/Borde violeta:/)).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Iniciar entrenamiento", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: /Rutina principal · Pecho y tríceps/ })
+    .click();
+  await expect(page).toHaveURL(/\/workout$/);
+  await expect(
+    page.getByRole("dialog", { name: "¿Cómo te sentís hoy?" }),
+  ).toHaveCount(0);
+  await page.goto("/profile");
+  await page
+    .getByRole("combobox", { name: "Género", exact: true })
+    .selectOption("mujer");
+  await page
+    .getByRole("button", { name: "Guardar cambios", exact: true })
+    .click();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.goto("/home");
+  await expect(page.locator('[data-menstrual-training="true"]')).toHaveCount(1);
+});

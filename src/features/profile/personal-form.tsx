@@ -1,4 +1,5 @@
 "use client";
+import { menstrualCalendarAllowed } from "@/domain/menstrual-calendar";
 import { localeFor } from "@/data/translations";
 import { useEffect, useRef, useState } from "react";
 import { z } from "zod";
@@ -13,6 +14,7 @@ const codes =
   "ADAEAFAGAIALAMAOAQARASATAUAWAXAZBABBBDBEBFBGBHBIBJBLBMBNBOBQBRBSBTBVBWBYBZCACCCDCFCGCHCICKCLCMCNCOCRCUCVCWCXCYCZDEDJDKDMDODZECEEEGEHERESETFIFJFKFMFOFRGAGBGDGEGFGGGHGIGLGMGNGPGQGRGSGTGUGWGYHKHMHNHRHTHUIDIEILIMINIOIQIRISITJEJMJOJPKEKGKHKIKMKNKPKRKWKYKZLALBLCLILKLRLSLTLULVLYMAMCMDMEMFMGMHMKMLMMMNMOMPMQMRMSMTMUMVMWMXMYMZNANCNENFNGNINLNONPNRNUNZOMPAPEPFPGPHPKPLPMPNPRPSPTPWPYQARERORSRURWSASBSCSDSESGSHSISJSKSLSMSNSOSRSSSTSVSXSYSZTCTDTFTGTHTJTKTLTMTNTOTRTTTVTWTZUAUGUMUSUYUZVAVCVEVGVIVNVUWFWSYEYTZAZMZWXK".match(
     /../g,
   ) ?? [];
+
 export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
   const { snapshot, user, change, flush, notify, t, holdRefresh } = useApp(),
     router = useRouter();
@@ -263,7 +265,7 @@ export function PersonalForm({ onboarding = false }: { onboarding?: boolean }) {
             <option value="otro">{t("Otro", "Other")}</option>
           </select>
         </label>
-        {!["hombre", "male"].includes(draft.gender ?? "") &&
+        {menstrualCalendarAllowed(draft) &&
           (["mujer", "no_binario", "otro"].includes(draft.gender ?? "") ||
             draft.menstrualCalendar?.enabled ||
             (draft.menstrualCalendar?.dates?.length ?? 0) > 0) && (

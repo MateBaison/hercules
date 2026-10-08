@@ -1,4 +1,5 @@
 "use client";
+import { menstrualCalendarEnabled } from "@/domain/menstrual-calendar";
 import { localeFor } from "@/data/translations";
 import { useState } from "react";
 import { useApp } from "@/state/app-provider";
@@ -135,9 +136,10 @@ export function CalendarPanel() {
               ...new Set(recorded.map((session) => color(session.color))),
             ],
             menstrualTraining =
-              snapshot.profile.menstrualCalendar?.enabled === true &&
+              menstrualCalendarEnabled(snapshot.profile) &&
               recorded.length > 0 &&
-              snapshot.profile.menstrualCalendar.dates?.includes(date) === true;
+              snapshot.profile.menstrualCalendar?.dates?.includes(date) ===
+                true;
           return (
             <button
               type="button"
@@ -174,7 +176,7 @@ export function CalendarPanel() {
           );
         })}
       </div>
-      {snapshot.profile.menstrualCalendar?.enabled && (
+      {menstrualCalendarEnabled(snapshot.profile) && (
         <p className="mt-3 text-sm text-muted-foreground">
           <span aria-hidden="true" style={{ color: "#c4b5fd" }}>
             ▢

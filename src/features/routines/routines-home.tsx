@@ -1,4 +1,5 @@
 "use client";
+import { menstrualCalendarEnabled } from "@/domain/menstrual-calendar";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -19,6 +20,7 @@ import { CalendarPanel } from "@/features/calendar/calendar-panel";
 import { ReadinessDialog } from "@/features/workouts/readiness-dialog";
 
 type Editor = { type: "new" | "rename" | "day"; rid?: string } | null;
+
 export function RoutinesHome() {
   const { snapshot, change, notify, t } = useApp(),
     router = useRouter();
@@ -64,7 +66,7 @@ export function RoutinesHome() {
     }
   };
   const begin = (rid: string, did: string) => {
-    if (snapshot.profile.menstrualCalendar?.enabled) {
+    if (menstrualCalendarEnabled(snapshot.profile)) {
       setQuick(false);
       setPendingStart({ rid, did });
     } else start(rid, did);

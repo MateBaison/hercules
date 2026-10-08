@@ -38,6 +38,7 @@ HERCULES is a fitness application migrated from a hosted HTML app to a server-re
 - Persisted readers are tolerant and preserve unknown fields; new command inputs are bounded/strict. Preserve historical nulls, string profile measurements, aggregate sessions without sets, retired exercise references, notes/photos and original `done`/`entered` flags.
 - Repetitions and seconds are distinct metrics. Input autosave must work without a completion tick; untouched default values must not become recorded completed sets.
 - Reuse the translation helpers and `useApp().t(spanish, english)`. Spanish is the default, English is the fallback, and Arabic requires RTL layout. The current language list is in `src/data/translations.ts`.
+- Reuse `src/domain/menstrual-calendar.ts` for menstrual eligibility. Masculine profiles must hide menstrual controls, training-calendar borders/legend and readiness prompts even when a saved enabled flag exists; preserve recorded dates and settings.
 - Preserve keyboard-accessible controls, dialog semantics, status announcements and mobile/desktop behavior. Browser APIs belong in client components or browser helpers, with effect/listener cleanup.
 - Preserve original exercise IDs, image variants and optimized assets. `migration-baseline/manifest.json` verifies archived files and assets by SHA-256; do not regenerate the baseline merely to make a regression pass.
 - Routine sharing and workout posters must omit private profile fields, body weights, photos and exercise notes. Full account exports contain private records.
