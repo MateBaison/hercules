@@ -131,6 +131,12 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
     animations: "disabled",
   });
   await page.locator(`[data-calendar-date="${today}"]`).click();
+  await expect(page.locator(".calendar-workout summary")).toContainText(
+    /Tiempo entrenado: \d+ h \d+ min/,
+  );
+  await expect(page.locator(".calendar-workout summary")).toContainText(
+    /Volumen de peso: [\d.,\s]+ kg/,
+  );
   await page.locator(".calendar-workout summary").click();
   await expect(page.locator(".calendar-workout")).toContainText(
     "20 kg × 12 reps",

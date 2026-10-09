@@ -212,6 +212,20 @@ export function CalendarPanel() {
               <small className="block text-muted-foreground">
                 {session.routine}
               </small>
+              <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm font-normal">
+                <span>
+                  {t("Tiempo entrenado", "Training time")}:{" "}
+                  {session.duration == null
+                    ? t("Sin registro", "Not recorded")
+                    : `${Math.floor(session.duration / 60)} h ${Math.round(session.duration % 60)} min`}
+                </span>
+                <span>
+                  {t("Volumen de peso", "Weight volume")}:{" "}
+                  {session.volumeKg == null && session.volume == null
+                    ? t("Sin registro", "Not recorded")
+                    : `${Math.round((session.volumeKg ?? (session.volume ?? 0) / (session.weightUnit === "lb" ? 2.20462 : 1)) * (snapshot.settings.weight === "lb" ? 2.20462 : 1)).toLocaleString(locale)} ${snapshot.settings.weight}`}
+                </span>
+              </div>
             </summary>
             {session.exercises?.map((exercise, index) => (
               <div key={index} className="my-3">

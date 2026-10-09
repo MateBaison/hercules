@@ -332,7 +332,10 @@
     "Tríceps": "Triceps",
     "Abdominales": "Abdominaux",
     "Piernas": "Jambes",
-    "Gemelos": "Mollets"
+    "Gemelos": "Mollets",
+    "Tiempo entrenado": "Temps d’entraînement",
+    "Volumen de peso": "Volume de charge",
+    "Sin registro": "Non enregistré"
   },
   "zh": {
     "Activar rutina": "启用计划",
@@ -667,7 +670,10 @@
     "Tríceps": "肱三头肌",
     "Abdominales": "腹部",
     "Piernas": "腿部",
-    "Gemelos": "小腿"
+    "Gemelos": "小腿",
+    "Tiempo entrenado": "训练时间",
+    "Volumen de peso": "训练重量总量",
+    "Sin registro": "未记录"
   },
   "hi": {
     "Activar rutina": "दिनचर्या सक्रिय करें",
@@ -1002,7 +1008,10 @@
     "Tríceps": "ट्राइसेप्स",
     "Abdominales": "पेट की मांसपेशियाँ",
     "Piernas": "पैर",
-    "Gemelos": "पिंडलियाँ"
+    "Gemelos": "पिंडलियाँ",
+    "Tiempo entrenado": "प्रशिक्षण का समय",
+    "Volumen de peso": "कुल प्रशिक्षण भार",
+    "Sin registro": "दर्ज नहीं किया गया"
   },
   "ar": {
     "Activar rutina": "تفعيل الروتين",
@@ -1337,7 +1346,10 @@
     "Tríceps": "العضلة ثلاثية الرؤوس",
     "Abdominales": "عضلات البطن",
     "Piernas": "الساقان",
-    "Gemelos": "السمانة"
+    "Gemelos": "السمانة",
+    "Tiempo entrenado": "وقت التدريب",
+    "Volumen de peso": "إجمالي الأوزان",
+    "Sin registro": "غير مسجل"
   },
   "de": {
     "Activar rutina": "Trainingsplan aktivieren",
@@ -1672,7 +1684,10 @@
     "Tríceps": "Trizeps",
     "Abdominales": "Bauch",
     "Piernas": "Beine",
-    "Gemelos": "Waden"
+    "Gemelos": "Waden",
+    "Tiempo entrenado": "Trainingszeit",
+    "Volumen de peso": "Gewichtsvolumen",
+    "Sin registro": "Nicht erfasst"
   },
   "it": {
     "Activar rutina": "Attiva routine",
@@ -2007,7 +2022,10 @@
     "Tríceps": "Tricipiti",
     "Abdominales": "Addominali",
     "Piernas": "Gambe",
-    "Gemelos": "Polpacci"
+    "Gemelos": "Polpacci",
+    "Tiempo entrenado": "Tempo di allenamento",
+    "Volumen de peso": "Volume di carico",
+    "Sin registro": "Non registrato"
   },
   "pt": {
     "Activar rutina": "Ativar rotina",
@@ -2342,7 +2360,10 @@
     "Tríceps": "Tríceps",
     "Abdominales": "Abdominais",
     "Piernas": "Pernas",
-    "Gemelos": "Panturrilhas"
+    "Gemelos": "Panturrilhas",
+    "Tiempo entrenado": "Tempo de treino",
+    "Volumen de peso": "Volume de carga",
+    "Sin registro": "Não registrado"
   },
   "en": {
     "Sexo": "Sex",
@@ -2527,6 +2548,9 @@
     "Tríceps": "Triceps",
     "Abdominales": "Abs",
     "Piernas": "Legs",
-    "Gemelos": "Calves"
+    "Gemelos": "Calves",
+    "Tiempo entrenado": "Training time",
+    "Volumen de peso": "Weight volume",
+    "Sin registro": "Not recorded"
   }
 }
