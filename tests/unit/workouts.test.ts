@@ -6,6 +6,7 @@ import {
   blankSet,
   copySessions,
   previousSets,
+  extrasSchema,
 } from "../../src/domain/workouts";
 import {
   decodeRoutine,
@@ -37,9 +38,14 @@ test("workout blanks are not logged; entered reps and seconds keep distinct metr
     workout.entries,
     { routine: "Routine", day: "Day" },
     "2026-10-06T12:00:00Z",
-    extras,
+    { ...extras, rating: "excellent" },
   );
   expect(session.sets).toBe(2);
+  expect(session.rating).toBe("excellent");
+  expect(extrasSchema.safeParse({ ...extras, rating: "invalid" }).success).toBe(
+    false,
+  );
+  expect(extrasSchema.safeParse(extras).success).toBe(true);
   expect(session.exercises?.[0]?.performedSets?.[0]?.type).toBe("drop");
   expect(session.volume).toBe(240);
   expect(session.exercises?.at(-1)?.performedSets?.[0]?.seconds).toBe(45);

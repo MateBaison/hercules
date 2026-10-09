@@ -12,6 +12,7 @@ import {
   localDateKey,
   metricFor,
   validDateKey,
+  workoutRatings,
   type Entry,
   type Session,
   type Extras,
@@ -87,6 +88,11 @@ export function CalendarPanel() {
       })) ?? [],
     );
     setExtras({
+      ...(workoutRatings.includes(
+        session?.rating as (typeof workoutRatings)[number],
+      )
+        ? { rating: session!.rating as (typeof workoutRatings)[number] }
+        : {}),
       color: color(session?.color),
       comment: session?.comment ?? "",
       photos: session?.photos ?? [],
@@ -209,18 +215,34 @@ export function CalendarPanel() {
           >
             <summary>
               <strong>{session.day}</strong>
+              {workoutRatings.includes(
+                session.rating as (typeof workoutRatings)[number],
+              ) && (
+                <span
+                  className="ms-2 text-xl"
+                  aria-label={t("¿Cómo te fue?", "How did it go?")}
+                >
+                  {
+                    ["🤩", "😊", "😐", "😕", "😣"][
+                      workoutRatings.indexOf(
+                        session.rating as (typeof workoutRatings)[number],
+                      )
+                    ]
+                  }
+                </span>
+              )}
               <small className="block text-muted-foreground">
                 {session.routine}
               </small>
               <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm font-normal">
                 <span>
-                  {t("Tiempo entrenado", "Training time")}:{" "}
+                  {t("Tiempo", "Time")}:{" "}
                   {session.duration == null
                     ? t("Sin registro", "Not recorded")
                     : `${Math.floor(session.duration / 60)} h ${Math.round(session.duration % 60)} min`}
                 </span>
                 <span>
-                  {t("Volumen de peso", "Weight volume")}:{" "}
+                  {t("Volumen", "Volume")}:{" "}
                   {session.volumeKg == null && session.volume == null
                     ? t("Sin registro", "Not recorded")
                     : `${Math.round((session.volumeKg ?? (session.volume ?? 0) / (session.weightUnit === "lb" ? 2.20462 : 1)) * (snapshot.settings.weight === "lb" ? 2.20462 : 1)).toLocaleString(locale)} ${snapshot.settings.weight}`}

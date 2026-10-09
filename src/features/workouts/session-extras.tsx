@@ -1,8 +1,8 @@
 "use client";
 import { Toggle } from "@base-ui/react/toggle";
 import { ToggleGroup } from "@base-ui/react/toggle-group";
-import { Check } from "lucide-react";
-import { useState } from "react";
+import { Check, ImagePlus } from "lucide-react";
+import { useRef, useState } from "react";
 import { useApp } from "@/state/app-provider";
 import type { Extras } from "@/domain/workouts";
 import { compressedPhoto, safePhoto } from "@/lib/browser/photos";
@@ -32,6 +32,7 @@ export function SessionExtras({
   onChange: (value: Extras) => void;
 }) {
   const { snapshot, t, notify } = useApp(),
+    photoInput = useRef<HTMLInputElement>(null),
     [busy, setBusy] = useState(false),
     factor = snapshot.settings.weight === "lb" ? 2.20462 : 1;
   return (
@@ -71,6 +72,35 @@ export function SessionExtras({
             )}
           </p>
         )}
+      </fieldset>
+      <fieldset>
+        <legend className="mb-2">{t("¿Cómo te fue?", "How did it go?")}</legend>
+        <div className="grid grid-cols-5 gap-2">
+          {(
+            [
+              ["excellent", "🤩", "Muy bien", "Very well"],
+              ["good", "😊", "Bien", "Well"],
+              ["okay", "😐", "Regular", "Okay"],
+              ["bad", "😕", "Mal", "Badly"],
+              ["very_bad", "😣", "Muy mal", "Very badly"],
+            ] as const
+          ).map(([rating, emoji, es, en]) => (
+            <Button
+              key={rating}
+              type="button"
+              variant={value.rating === rating ? "default" : "secondary"}
+              className="h-auto min-w-0 flex-col gap-1 px-1 py-3"
+              aria-pressed={value.rating === rating}
+              aria-label={t(es, en)}
+              onClick={() => onChange({ ...value, rating })}
+            >
+              <span aria-hidden="true" className="text-2xl">
+                {emoji}
+              </span>
+              <span className="text-xs whitespace-normal">{t(es, en)}</span>
+            </Button>
+          ))}
+        </div>
       </fieldset>
       <label className="block">
         {t("Comentario del entrenamiento", "Workout comment")}
@@ -114,37 +144,54 @@ export function SessionExtras({
           ),
         )}
       </div>
-      <label className="block">
+      <p>
         {t("Fotos del entrenamiento (hasta 3)", "Workout photos (up to 3)")}
-        <Input
-          type="file"
-          accept="image/*"
-          multiple
-          disabled={busy || value.photos.length >= 3}
-          onChange={async (event) => {
-            const files = Array.from(event.target.files ?? []);
-            if (files.length + value.photos.length > 3) {
-              notify("Podés guardar hasta 3 fotos.");
-              return;
-            }
-            setBusy(true);
-            try {
-              const photos = await Promise.all(
-                files.map((file) => compressedPhoto(file)),
-              );
-              onChange({ ...value, photos: [...value.photos, ...photos] });
-            } catch (error) {
-              notify(
-                error instanceof Error
-                  ? error.message
-                  : "No se pudo cargar la foto.",
-              );
-            } finally {
-              setBusy(false);
-            }
-          }}
-        />
-      </label>
+      </p>
+      <Button
+        type="button"
+        variant="secondary"
+        disabled={busy || value.photos.length >= 3}
+        onClick={() => photoInput.current?.click()}
+      >
+        <ImagePlus aria-hidden="true" />
+        {t("Adjuntar fotos", "Attach photos")}
+      </Button>
+      <input
+        ref={photoInput}
+        className="sr-only"
+        aria-label={t(
+          "Fotos del entrenamiento (hasta 3)",
+          "Workout photos (up to 3)",
+        )}
+        type="file"
+        accept="image/*"
+        multiple
+        disabled={busy || value.photos.length >= 3}
+        onChange={async (event) => {
+          const files = Array.from(event.target.files ?? []);
+          event.target.value = "";
+          if (!files.length) return;
+          if (files.length + value.photos.length > 3) {
+            notify("Podés guardar hasta 3 fotos.");
+            return;
+          }
+          setBusy(true);
+          try {
+            const photos = await Promise.all(
+              files.map((file) => compressedPhoto(file)),
+            );
+            onChange({ ...value, photos: [...value.photos, ...photos] });
+          } catch (error) {
+            notify(
+              error instanceof Error
+                ? error.message
+                : "No se pudo cargar la foto.",
+            );
+          } finally {
+            setBusy(false);
+          }
+        }}
+      />
       <div className="flex flex-wrap gap-3">
         {value.photos.map((photo, index) => (
           <div key={index}>

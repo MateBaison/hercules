@@ -335,7 +335,14 @@
     "Gemelos": "Mollets",
     "Tiempo entrenado": "Temps d’entraînement",
     "Volumen de peso": "Volume de charge",
-    "Sin registro": "Non enregistré"
+    "Sin registro": "Non enregistré",
+    "¿Cómo te fue?": "Comment ça s’est passé ?",
+    "Muy bien": "Très bien",
+    "Bien": "Bien",
+    "Regular": "Moyen",
+    "Mal": "Mal",
+    "Muy mal": "Très mal",
+    "Adjuntar fotos": "Joindre des photos"
   },
   "zh": {
     "Activar rutina": "启用计划",
@@ -673,7 +680,14 @@
     "Gemelos": "小腿",
     "Tiempo entrenado": "训练时间",
     "Volumen de peso": "训练重量总量",
-    "Sin registro": "未记录"
+    "Sin registro": "未记录",
+    "¿Cómo te fue?": "训练感觉如何？",
+    "Muy bien": "非常好",
+    "Bien": "好",
+    "Regular": "一般",
+    "Mal": "不好",
+    "Muy mal": "非常不好",
+    "Adjuntar fotos": "添加照片"
   },
   "hi": {
     "Activar rutina": "दिनचर्या सक्रिय करें",
@@ -1011,7 +1025,14 @@
     "Gemelos": "पिंडलियाँ",
     "Tiempo entrenado": "प्रशिक्षण का समय",
     "Volumen de peso": "कुल प्रशिक्षण भार",
-    "Sin registro": "दर्ज नहीं किया गया"
+    "Sin registro": "दर्ज नहीं किया गया",
+    "¿Cómo te fue?": "कैसा रहा?",
+    "Muy bien": "बहुत अच्छा",
+    "Bien": "अच्छा",
+    "Regular": "ठीक",
+    "Mal": "खराब",
+    "Muy mal": "बहुत खराब",
+    "Adjuntar fotos": "फ़ोटो जोड़ें"
   },
   "ar": {
     "Activar rutina": "تفعيل الروتين",
@@ -1349,7 +1370,14 @@
     "Gemelos": "السمانة",
     "Tiempo entrenado": "وقت التدريب",
     "Volumen de peso": "إجمالي الأوزان",
-    "Sin registro": "غير مسجل"
+    "Sin registro": "غير مسجل",
+    "¿Cómo te fue?": "كيف كان التدريب؟",
+    "Muy bien": "جيد جدًا",
+    "Bien": "جيد",
+    "Regular": "متوسط",
+    "Mal": "سيئ",
+    "Muy mal": "سيئ جدًا",
+    "Adjuntar fotos": "إرفاق صور"
   },
   "de": {
     "Activar rutina": "Trainingsplan aktivieren",
@@ -1687,7 +1715,14 @@
     "Gemelos": "Waden",
     "Tiempo entrenado": "Trainingszeit",
     "Volumen de peso": "Gewichtsvolumen",
-    "Sin registro": "Nicht erfasst"
+    "Sin registro": "Nicht erfasst",
+    "¿Cómo te fue?": "Wie lief es?",
+    "Muy bien": "Sehr gut",
+    "Bien": "Gut",
+    "Regular": "Mittelmäßig",
+    "Mal": "Schlecht",
+    "Muy mal": "Sehr schlecht",
+    "Adjuntar fotos": "Fotos anhängen"
   },
   "it": {
     "Activar rutina": "Attiva routine",
@@ -2025,7 +2060,14 @@
     "Gemelos": "Polpacci",
     "Tiempo entrenado": "Tempo di allenamento",
     "Volumen de peso": "Volume di carico",
-    "Sin registro": "Non registrato"
+    "Sin registro": "Non registrato",
+    "¿Cómo te fue?": "Com’è andata?",
+    "Muy bien": "Molto bene",
+    "Bien": "Bene",
+    "Regular": "Così così",
+    "Mal": "Male",
+    "Muy mal": "Molto male",
+    "Adjuntar fotos": "Allega foto"
   },
   "pt": {
     "Activar rutina": "Ativar rotina",
@@ -2363,7 +2405,14 @@
     "Gemelos": "Panturrilhas",
     "Tiempo entrenado": "Tempo de treino",
     "Volumen de peso": "Volume de carga",
-    "Sin registro": "Não registrado"
+    "Sin registro": "Não registrado",
+    "¿Cómo te fue?": "Como foi?",
+    "Muy bien": "Muito bem",
+    "Bien": "Bem",
+    "Regular": "Regular",
+    "Mal": "Mal",
+    "Muy mal": "Muito mal",
+    "Adjuntar fotos": "Anexar fotos"
   },
   "en": {
     "Sexo": "Sex",
@@ -2551,6 +2600,13 @@
     "Gemelos": "Calves",
     "Tiempo entrenado": "Training time",
     "Volumen de peso": "Weight volume",
-    "Sin registro": "Not recorded"
+    "Sin registro": "Not recorded",
+    "¿Cómo te fue?": "How did it go?",
+    "Muy bien": "Very well",
+    "Bien": "Well",
+    "Regular": "Okay",
+    "Mal": "Badly",
+    "Muy mal": "Very badly",
+    "Adjuntar fotos": "Attach photos"
   }
 }

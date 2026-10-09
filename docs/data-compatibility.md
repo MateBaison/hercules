@@ -37,4 +37,6 @@ In-workout exercise replacement only edits the active workout. Entered/done sets
 
 ## Weekly training time
 
+Sessions may store an optional `rating` (`excellent`, `good`, `okay`, `bad`, `very_bad`) selected when finishing or editing a workout. Existing sessions remain unselected; historical unknown values are preserved until explicitly replaced. Ratings remain private account data and are not added to routine shares or workout posters.
+
 Session `duration` retains its historical unit, minutes. New completed workouts record elapsed time from `workout.started` to saving, including rests and time with the app in the background. Unknown historical durations remain null/absent and are explicitly excluded from weekly time totals. Calendar copies retain their existing null-duration behavior. Week boundaries and daily grouping use local dates, Monday through Sunday.

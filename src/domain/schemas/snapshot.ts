@@ -64,6 +64,7 @@ export const sessionSchema = z.looseObject({
   duration: nonnegative.nullable().optional(),
   color: z.string().optional(),
   comment: z.string().optional(),
+  rating: z.string().optional(),
   photos: z.array(z.string()).optional(),
   bodyWeightStartKg: optionalValue,
   bodyWeightEndKg: optionalValue,

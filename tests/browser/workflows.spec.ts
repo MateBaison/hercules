@@ -98,6 +98,10 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
   await page
     .getByLabel("Comentario del entrenamiento", { exact: true })
     .fill("Buen entrenamiento");
+  await page.getByRole("button", { name: "Muy bien", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Adjuntar fotos", exact: true }),
+  ).toBeVisible();
   await page
     .getByRole("button", { name: "Guardar entrenamiento", exact: true })
     .click();
@@ -131,11 +135,12 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
     animations: "disabled",
   });
   await page.locator(`[data-calendar-date="${today}"]`).click();
+  await expect(page.locator(".calendar-workout summary")).toContainText("🤩");
   await expect(page.locator(".calendar-workout summary")).toContainText(
-    /Tiempo entrenado: \d+ h \d+ min/,
+    /Tiempo: \d+ h \d+ min/,
   );
   await expect(page.locator(".calendar-workout summary")).toContainText(
-    /Volumen de peso: [\d.,\s]+ kg/,
+    /Volumen: [\d.,\s]+ kg/,
   );
   await page.locator(".calendar-workout summary").click();
   await expect(page.locator(".calendar-workout")).toContainText(

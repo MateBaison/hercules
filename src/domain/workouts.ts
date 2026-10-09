@@ -124,7 +124,15 @@ export function startWorkout(snapshot: Snapshot, rid: string, did: string) {
     })),
   };
 }
+export const workoutRatings = [
+  "excellent",
+  "good",
+  "okay",
+  "bad",
+  "very_bad",
+] as const;
 export const extrasSchema = z.object({
+  rating: z.enum(workoutRatings).optional(),
   color: z.string().regex(/^#[a-f0-9]{6}$/i),
   comment: z.string().max(2000),
   photos: z.array(z.string()).max(3),
