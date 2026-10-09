@@ -158,7 +158,7 @@ export function SetGrid({
         <span>
           {metric === "seconds"
             ? t("Segundos", "Seconds")
-            : t("Repeticiones", "Repetitions")}
+            : t("Rep", "Reps")}
         </span>
         <span>{t("Tipo", "Type")}</span>
       </div>
@@ -168,11 +168,11 @@ export function SetGrid({
           key={number}
           data-set-row={number}
         >
-          <b>
+          <b className="set-number">
             {number + 1}
             {!!records[number]?.length && (
               <span title={t("Nuevo récord", "New personal record")}>
-                <Trophy className="size-4 text-yellow-300" aria-hidden="true" />
+                <Trophy className="size-3.5 text-yellow-300" aria-hidden="true" />
                 <span className="sr-only">
                   {t("Nuevo récord", "New personal record")}
                 </span>

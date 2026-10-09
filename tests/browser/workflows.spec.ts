@@ -219,7 +219,9 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
 });
 test("personal record highlights appear while logging and remain in the calendar", async ({
   page,
-}) => {
+}, info) => {
+  if (info.project.name === "mobile")
+    await page.setViewportSize({ width: 320, height: 844 });
   await page.evaluate(() => {
     const key = "mrgymson-user-11111111-1111-4111-8111-111111111111";
     const snapshot = JSON.parse(localStorage.getItem(key)!);
@@ -255,6 +257,20 @@ test("personal record highlights appear while logging and remain in the calendar
   await expect(page.locator(".personal-record-row")).toContainText(
     "Nuevo récord",
   );
+  const fits = await page
+    .locator(".set-grid-heading")
+    .first()
+    .evaluate((element) => {
+      const labels = element.querySelectorAll("span");
+      return [labels[0], labels[labels.length - 1]].every(
+        (label) => label && label.scrollWidth <= label.clientWidth,
+      );
+    });
+  expect(fits).toBe(true);
+  await page.screenshot({
+    path: `artifacts/record-layout-${info.project.name}.png`,
+    fullPage: true,
+  });
   await page
     .getByRole("button", { name: "Finalizar entrenamiento", exact: true })
     .click();

@@ -840,8 +840,8 @@ label input[type="checkbox"] {
 .set-grid-row {
   display: grid;
   grid-template-columns:
-    24px minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr)
-    22px;
+    40px minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 0.8fr)
+    32px;
   gap: 5px;
   align-items: center;
   margin: 10px 0;
@@ -851,6 +851,22 @@ label input[type="checkbox"] {
   color: var(--muted-foreground);
   font-size: 0.75rem;
   margin-top: 16px;
+}
+.set-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  line-height: 1;
+}
+.set-number > span {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.set-grid-heading > span:first-child,
+.set-grid-heading > span:last-child {
+  white-space: nowrap;
+  font-size: 0.72rem;
 }
 .set-grid-row input {
   text-align: center;

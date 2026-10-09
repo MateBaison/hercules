@@ -343,7 +343,8 @@
     "Mal": "Mal",
     "Muy mal": "Très mal",
     "Adjuntar fotos": "Joindre des photos",
-    "Nuevo récord": "Nouveau record personnel"
+    "Nuevo récord": "Nouveau record personnel",
+    "Rep": "Rép"
   },
   "zh": {
     "Activar rutina": "启用计划",
@@ -689,7 +690,8 @@
     "Mal": "不好",
     "Muy mal": "非常不好",
     "Adjuntar fotos": "添加照片",
-    "Nuevo récord": "新个人纪录"
+    "Nuevo récord": "新个人纪录",
+    "Rep": "次数"
   },
   "hi": {
     "Activar rutina": "दिनचर्या सक्रिय करें",
@@ -1035,7 +1037,8 @@
     "Mal": "खराब",
     "Muy mal": "बहुत खराब",
     "Adjuntar fotos": "फ़ोटो जोड़ें",
-    "Nuevo récord": "नया व्यक्तिगत रिकॉर्ड"
+    "Nuevo récord": "नया व्यक्तिगत रिकॉर्ड",
+    "Rep": "रेप"
   },
   "ar": {
     "Activar rutina": "تفعيل الروتين",
@@ -1381,7 +1384,8 @@
     "Mal": "سيئ",
     "Muy mal": "سيئ جدًا",
     "Adjuntar fotos": "إرفاق صور",
-    "Nuevo récord": "رقم قياسي شخصي جديد"
+    "Nuevo récord": "رقم قياسي شخصي جديد",
+    "Rep": "تكرار"
   },
   "de": {
     "Activar rutina": "Trainingsplan aktivieren",
@@ -1727,7 +1731,8 @@
     "Mal": "Schlecht",
     "Muy mal": "Sehr schlecht",
     "Adjuntar fotos": "Fotos anhängen",
-    "Nuevo récord": "Neuer persönlicher Rekord"
+    "Nuevo récord": "Neuer persönlicher Rekord",
+    "Rep": "Wdh"
   },
   "it": {
     "Activar rutina": "Attiva routine",
@@ -2073,7 +2078,8 @@
     "Mal": "Male",
     "Muy mal": "Molto male",
     "Adjuntar fotos": "Allega foto",
-    "Nuevo récord": "Nuovo record personale"
+    "Nuevo récord": "Nuovo record personale",
+    "Rep": "Rip"
   },
   "pt": {
     "Activar rutina": "Ativar rotina",
@@ -2419,7 +2425,8 @@
     "Mal": "Mal",
     "Muy mal": "Muito mal",
     "Adjuntar fotos": "Anexar fotos",
-    "Nuevo récord": "Novo recorde pessoal"
+    "Nuevo récord": "Novo recorde pessoal",
+    "Rep": "Rep"
   },
   "en": {
     "Sexo": "Sex",
@@ -2615,6 +2622,7 @@
     "Mal": "Badly",
     "Muy mal": "Very badly",
     "Adjuntar fotos": "Attach photos",
-    "Nuevo récord": "New personal record"
+    "Nuevo récord": "New personal record",
+    "Rep": "Reps"
   }
 }
