@@ -217,6 +217,63 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
   expect(png.readUInt32BE(16)).toBe(1080);
   expect(png.readUInt32BE(20)).toBe(1920);
 });
+test("personal record highlights appear while logging and remain in the calendar", async ({
+  page,
+}) => {
+  await page.evaluate(() => {
+    const key = "mrgymson-user-11111111-1111-4111-8111-111111111111";
+    const snapshot = JSON.parse(localStorage.getItem(key)!);
+    const id = snapshot.routines[0].days[0].items[0];
+    snapshot.sessions = [
+      {
+        id: "previous-record",
+        date: new Date(Date.now() - 86400000).toISOString(),
+        routine: "R",
+        day: "D",
+        weightUnit: "kg",
+        exercises: [{ id, performedSets: [{ kg: 20, reps: 10 }] }],
+      },
+    ];
+    localStorage.setItem(key, JSON.stringify(snapshot));
+    const metaKey = key + ":sync-meta-v1";
+    const meta = JSON.parse(localStorage.getItem(metaKey)!);
+    localStorage.setItem(metaKey, JSON.stringify({ ...meta, pending: true }));
+  });
+  await page.reload();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page
+    .getByRole("button", { name: "Iniciar entrenamiento", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: /Rutina principal · Pecho y tríceps/ })
+    .click();
+  await page.getByLabel("Peso 1 serie 1", { exact: true }).fill("20");
+  await page.getByLabel("Repeticiones 1 serie 1", { exact: true }).fill("10");
+  await expect(page.locator(".personal-record-row")).toHaveCount(0);
+  await page.getByLabel("Repeticiones 1 serie 1", { exact: true }).fill("12");
+  await expect(page.locator(".personal-record-row")).toHaveCount(1);
+  await expect(page.locator(".personal-record-row")).toContainText(
+    "Nuevo récord",
+  );
+  await page
+    .getByRole("button", { name: "Finalizar entrenamiento", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Guardar entrenamiento", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/home$/);
+  await page.reload();
+  const today = await page.evaluate(() => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  });
+  await page.locator(`[data-calendar-date="${today}"]`).click();
+  await page.locator(".calendar-workout summary").click();
+  await expect(page.locator(".personal-record-history")).toHaveCount(1);
+  await expect(page.locator(".personal-record-history")).toContainText(
+    "Nuevo récord",
+  );
+});
 test("favorites, multiple exercise selection, touch-ready picker and routine reordering", async ({
   page,
 }) => {

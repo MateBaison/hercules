@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { localizedSetTypes } from "@/data/set-types";
-import { CircleHelp } from "lucide-react";
+import { CircleHelp, Trophy } from "lucide-react";
+import { personalRecords } from "@/domain/personal-records";
 import { AppDialog } from "@/components/ui/app-dialog";
 import { useApp } from "@/state/app-provider";
 import {
@@ -27,6 +28,15 @@ export function SetGrid({
     metric = metricFor(snapshot, entry.id, entry),
     previous = previousSets(snapshot, entry.id, metric, started);
   const [editingType, setEditingType] = useState<number | null>(null);
+  const records = personalRecords(
+    snapshot,
+    entry.id,
+    entry.sets,
+    snapshot.settings.weight ?? "kg",
+    started,
+    undefined,
+    metric,
+  );
   const [showHelp, setShowHelp] = useState(false);
   const types = [
     {
@@ -153,8 +163,22 @@ export function SetGrid({
         <span>{t("Tipo", "Type")}</span>
       </div>
       {entry.sets.map((set, number) => (
-        <div className="set-grid-row" key={number} data-set-row={number}>
-          <b>{number + 1}</b>
+        <div
+          className={`set-grid-row${records[number]?.length ? " personal-record-row" : ""}`}
+          key={number}
+          data-set-row={number}
+        >
+          <b>
+            {number + 1}
+            {!!records[number]?.length && (
+              <span title={t("Nuevo récord", "New personal record")}>
+                <Trophy className="size-4 text-yellow-300" aria-hidden="true" />
+                <span className="sr-only">
+                  {t("Nuevo récord", "New personal record")}
+                </span>
+              </span>
+            )}
+          </b>
           <button
             type="button"
             className="previous-set"

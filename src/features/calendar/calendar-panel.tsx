@@ -1,5 +1,7 @@
 "use client";
 import { menstrualCalendarEnabled } from "@/domain/menstrual-calendar";
+import { personalRecords } from "@/domain/personal-records";
+import { Trophy } from "lucide-react";
 import { localeFor } from "@/data/translations";
 import { useState } from "react";
 import { useApp } from "@/state/app-provider";
@@ -249,23 +251,42 @@ export function CalendarPanel() {
                 </span>
               </div>
             </summary>
-            {session.exercises?.map((exercise, index) => (
-              <div key={index} className="my-3">
-                <strong>
-                  {findExercise(snapshot, exercise.id)?.name ?? exercise.id}
-                </strong>
-                {exercise.performedSets?.map((set, number) => (
-                  <p className="text-sm text-muted-foreground" key={number}>
-                    {t("Serie", "Set")} {number + 1}: {set.kg ?? 0}{" "}
-                    {session.weightUnit ?? "kg"} ×{" "}
-                    {set.seconds != null
-                      ? `${set.seconds} s`
-                      : `${set.reps ?? 0} reps`}
-                  </p>
-                ))}
-                {exercise.note && <p>{exercise.note}</p>}
-              </div>
-            ))}
+            {session.exercises?.map((exercise, index) => {
+              const records = personalRecords(
+                snapshot,
+                exercise.id,
+                exercise.performedSets ?? [],
+                session.weightUnit ?? "kg",
+                Date.parse(session.date),
+                session.id,
+              );
+              return (
+                <div key={index} className="my-3">
+                  <strong>
+                    {findExercise(snapshot, exercise.id)?.name ?? exercise.id}
+                  </strong>
+                  {exercise.performedSets?.map((set, number) => (
+                    <p
+                      className={`text-sm text-muted-foreground${records[number]?.length ? " personal-record-history" : ""}`}
+                      key={number}
+                    >
+                      {t("Serie", "Set")} {number + 1}: {set.kg ?? 0}{" "}
+                      {session.weightUnit ?? "kg"} ×{" "}
+                      {set.seconds != null
+                        ? `${set.seconds} s`
+                        : `${set.reps ?? 0} reps`}
+                      {!!records[number]?.length && (
+                        <span className="ms-2 inline-flex items-center gap-1 font-semibold text-yellow-300">
+                          <Trophy className="size-4" aria-hidden="true" />
+                          {t("Nuevo récord", "New personal record")}
+                        </span>
+                      )}
+                    </p>
+                  ))}
+                  {exercise.note && <p>{exercise.note}</p>}
+                </div>
+              );
+            })}
             {session.comment && <p className="my-3">{session.comment}</p>}
             {session.bodyWeightStartKg != null && (
               <p>

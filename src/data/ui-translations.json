@@ -342,7 +342,8 @@
     "Regular": "Moyen",
     "Mal": "Mal",
     "Muy mal": "Très mal",
-    "Adjuntar fotos": "Joindre des photos"
+    "Adjuntar fotos": "Joindre des photos",
+    "Nuevo récord": "Nouveau record personnel"
   },
   "zh": {
     "Activar rutina": "启用计划",
@@ -687,7 +688,8 @@
     "Regular": "一般",
     "Mal": "不好",
     "Muy mal": "非常不好",
-    "Adjuntar fotos": "添加照片"
+    "Adjuntar fotos": "添加照片",
+    "Nuevo récord": "新个人纪录"
   },
   "hi": {
     "Activar rutina": "दिनचर्या सक्रिय करें",
@@ -1032,7 +1034,8 @@
     "Regular": "ठीक",
     "Mal": "खराब",
     "Muy mal": "बहुत खराब",
-    "Adjuntar fotos": "फ़ोटो जोड़ें"
+    "Adjuntar fotos": "फ़ोटो जोड़ें",
+    "Nuevo récord": "नया व्यक्तिगत रिकॉर्ड"
   },
   "ar": {
     "Activar rutina": "تفعيل الروتين",
@@ -1377,7 +1380,8 @@
     "Regular": "متوسط",
     "Mal": "سيئ",
     "Muy mal": "سيئ جدًا",
-    "Adjuntar fotos": "إرفاق صور"
+    "Adjuntar fotos": "إرفاق صور",
+    "Nuevo récord": "رقم قياسي شخصي جديد"
   },
   "de": {
     "Activar rutina": "Trainingsplan aktivieren",
@@ -1722,7 +1726,8 @@
     "Regular": "Mittelmäßig",
     "Mal": "Schlecht",
     "Muy mal": "Sehr schlecht",
-    "Adjuntar fotos": "Fotos anhängen"
+    "Adjuntar fotos": "Fotos anhängen",
+    "Nuevo récord": "Neuer persönlicher Rekord"
   },
   "it": {
     "Activar rutina": "Attiva routine",
@@ -2067,7 +2072,8 @@
     "Regular": "Così così",
     "Mal": "Male",
     "Muy mal": "Molto male",
-    "Adjuntar fotos": "Allega foto"
+    "Adjuntar fotos": "Allega foto",
+    "Nuevo récord": "Nuovo record personale"
   },
   "pt": {
     "Activar rutina": "Ativar rotina",
@@ -2412,7 +2418,8 @@
     "Regular": "Regular",
     "Mal": "Mal",
     "Muy mal": "Muito mal",
-    "Adjuntar fotos": "Anexar fotos"
+    "Adjuntar fotos": "Anexar fotos",
+    "Nuevo récord": "Novo recorde pessoal"
   },
   "en": {
     "Sexo": "Sex",
@@ -2607,6 +2614,7 @@
     "Regular": "Okay",
     "Mal": "Badly",
     "Muy mal": "Very badly",
-    "Adjuntar fotos": "Attach photos"
+    "Adjuntar fotos": "Attach photos",
+    "Nuevo récord": "New personal record"
   }
 }

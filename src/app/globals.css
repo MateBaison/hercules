@@ -857,6 +857,17 @@ label input[type="checkbox"] {
   padding: 0 5px;
   min-width: 0;
 }
+.personal-record-row {
+  background: #facc1514;
+  outline: 1px solid #facc1570;
+  border-radius: 10px;
+}
+.personal-record-history {
+  background: #facc1514;
+  border-inline-start: 3px solid #facc15;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
 .previous-set {
   min-height: 50px;
   padding: 5px;

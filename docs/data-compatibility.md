@@ -37,6 +37,8 @@ In-workout exercise replacement only edits the active workout. Entered/done sets
 
 ## Weekly training time
 
+Personal record highlights are derived from recorded sets for the same exercise and metric before the workout/session date. They indicate a higher historical load, or more repetitions/seconds at an equivalent load (converted between kg/lb with a 0.05 kg tolerance). Ties, untouched defaults, unknown aggregate-only history and a first performance are not records. Earlier valid sets in the current exercise also become comparison points. No record flags or calculated values are written into historical snapshots.
+
 Sessions may store an optional `rating` (`excellent`, `good`, `okay`, `bad`, `very_bad`) selected when finishing or editing a workout. Existing sessions remain unselected; historical unknown values are preserved until explicitly replaced. Ratings remain private account data and are not added to routine shares or workout posters.
 
 Session `duration` retains its historical unit, minutes. New completed workouts record elapsed time from `workout.started` to saving, including rests and time with the app in the background. Unknown historical durations remain null/absent and are explicitly excluded from weekly time totals. Calendar copies retain their existing null-duration behavior. Week boundaries and daily grouping use local dates, Monday through Sunday.
