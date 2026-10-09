@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useApp } from "@/state/app-provider";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { NumericInput } from "@/components/ui/numeric-input";
 import {
   calorieMetrics,
   calorieTargets,
@@ -138,7 +138,7 @@ export function CalculatorsScreen() {
               </label>
               <label>
                 {t("Edad", "Age")}
-                <Input
+                <NumericInput
                   type="number"
                   value={age}
                   onChange={(event) => setAge(Number(event.target.value))}
@@ -147,7 +147,7 @@ export function CalculatorsScreen() {
               <label>
                 {t("Peso (", "Weight (")}
                 {units.weight ?? "kg"})
-                <Input
+                <NumericInput
                   type="number"
                   step="0.1"
                   value={weight}
@@ -157,7 +157,7 @@ export function CalculatorsScreen() {
               <label>
                 {t("Altura (", "Height (")}
                 {units.height ?? "cm"})
-                <Input
+                <NumericInput
                   type="number"
                   step="0.1"
                   value={height}
@@ -191,7 +191,7 @@ export function CalculatorsScreen() {
                 <label>
                   {t("Peso deseado (", "Target weight (")}
                   {units.weight ?? "kg"})
-                  <Input
+                  <NumericInput
                     type="number"
                     step="0.1"
                     value={target}
@@ -205,7 +205,7 @@ export function CalculatorsScreen() {
             <>
               <label>
                 {t("Objetivo diario (kcal)", "Daily target (kcal)")}
-                <Input
+                <NumericInput
                   type="number"
                   value={calories}
                   onChange={(event) => setCalories(Number(event.target.value))}
@@ -213,7 +213,7 @@ export function CalculatorsScreen() {
               </label>
               <label>
                 {t("Comidas por día", "Meals per day")}
-                <Input
+                <NumericInput
                   type="number"
                   value={meals}
                   onChange={(event) => setMeals(Number(event.target.value))}
@@ -246,7 +246,7 @@ export function CalculatorsScreen() {
               <label>
                 {t("Peso levantado (", "Lifted weight (")}
                 {units.weight ?? "kg"})
-                <Input
+                <NumericInput
                   type="number"
                   step="0.1"
                   value={load}
@@ -255,7 +255,7 @@ export function CalculatorsScreen() {
               </label>
               <label>
                 {t("Repeticiones (1–10)", "Repetitions (1–10)")}
-                <Input
+                <NumericInput
                   type="number"
                   value={reps}
                   onChange={(event) => setReps(Number(event.target.value))}

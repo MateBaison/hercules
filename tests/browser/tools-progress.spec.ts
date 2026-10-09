@@ -186,6 +186,33 @@ test("progress renders empty-state analytics without removed time totals", async
   ).toBe(true);
 });
 
+test("numeric settings allow clearing and replacing the whole value", async ({
+  page,
+}) => {
+  await page.getByRole("button", { name: "Combate", exact: true }).click();
+  const rounds = page.getByLabel("Rondas", { exact: true });
+  await rounds.fill("");
+  await expect(rounds).toHaveValue("");
+  await rounds.fill("3");
+  await expect(rounds).toHaveValue("3");
+  await page.getByLabel("Trabajo (seg)", { exact: true }).click();
+  await expect(rounds).toHaveValue("3");
+  await rounds.fill("");
+  await page.getByLabel("Trabajo (seg)", { exact: true }).click();
+  await expect(rounds).toHaveValue("3");
+  await page.getByRole("button", { name: "Tracking", exact: true }).click();
+  const prep = page.getByLabel("Preparación inicial (seg)", { exact: true });
+  await prep.fill("");
+  await expect(prep).toHaveValue("");
+  await prep.fill("3");
+  await expect(prep).toHaveValue("3");
+  await page.getByRole("button", { name: "Calculadoras", exact: true }).click();
+  const age = page.getByLabel("Edad", { exact: true });
+  await age.fill("");
+  await expect(age).toHaveValue("");
+  await age.fill("33");
+  await expect(age).toHaveValue("33");
+});
 test("timer plays its end signal once", async ({ page }) => {
   await page.evaluate(() => {
     const counted = window as typeof window & { timerTones: number };

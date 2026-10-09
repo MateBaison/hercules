@@ -7,6 +7,7 @@ import { combatPresets, timeFormat, type CombatConfig } from "@/domain/combat";
 import { routePoints } from "@/domain/tracking";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { NumericInput } from "@/components/ui/numeric-input";
 export function ClocksScreen() {
   const [editingTimer, setEditingTimer] = useState(false);
   const [duration, setDuration] = useState({
@@ -260,7 +261,7 @@ export function ClocksScreen() {
                       index
                     ]!,
                   )}
-                  <Input
+                  <NumericInput
                     type="number"
                     min={field === "rounds" || field === "work" ? 1 : 0}
                     max={
@@ -312,7 +313,7 @@ export function ClocksScreen() {
           </div>
           <label>
             {t("Preparación inicial (seg)", "Initial preparation (sec)")}
-            <Input
+            <NumericInput
               type="number"
               min={0}
               max={600}

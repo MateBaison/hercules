@@ -78,11 +78,11 @@ export function SessionExtras({
         <div className="grid grid-cols-5 gap-2">
           {(
             [
-              ["excellent", "🤩", "Muy bien", "Very well"],
-              ["good", "😊", "Bien", "Well"],
-              ["okay", "😐", "Regular", "Okay"],
-              ["bad", "😕", "Mal", "Badly"],
               ["very_bad", "😣", "Muy mal", "Very badly"],
+              ["bad", "😕", "Mal", "Badly"],
+              ["okay", "😐", "Regular", "Okay"],
+              ["good", "😊", "Bien", "Well"],
+              ["excellent", "🤩", "Muy bien", "Very well"],
             ] as const
           ).map(([rating, emoji, es, en]) => (
             <Button
@@ -115,7 +115,7 @@ export function SessionExtras({
       <div className="form-grid">
         {(["bodyWeightStartKg", "bodyWeightEndKg"] as const).map(
           (key, index) => (
-            <label key={key}>
+            <label key={key} className="flex flex-col gap-2">
               {t(
                 index ? "Peso corporal final" : "Peso corporal inicial",
                 index ? "Final body weight" : "Initial body weight",

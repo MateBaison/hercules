@@ -11,7 +11,7 @@ import {
   type Entry,
 } from "@/domain/workouts";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { NumericInput } from "@/components/ui/numeric-input";
 import { AppDialog } from "@/components/ui/app-dialog";
 import { ExerciseVisual } from "@/features/exercises/exercise-visual";
 import { ExerciseDetails } from "@/features/exercises/exercise-details";
@@ -264,7 +264,7 @@ export function WorkoutScreen() {
             <Switch.Thumb className="routine-switch-thumb" />
           </Switch.Root>
           <label className="workout-rest-duration">
-            <Input
+            <NumericInput
               aria-label={t("Segundos", "Seconds")}
               type="number"
               min={5}
