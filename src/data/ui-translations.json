@@ -344,7 +344,11 @@
     "Muy mal": "Très mal",
     "Adjuntar fotos": "Joindre des photos",
     "Nuevo récord": "Nouveau record personnel",
-    "Rep": "Rép"
+    "Rep": "Rép",
+    "Semana anterior": "Semaine précédente",
+    "Semana siguiente": "Semaine suivante",
+    "Elegir semana": "Choisir une semaine",
+    "Semana actual": "Semaine actuelle"
   },
   "zh": {
     "Activar rutina": "启用计划",
@@ -691,7 +695,11 @@
     "Muy mal": "非常不好",
     "Adjuntar fotos": "添加照片",
     "Nuevo récord": "新个人纪录",
-    "Rep": "次数"
+    "Rep": "次数",
+    "Semana anterior": "上一周",
+    "Semana siguiente": "下一周",
+    "Elegir semana": "选择周",
+    "Semana actual": "本周"
   },
   "hi": {
     "Activar rutina": "दिनचर्या सक्रिय करें",
@@ -1038,7 +1046,11 @@
     "Muy mal": "बहुत खराब",
     "Adjuntar fotos": "फ़ोटो जोड़ें",
     "Nuevo récord": "नया व्यक्तिगत रिकॉर्ड",
-    "Rep": "रेप"
+    "Rep": "रेप",
+    "Semana anterior": "पिछला सप्ताह",
+    "Semana siguiente": "अगला सप्ताह",
+    "Elegir semana": "सप्ताह चुनें",
+    "Semana actual": "वर्तमान सप्ताह"
   },
   "ar": {
     "Activar rutina": "تفعيل الروتين",
@@ -1385,7 +1397,11 @@
     "Muy mal": "سيئ جدًا",
     "Adjuntar fotos": "إرفاق صور",
     "Nuevo récord": "رقم قياسي شخصي جديد",
-    "Rep": "تكرار"
+    "Rep": "تكرار",
+    "Semana anterior": "الأسبوع السابق",
+    "Semana siguiente": "الأسبوع التالي",
+    "Elegir semana": "اختر الأسبوع",
+    "Semana actual": "الأسبوع الحالي"
   },
   "de": {
     "Activar rutina": "Trainingsplan aktivieren",
@@ -1732,7 +1748,11 @@
     "Muy mal": "Sehr schlecht",
     "Adjuntar fotos": "Fotos anhängen",
     "Nuevo récord": "Neuer persönlicher Rekord",
-    "Rep": "Wdh"
+    "Rep": "Wdh",
+    "Semana anterior": "Vorherige Woche",
+    "Semana siguiente": "Nächste Woche",
+    "Elegir semana": "Woche auswählen",
+    "Semana actual": "Aktuelle Woche"
   },
   "it": {
     "Activar rutina": "Attiva routine",
@@ -2079,7 +2099,11 @@
     "Muy mal": "Molto male",
     "Adjuntar fotos": "Allega foto",
     "Nuevo récord": "Nuovo record personale",
-    "Rep": "Rip"
+    "Rep": "Rip",
+    "Semana anterior": "Settimana precedente",
+    "Semana siguiente": "Settimana successiva",
+    "Elegir semana": "Scegli settimana",
+    "Semana actual": "Settimana attuale"
   },
   "pt": {
     "Activar rutina": "Ativar rotina",
@@ -2426,7 +2450,11 @@
     "Muy mal": "Muito mal",
     "Adjuntar fotos": "Anexar fotos",
     "Nuevo récord": "Novo recorde pessoal",
-    "Rep": "Rep"
+    "Rep": "Rep",
+    "Semana anterior": "Semana anterior",
+    "Semana siguiente": "Próxima semana",
+    "Elegir semana": "Escolher semana",
+    "Semana actual": "Semana atual"
   },
   "en": {
     "Sexo": "Sex",
@@ -2623,6 +2651,10 @@
     "Muy mal": "Very badly",
     "Adjuntar fotos": "Attach photos",
     "Nuevo récord": "New personal record",
-    "Rep": "Reps"
+    "Rep": "Reps",
+    "Semana anterior": "Previous week",
+    "Semana siguiente": "Next week",
+    "Elegir semana": "Choose week",
+    "Semana actual": "Current week"
   }
 }

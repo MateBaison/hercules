@@ -697,6 +697,74 @@ test("exercise replacement preserves logged sets and offers a time-based alterna
   ).toHaveValue("30");
 });
 
+test("weekly summary can select earlier weeks and return to the current week", async ({
+  page,
+}) => {
+  const dates = await page.evaluate(() => {
+    const key = "mrgymson-user-11111111-1111-4111-8111-111111111111";
+    const snapshot = JSON.parse(localStorage.getItem(key)!);
+    const now = new Date();
+    const monday = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      12,
+    );
+    monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+    const previous = new Date(monday);
+    previous.setDate(previous.getDate() - 7);
+    snapshot.sessions = [
+      {
+        id: "this-week",
+        date: now.toISOString(),
+        routine: "R",
+        day: "D",
+        duration: 30,
+      },
+      {
+        id: "last-week",
+        date: previous.toISOString(),
+        routine: "R",
+        day: "D",
+        duration: 90,
+      },
+    ];
+    localStorage.setItem(key, JSON.stringify(snapshot));
+    const metaKey = key + ":sync-meta-v1";
+    const meta = JSON.parse(localStorage.getItem(metaKey)!);
+    localStorage.setItem(metaKey, JSON.stringify({ ...meta, pending: true }));
+    const keyFor = (d: Date) =>
+      `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    return { current: keyFor(monday), previous: keyFor(previous) };
+  });
+  await page.reload();
+  await expect(page.locator('[data-sync-status="synced"]')).toBeAttached();
+  await page.goto("/progress");
+  const summary = page.getByRole("region", {
+    name: "Resumen semanal",
+    exact: true,
+  });
+  await expect(summary).toContainText("0 h 30 min");
+  await page
+    .getByRole("button", { name: "Semana anterior", exact: true })
+    .click();
+  await expect(summary).toContainText("1 h 30 min");
+  await expect(page.getByLabel("Elegir semana", { exact: true })).toHaveValue(
+    dates.previous,
+  );
+  await page
+    .getByRole("button", { name: "Semana siguiente", exact: true })
+    .click();
+  await expect(summary).toContainText("0 h 30 min");
+  await page.getByLabel("Elegir semana", { exact: true }).fill(dates.previous);
+  await expect(summary).toContainText("1 h 30 min");
+  await page
+    .getByRole("button", { name: "Semana actual", exact: true })
+    .click();
+  await expect(page.getByLabel("Elegir semana", { exact: true })).toHaveValue(
+    dates.current,
+  );
+});
 test("weekly summary and translated screens fit a narrow viewport", async ({
   page,
 }) => {

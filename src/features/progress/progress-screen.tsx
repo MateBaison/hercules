@@ -2,7 +2,9 @@
 import { localeFor } from "@/data/translations";
 import { useState } from "react";
 import { useApp } from "@/state/app-provider";
-import { catalogFor } from "@/domain/workouts";
+import { catalogFor, localDateKey, validDateKey } from "@/domain/workouts";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import {
   comparable,
   exerciseHistories,
@@ -17,9 +19,15 @@ import { shareWorkoutPoster } from "@/features/sharing/workout-poster";
 export function ProgressScreen() {
   const { snapshot, change, t, notify } = useApp(),
     [window, setWindow] = useState(4),
-    [selected, setSelected] = useState("");
+    [selected, setSelected] = useState(""),
+    [summaryDate, setSummaryDate] = useState(() => new Date());
   const locale = localeFor(snapshot.settings.language);
-  const summary = weeklySummary(snapshot);
+  const summary = weeklySummary(snapshot, summaryDate);
+  const moveWeek = (offset: number) => {
+    const next = new Date(summary.start);
+    next.setDate(next.getDate() + offset * 7);
+    setSummaryDate(next);
+  };
   const duration = (minutes: number) =>
     `${Math.floor(Math.round(minutes) / 60)} h ${Math.round(minutes) % 60} min`;
   const history = exerciseHistories(snapshot),
@@ -78,10 +86,49 @@ export function ProgressScreen() {
         <h2 id="weekly-summary-title">
           {t("Resumen semanal", "Weekly summary")}
         </h2>
+        <div className="my-3 flex flex-wrap items-center gap-2">
+          <Button
+            type="button"
+            variant="secondary"
+            size="icon"
+            aria-label={t("Semana anterior", "Previous week")}
+            onClick={() => moveWeek(-1)}
+          >
+            <ChevronLeft aria-hidden="true" />
+          </Button>
+          <Input
+            type="date"
+            className="w-auto min-w-0 flex-1"
+            aria-label={t("Elegir semana", "Choose week")}
+            value={localDateKey(summary.start)}
+            onChange={(event) => {
+              if (validDateKey(event.target.value))
+                setSummaryDate(new Date(`${event.target.value}T12:00:00`));
+            }}
+          />
+          <Button
+            type="button"
+            variant="secondary"
+            size="icon"
+            aria-label={t("Semana siguiente", "Next week")}
+            onClick={() => moveWeek(1)}
+          >
+            <ChevronRight aria-hidden="true" />
+          </Button>
+          <Button
+            type="button"
+            variant="ghost"
+            className="text-xs"
+            onClick={() => setSummaryDate(new Date())}
+          >
+            {t("Semana actual", "Current week")}
+          </Button>
+        </div>
         <p className="text-sm text-muted-foreground">
           {summary.start.toLocaleDateString(locale, {
             day: "numeric",
             month: "long",
+            year: "numeric",
           })}{" "}
           · {t("Semana de lunes a domingo", "Monday to Sunday")}
         </p>

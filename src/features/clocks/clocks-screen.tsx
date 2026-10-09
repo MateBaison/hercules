@@ -280,7 +280,7 @@ export function ClocksScreen() {
               ),
             )}
           </div>
-          <div className="flex justify-center gap-3">
+          <div className="mt-5 flex justify-center gap-3">
             <Button onClick={clock.toggleCombat}>
               {combat.state.running
                 ? t("Pausar", "Pause")
