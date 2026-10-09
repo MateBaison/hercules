@@ -884,6 +884,35 @@ label input[type="checkbox"] {
   border-radius: 6px;
   padding: 6px 8px;
 }
+.calendar-session-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: 16px;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.calendar-workout > summary {
+  display: block;
+  text-align: start;
+  padding: 12px 0 12px 12px;
+}
+.calendar-workout > summary > strong {
+  overflow-wrap: anywhere;
+}
+.calendar-session-routine {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--muted-foreground);
+}
+@media (max-width: 360px) {
+  .calendar-session-summary {
+    column-gap: 10px;
+    font-size: 0.7rem;
+  }
+}
 .previous-set {
   min-height: 50px;
   padding: 5px;

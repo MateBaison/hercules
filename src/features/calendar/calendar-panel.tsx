@@ -233,15 +233,18 @@ export function CalendarPanel() {
                   }
                 </span>
               )}
-              <small className="block text-muted-foreground">
-                {session.routine}
-              </small>
-              <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm font-normal">
+              <div className="calendar-session-summary">
+                <span
+                  className="calendar-session-routine"
+                  title={session.routine}
+                >
+                  {session.routine}
+                </span>
                 <span>
                   {t("Tiempo", "Time")}:{" "}
                   {session.duration == null
                     ? t("Sin registro", "Not recorded")
-                    : `${Math.floor(session.duration / 60)} h ${Math.round(session.duration % 60)} min`}
+                    : `${session.duration >= 60 ? `${Math.floor(session.duration / 60)} h ` : ""}${Math.round(session.duration % 60)} min`}
                 </span>
                 <span>
                   {t("Volumen", "Volume")}:{" "}

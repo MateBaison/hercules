@@ -137,11 +137,15 @@ test("workout autosave, image dialog, rest across navigation, finish and calenda
   await page.locator(`[data-calendar-date="${today}"]`).click();
   await expect(page.locator(".calendar-workout summary")).toContainText("🤩");
   await expect(page.locator(".calendar-workout summary")).toContainText(
-    /Tiempo: \d+ h \d+ min/,
+    /Tiempo: (?:\d+ h )?\d+ min/,
   );
   await expect(page.locator(".calendar-workout summary")).toContainText(
     /Volumen: [\d.,\s]+ kg/,
   );
+  await page.screenshot({
+    path: `artifacts/calendar-summary-${info.project.name}.png`,
+    animations: "disabled",
+  });
   await page.locator(".calendar-workout summary").click();
   await expect(page.locator(".calendar-workout")).toContainText(
     "20 kg × 12 reps",
