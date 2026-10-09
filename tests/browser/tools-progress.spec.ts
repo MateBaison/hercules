@@ -238,3 +238,65 @@ test("timer duration can be edited from the clock", async ({ page }) => {
     "02:45",
   );
 });
+
+test("running clocks request screen wake lock and release it when paused", async ({
+  page,
+}) => {
+  await page.evaluate(() => {
+    const state = { requests: 0, releases: 0, deny: false };
+    Object.assign(window, { wakeLockTest: state });
+    Object.defineProperty(navigator, "wakeLock", {
+      configurable: true,
+      value: {
+        request: async () => {
+          state.requests++;
+          if (state.deny)
+            throw new DOMException("Battery policy", "NotAllowedError");
+          const sentinel = Object.assign(new EventTarget(), {
+            released: false,
+            release: async () => {
+              if (!sentinel.released) {
+                sentinel.released = true;
+                state.releases++;
+                sentinel.dispatchEvent(new Event("release"));
+              }
+            },
+          });
+          return sentinel;
+        },
+      },
+    });
+  });
+  const counts = () =>
+    page.evaluate(
+      () =>
+        (
+          window as unknown as {
+            wakeLockTest: { requests: number; releases: number; deny: boolean };
+          }
+        ).wakeLockTest,
+    );
+  await page.getByRole("button", { name: "Iniciar", exact: true }).click();
+  await expect.poll(async () => (await counts()).requests).toBe(1);
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: "Inicio", exact: true })
+    .click();
+  expect((await counts()).releases).toBe(0);
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: "Herramientas", exact: true })
+    .click();
+  await page.getByRole("button", { name: "Pausar", exact: true }).click();
+  await expect.poll(async () => (await counts()).releases).toBe(1);
+  await page.evaluate(() => {
+    (
+      window as unknown as { wakeLockTest: { deny: boolean } }
+    ).wakeLockTest.deny = true;
+  });
+  await page.getByRole("button", { name: "Iniciar", exact: true }).click();
+  await expect.poll(async () => (await counts()).requests).toBe(2);
+  await expect(
+    page.getByRole("button", { name: "Pausar", exact: true }),
+  ).toBeVisible();
+});

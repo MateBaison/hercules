@@ -5,6 +5,7 @@ import {
   type CombatConfig,
   type CombatSignal,
 } from "@/domain/combat";
+import { useScreenWakeLock } from "@/lib/browser/use-screen-wake-lock";
 import { CombatAudio } from "@/lib/browser/combat-audio";
 import { haversine, type Point } from "@/domain/tracking";
 import { useApp } from "@/state/app-provider";
@@ -65,6 +66,13 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
     watch = useRef<number | null>(null),
     muted = useRef(false),
     trackRef = useRef(track);
+  useScreenWakeLock(
+    sw.running ||
+      timer.running ||
+      combat.current.state.running ||
+      track.running ||
+      track.preparing,
+  );
   muted.current = snapshot.settings.combatSound === false;
   trackRef.current = track;
   const signal = (signals: CombatSignal[]) => {
