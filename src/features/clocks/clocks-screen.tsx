@@ -15,7 +15,7 @@ export function ClocksScreen() {
     seconds: "30",
   });
   const clock = useClock(),
-    { snapshot, change, t } = useApp(),
+    { snapshot, t } = useApp(),
     combat = clock.combat,
     phase = combat.state.phase;
   const elapsed = clock.sw.running
@@ -279,21 +279,6 @@ export function ClocksScreen() {
               ),
             )}
           </div>
-          <label className="my-5 flex items-center gap-3">
-            <input
-              type="checkbox"
-              checked={snapshot.settings.combatSound !== false}
-              onChange={(event) =>
-                change((draft) => {
-                  draft.settings.combatSound = event.target.checked;
-                })
-              }
-            />
-            {t(
-              "Sonido: inicio de round, últimos 15 segundos y final",
-              "Sound: round start, final 15 seconds and end",
-            )}
-          </label>
           <div className="flex justify-center gap-3">
             <Button onClick={clock.toggleCombat}>
               {combat.state.running

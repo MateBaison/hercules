@@ -41,7 +41,7 @@ type ClockContext = {
 };
 const Context = createContext<ClockContext | null>(null);
 export function ClockProvider({ children }: { children: React.ReactNode }) {
-  const { snapshot, notify } = useApp(),
+  const { notify } = useApp(),
     [now, setNow] = useState(Date.now()),
     [section, setSection] = useState("stopwatch"),
     [sw, setSw] = useState({ running: false, elapsed: 0, started: 0 }),
@@ -64,7 +64,6 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
   const combat = useRef(new CombatMachine()),
     audio = useRef(new CombatAudio()),
     watch = useRef<number | null>(null),
-    muted = useRef(false),
     trackRef = useRef(track);
   useScreenWakeLock(
     sw.running ||
@@ -73,13 +72,11 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
       track.running ||
       track.preparing,
   );
-  muted.current = snapshot.settings.combatSound === false;
   trackRef.current = track;
   const signal = (signals: CombatSignal[]) => {
-    if (!muted.current)
-      signals.forEach((signal) => {
-        void audio.current.play(signal).catch(() => {});
-      });
+    signals.forEach((signal) => {
+      void audio.current.play(signal).catch(() => {});
+    });
   };
   const stopWatch = () => {
     if (watch.current !== null)

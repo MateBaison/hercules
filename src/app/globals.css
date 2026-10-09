@@ -1013,6 +1013,25 @@ strong {
   grid-column: 1;
   grid-row: 1;
 }
+.app-header-section::before,
+.bottom-nav::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+}
+.app-header-section::before {
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+.bottom-nav::before {
+  background: #10131bf5;
+  border-top: 1px solid var(--border);
+}
 .app-header-section .header-actions {
   grid-column: 3;
   grid-row: 1;
