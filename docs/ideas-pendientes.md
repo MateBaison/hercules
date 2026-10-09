@@ -10,10 +10,8 @@ Estas ideas fueron solicitadas para el futuro. No implementarlas hasta que se pi
 
 - Series descendentes: agrupar los tramos de una misma serie, conservar carga y repeticiones de cada tramo y permitir indicar cuánto se reduce el peso. El tipo actual identifica cada fila, pero no agrupa automáticamente los tramos ni anula el descanso entre ellos.
 - Tipos de serie en historial y edición: mostrar las letras y colores que ya se guardan, permitir cambiar el tipo sin alterar las repeticiones y distinguir calentamientos de series de trabajo en los análisis.
-- Leyenda del calendario: explicar que el fondo representa los colores elegidos para las sesiones, que los puntos actuales representan colores diferentes y que el borde violeta señala entrenamiento con sangrado registrado. Los colores no tienen una categoría muscular fija.
 - Esfuerzo percibido por serie (RPE o repeticiones en reserva) para comparar el esfuerzo además de la carga.
 - Récords personales por ejercicio y métrica, evitando comparar segundos con repeticiones o máquinas diferentes.
-- Objetivo de duración para una sesión y aviso opcional cuando se alcanza.
 - Registro breve de molestias por ejercicio para reconocer patrones en el historial, sin diagnósticos automáticos.
 - Exportación de un resumen de progreso que omita fotos, datos de contacto y registros menstruales.
 
