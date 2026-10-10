@@ -6,7 +6,7 @@ HERCULES is a fitness application migrated from a hosted HTML app to a server-re
 
 - Bun 1.4.2 is the package manager and unit-test runner; use `bun.lock` and `bun install --frozen-lockfile`.
 - Next.js 16.3.8, React 19.2.8, strict TypeScript with `noUncheckedIndexedAccess`, and the `@/*` alias for `src/*`.
-- Tailwind CSS 4, shadcn/ui with Base UI (`base-nova`), Lucide icons, Zod 4, Leaflet 1.9.4 and Supabase SSR/browser clients.
+- Tailwind CSS 4, shadcn/ui with Base UI (`base-nova`), Lucide icons, Zod 4, Leaflet 1.9.4 with MapLibre/OpenFreeMap and Supabase SSR/browser clients.
 - Start locally with `bun run dev --hostname localhost --port 3000`. Node.js 20.9+ is required. Optional `.tools/` runtimes are machine-specific and ignored.
 - Use `bun run typecheck`, `bun run test` (unit tests), `bun run build`, and `bun run baseline:verify` as appropriate for the change. There is no lint script.
 - `bun run format` formats all source, scripts, tests and the Next.js/Playwright configs; prefer formatting only changed files for small changes.

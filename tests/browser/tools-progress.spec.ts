@@ -209,6 +209,80 @@ test("progress renders empty-state analytics without removed time totals", async
   ).toBe(true);
 });
 
+test("tracking locates automatically and renders a basemap without symbols", async ({
+  page,
+}) => {
+  await page.route("https://tiles.openfreemap.org/styles/positron", (route) =>
+    route.fulfill({
+      json: {
+        version: 8,
+        sources: {
+          streets: {
+            type: "geojson",
+            data: {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "LineString",
+                coordinates: [
+                  [13, 52],
+                  [13.001, 52.001],
+                ],
+              },
+            },
+          },
+        },
+        layers: [
+          {
+            id: "background",
+            type: "background",
+            paint: { "background-color": "#e9eef0" },
+          },
+          {
+            id: "road",
+            type: "line",
+            source: "streets",
+            paint: { "line-color": "#fff" },
+          },
+          { id: "hidden-label", type: "symbol", source: "not-requested" },
+        ],
+      },
+    }),
+  );
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, "geolocation", {
+      configurable: true,
+      value: {
+        getCurrentPosition: (success: (position: unknown) => void) => {
+          (window as unknown as { locationRequests: number }).locationRequests =
+            ((window as unknown as { locationRequests: number })
+              .locationRequests ?? 0) + 1;
+          success({ coords: { latitude: 52, longitude: 13 } });
+        },
+      },
+    });
+  });
+  await page.getByRole("button", { name: "Tracking", exact: true }).click();
+  await expect(page.locator('.route-map path[fill="#38bdf8"]')).toHaveAttribute(
+    "fill-opacity",
+    "1",
+  );
+  expect(
+    await page.evaluate(
+      () =>
+        (window as unknown as { locationRequests: number }).locationRequests,
+    ),
+  ).toBe(1);
+  await expect(page.locator(".route-map canvas")).toBeVisible();
+  await expect(page.locator(".route-map")).toHaveAttribute(
+    "data-basemap-ready",
+    "true",
+  );
+  await expect(page.locator(".route-map")).toContainText("OpenFreeMap");
+  await expect(
+    page.getByText("El mapa de calles no pudo cargarse.", { exact: false }),
+  ).toHaveCount(0);
+});
 test("numeric settings allow clearing and replacing the whole value", async ({
   page,
 }) => {

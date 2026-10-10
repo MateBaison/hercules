@@ -337,6 +337,7 @@ export function ClocksScreen() {
             key={track.saved ? "saved" : "active"}
             points={track.points}
             live={track.running}
+            locateOnOpen
           />
           {track.error && <p role="alert">{track.error}</p>}
           <div className="metric-grid">
