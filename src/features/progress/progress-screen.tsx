@@ -117,7 +117,7 @@ export function ProgressScreen() {
           </Button>
           <Button
             type="button"
-            variant="ghost"
+            variant="outline"
             className="text-xs"
             onClick={() => setSummaryDate(new Date())}
           >

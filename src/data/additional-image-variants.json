@@ -1,0 +1,14 @@
+{
+  "plancha-lateral": {
+    "hombre": "exercises/additions/plancha-lateral-masculino.jpg",
+    "mujer": "exercises/additions/plancha-lateral-femenino.jpg"
+  },
+  "lumbares-superman": {
+    "hombre": "exercises/additions/lumbares-superman-masculino.jpg",
+    "mujer": "exercises/additions/lumbares-superman-femenino.jpg"
+  },
+  "lumbares-cruzados": {
+    "hombre": "exercises/additions/lumbares-cruzados-masculino.jpg",
+    "mujer": "exercises/additions/lumbares-cruzados-femenino.jpg"
+  }
+}

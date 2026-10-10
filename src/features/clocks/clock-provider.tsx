@@ -7,7 +7,7 @@ import {
 } from "@/domain/combat";
 import { useScreenWakeLock } from "@/lib/browser/use-screen-wake-lock";
 import { CombatAudio } from "@/lib/browser/combat-audio";
-import { haversine, type Point } from "@/domain/tracking";
+import { haversine, recordedRoute, type Point } from "@/domain/tracking";
 import { useApp } from "@/state/app-provider";
 type Track = {
   mode: "run" | "cycle";
@@ -20,6 +20,7 @@ type Track = {
   distance: number;
   points: Point[];
   error: string;
+  saved: boolean;
 };
 type ClockContext = {
   now: number;
@@ -41,7 +42,7 @@ type ClockContext = {
 };
 const Context = createContext<ClockContext | null>(null);
 export function ClockProvider({ children }: { children: React.ReactNode }) {
-  const { notify } = useApp(),
+  const { notify, change, t } = useApp(),
     [now, setNow] = useState(Date.now()),
     [section, setSection] = useState("stopwatch"),
     [sw, setSw] = useState({ running: false, elapsed: 0, started: 0 }),
@@ -60,6 +61,7 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
     distance: 0,
     points: [],
     error: "",
+    saved: false,
   });
   const combat = useRef(new CombatMachine()),
     audio = useRef(new CombatAudio()),
@@ -97,7 +99,10 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
       ...previous,
       running: true,
       preparing: false,
-      started: Date.now() - previous.elapsed * 1000,
+      started: Date.now() - (previous.saved ? 0 : previous.elapsed) * 1000,
+      ...(previous.saved
+        ? { elapsed: 0, points: [], distance: 0, saved: false }
+        : {}),
       error: "",
     }));
     watch.current = navigator.geolocation.watchPosition(
@@ -106,10 +111,19 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
           lat: position.coords.latitude,
           lon: position.coords.longitude,
           time: Date.now(),
-          speed: position.coords.speed ?? 0,
+          speed: Number.isFinite(position.coords.speed)
+            ? Math.max(0, position.coords.speed ?? 0)
+            : 0,
         };
-        if (!Number.isFinite(point.lat) || !Number.isFinite(point.lon)) return;
+        if (
+          !Number.isFinite(point.lat) ||
+          !Number.isFinite(point.lon) ||
+          Math.abs(point.lat) > 90 ||
+          Math.abs(point.lon) > 180
+        )
+          return;
         setTrack((previous) => {
+          if (!previous.running) return previous;
           const last = previous.points.at(-1),
             distance = last ? haversine(last, point) : 0;
           return {
@@ -260,10 +274,22 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
             setTrack((previous) => ({ ...previous, preparing: false }));
           else if (track.running) {
             stopWatch();
+            const current = trackRef.current;
+            if (!current.running) return;
+            trackRef.current = { ...current, running: false };
+            let saved = false;
+            if (current.points.length >= 2 && Date.now() > current.started) {
+              const record = recordedRoute(current, Date.now());
+              saved = change((draft) => {
+                (draft.trackingSessions ??= []).unshift(record);
+              });
+              if (saved) notify(t("Recorrido guardado", "Route saved"));
+            }
             setTrack((previous) => ({
               ...previous,
               running: false,
               elapsed: Math.floor((Date.now() - previous.started) / 1000),
+              saved,
             }));
           } else if (track.prep > 0)
             setTrack((previous) => ({
@@ -284,6 +310,8 @@ export function ClockProvider({ children }: { children: React.ReactNode }) {
             distance: 0,
             points: [],
             error: "",
+            saved: false,
+            started: 0,
           }));
         },
       }}

@@ -10,11 +10,15 @@ import {
 } from "../../src/data/exercises";
 import { muscleGroups } from "../../src/domain/schemas/exercise";
 import retired from "../../src/data/legacy/retired.json";
+import legacyExercises from "../../src/data/legacy/exercises.json";
 
 describe("Phase 1 catalog/asset parity", () => {
   test("retains all 136 IDs, eight groups and no retired catalog entries", () => {
-    expect(exercises).toHaveLength(136);
-    expect(new Set(exercises.map((exercise) => exercise.id)).size).toBe(136);
+    expect(exercises).toHaveLength(139);
+    expect(new Set(exercises.map((exercise) => exercise.id)).size).toBe(139);
+    expect(JSON.stringify(exercises.slice(0, 136))).toBe(
+      JSON.stringify(legacyExercises),
+    );
     expect(new Set(exercises.map((exercise) => exercise.group))).toEqual(
       new Set(muscleGroups),
     );
@@ -44,9 +48,23 @@ describe("Phase 1 catalog/asset parity", () => {
     expect(exerciseImage(exercise, "no_decirlo")).toBe(
       `/assets/${exercise.image}`,
     );
-    expect(Object.keys(imageVariants)).toHaveLength(14);
+    expect(Object.keys(imageVariants)).toHaveLength(17);
   });
   test("static holds use seconds, dynamic planks and presses use reps", () => {
+    for (const id of [
+      "plancha-lateral",
+      "lumbares-superman",
+      "lumbares-cruzados",
+    ]) {
+      const exercise = exercises.find((item) => item.id === id)!;
+      expect(exercise.tracking).toBe(
+        id === "plancha-lateral" ? "seconds" : "reps",
+      );
+      expect(exerciseImage(exercise, "hombre")).toContain(
+        `${id}-masculino.jpg`,
+      );
+      expect(exerciseImage(exercise, "mujer")).toContain(`${id}-femenino.jpg`);
+    }
     expect(
       exercises.find((exercise) => exercise.id === "plancha")?.tracking,
     ).toBe("seconds");

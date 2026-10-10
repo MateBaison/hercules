@@ -2,6 +2,8 @@ import { z } from "zod";
 import rawExercises from "./legacy/exercises.json";
 import rawMuscles from "./legacy/muscleImages.json";
 import rawVariants from "./legacy/imageVariants.json";
+import additions from "./additional-exercises.json";
+import additionalVariants from "./additional-image-variants.json";
 import {
   assetPathSchema,
   exerciseSchema,
@@ -9,16 +11,16 @@ import {
   type Exercise,
 } from "@/domain/schemas/exercise";
 
-// Captured offline from the final published catalog, not a re-created exercise list.
+// Preserve the captured catalog and append new exercises without changing historical IDs.
 export const exercises: ReadonlyArray<Exercise> = z
   .array(exerciseSchema)
-  .parse(rawExercises);
+  .parse([...rawExercises, ...additions]);
 export const muscleImages = z
   .record(muscleGroupSchema, assetPathSchema)
   .parse(rawMuscles);
 export const imageVariants = z
   .record(z.string(), z.record(z.string(), assetPathSchema))
-  .parse(rawVariants);
+  .parse({ ...rawVariants, ...additionalVariants });
 
 export function exerciseImage(exercise: Exercise, gender?: string): string {
   const variant = gender ? imageVariants[exercise.id]?.[gender] : undefined;

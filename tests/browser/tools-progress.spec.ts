@@ -79,10 +79,33 @@ test("clocks persist through navigation, combat works and GPS preparation record
     page.getByRole("button", { name: "Finalizar", exact: true }),
   ).toBeVisible();
   await page.evaluate(() => window.dispatchEvent(new Event("test-position")));
-  await expect
-    .poll(() => page.locator(".route-map polyline").getAttribute("points"))
-    .not.toBe("");
+  await expect(
+    page.locator(".route-map .leaflet-overlay-pane path").first(),
+  ).toBeAttached();
+  await expect(
+    page.locator(".route-map .leaflet-overlay-pane path").first(),
+  ).toHaveAttribute("d", /M.*L/);
+  await expect(page.locator(".route-map")).toContainText("OpenStreetMap");
   await page.getByRole("button", { name: "Finalizar", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Recorridos guardados", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: /Correr ·.*km ·/ }),
+  ).toHaveCount(1);
+  await page.reload();
+  await page.getByRole("button", { name: "Tracking", exact: true }).click();
+  await page.getByRole("button", { name: /Correr ·.*km ·/ }).click();
+  await expect(
+    page.getByRole("dialog", { name: "Recorrido guardado", exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("dialog").locator(".leaflet-overlay-pane path").first(),
+  ).toBeAttached();
+  await page.screenshot({
+    path: `artifacts/gps-route-${info.project.name}.png`,
+    animations: "disabled",
+  });
   expect(errors).toEqual([]);
   expect(
     await page.evaluate(

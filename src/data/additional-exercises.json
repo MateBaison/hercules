@@ -1,0 +1,47 @@
+[
+  {
+    "id": "plancha-lateral",
+    "name": "Plancha lateral",
+    "group": "Abdominales",
+    "equipment": "Peso corporal",
+    "pattern": "hold",
+    "level": "Inicial",
+    "steps": [
+      "Acostate de lado con las piernas extendidas y el codo debajo del hombro. Apoyá el antebrazo y el lateral del pie en la colchoneta.",
+      "Elevá la cadera hasta alinear hombro, cadera y tobillos. Mantené el abdomen firme, sin girar el tronco ni dejar caer la cintura.",
+      "Respirá durante la postura y registrá los segundos mantenidos. Bajá con control y repetí del otro lado."
+    ],
+    "image": "exercises/additions/plancha-lateral-masculino.jpg",
+    "tracking": "seconds"
+  },
+  {
+    "id": "lumbares-superman",
+    "name": "Lumbares tipo Superman",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "extension",
+    "level": "Inicial",
+    "steps": [
+      "Acostate boca abajo sobre una colchoneta con brazos extendidos hacia adelante y piernas estiradas. Mantené la mirada hacia el suelo.",
+      "Activá el abdomen y elevá suavemente ambos brazos y ambas piernas unos centímetros, manteniendo abdomen y pelvis apoyados. Evitá arquear de más la zona lumbar.",
+      "Hacé una pausa breve y bajá con control. Cada elevación y bajada cuenta como una repetición; usá un rango cómodo y detenete si aparece dolor."
+    ],
+    "image": "exercises/additions/lumbares-superman-masculino.jpg",
+    "tracking": "reps"
+  },
+  {
+    "id": "lumbares-cruzados",
+    "name": "Lumbares cruzados",
+    "group": "Espalda",
+    "equipment": "Peso corporal",
+    "pattern": "extension",
+    "level": "Inicial",
+    "steps": [
+      "Acostate boca abajo con brazos extendidos hacia adelante y piernas estiradas. Dejá abdomen y pelvis apoyados en la colchoneta.",
+      "Elevá suavemente el brazo derecho y la pierna izquierda unos centímetros, sin girar la cadera ni levantar la cabeza. Bajá con control.",
+      "Alterná con el brazo izquierdo y la pierna derecha. Cada elevación de una pareja cruzada cuenta como una repetición; evitá forzar la zona lumbar."
+    ],
+    "image": "exercises/additions/lumbares-cruzados-masculino.jpg",
+    "tracking": "reps"
+  }
+]

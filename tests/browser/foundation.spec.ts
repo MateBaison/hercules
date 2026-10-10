@@ -97,7 +97,7 @@ test("catalog groups, non-floating search, equipment filters, images, modal and 
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/library");
-  await expect(page.locator(".exercise-card")).toHaveCount(136);
+  await expect(page.locator(".exercise-card")).toHaveCount(139);
   await expect(page.locator(".muscle-summary")).toHaveCount(0);
   await page.screenshot({
     path: `artifacts/library-groups-${testInfo.project.name}.png`,
@@ -218,6 +218,43 @@ test("catalog groups, non-floating search, equipment filters, images, modal and 
   expect(errors).toEqual([]);
 });
 
+test("added core exercises expose male and female mannequin images", async ({
+  page,
+}) => {
+  for (const [gender, suffix] of [
+    ["hombre", "masculino"],
+    ["mujer", "femenino"],
+  ] as const) {
+    await page.goto("/profile");
+    await page
+      .getByRole("combobox", { name: "Género", exact: true })
+      .selectOption(gender);
+    await page
+      .getByRole("button", { name: "Guardar cambios", exact: true })
+      .click();
+    await page.goto("/library");
+    for (const [name, id] of [
+      ["Plancha lateral", "plancha-lateral"],
+      ["Lumbares tipo Superman", "lumbares-superman"],
+      ["Lumbares cruzados", "lumbares-cruzados"],
+    ]) {
+      await page.getByLabel("Buscar ejercicios", { exact: true }).fill(name!);
+      await expect(page.locator(".exercise-card")).toHaveCount(1);
+      await page
+        .getByRole("button", { name: `Ver ${name}`, exact: true })
+        .click();
+      const dialog = page.getByRole("dialog", { name: name!, exact: true });
+      await expect(dialog.locator("img")).toHaveAttribute(
+        "src",
+        `/assets/exercises/additions/${id}-${suffix}.jpg`,
+      );
+      await dialog.locator("img").evaluate(async (image) => {
+        await (image as HTMLImageElement).decode();
+      });
+      await page.keyboard.press("Escape");
+    }
+  }
+});
 test("unknown routes return 404 with a working home link", async ({ page }) => {
   const response = await page.goto("/missing-migration-route");
   expect(response?.status()).toBe(404);

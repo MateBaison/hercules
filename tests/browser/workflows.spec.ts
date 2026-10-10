@@ -437,6 +437,36 @@ test("profile dirty-only saving and units remain account-linked on a second brow
   ).toBe(true);
 });
 
+test("profile birth date and country fields fit without overlap on phones and desktop", async ({
+  page,
+}, info) => {
+  await page.goto("/profile");
+  for (const width of [320, 390, 480, 768, 1280]) {
+    await page.setViewportSize({ width, height: 844 });
+    const birth = await page
+      .getByLabel("Fecha de nacimiento", { exact: true })
+      .boundingBox();
+    const country = await page
+      .getByLabel("País", { exact: true })
+      .boundingBox();
+    expect(birth).not.toBeNull();
+    expect(country).not.toBeNull();
+    expect(
+      birth!.y + birth!.height <= country!.y ||
+        birth!.x + birth!.width <= country!.x,
+    ).toBe(true);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    if (width === 390)
+      await page.screenshot({
+        path: `artifacts/profile-spacing-${info.project.name}.png`,
+        fullPage: true,
+      });
+  }
+});
 test("profile photos can be cropped, cancelled and removed with persisted saves", async ({
   page,
 }, info) => {

@@ -4,7 +4,8 @@ import { AppDialog } from "@/components/ui/app-dialog";
 import { useClock } from "./clock-provider";
 import { useApp } from "@/state/app-provider";
 import { combatPresets, timeFormat, type CombatConfig } from "@/domain/combat";
-import { routePoints } from "@/domain/tracking";
+import { RouteMap } from "./route-map";
+import { TrackingHistory } from "./tracking-history";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { NumericInput } from "@/components/ui/numeric-input";
@@ -332,19 +333,11 @@ export function ClocksScreen() {
               {timeFormat((track.prepEnd - clock.now) / 1000)}
             </p>
           )}
-          <svg
-            viewBox="0 0 320 210"
-            className="route-map"
-            role="img"
-            aria-label={t("Ruta realizada", "Recorded route")}
-          >
-            <polyline
-              points={routePoints(track.points)}
-              fill="none"
-              stroke="#ff8a4c"
-              strokeWidth={4}
-            />
-          </svg>
+          <RouteMap
+            key={track.saved ? "saved" : "active"}
+            points={track.points}
+            live={track.running}
+          />
           {track.error && <p role="alert">{track.error}</p>}
           <div className="metric-grid">
             <div>
@@ -390,10 +383,11 @@ export function ClocksScreen() {
           </div>
           <p className="mt-4 text-sm text-muted-foreground">
             {t(
-              "La ruta queda en el reloj durante esta sesión. No es tracking nativo: el navegador puede limitar el GPS o el sonido en segundo plano.",
-              "The route stays in the clock for this session. Browser tracking may limit GPS or sound in the background.",
+              "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.",
+              "Finish the activity to save the route. Keep the app visible: the browser may limit GPS in the background.",
             )}
           </p>
+          <TrackingHistory />
         </section>
       )}
     </>

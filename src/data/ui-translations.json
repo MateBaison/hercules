@@ -348,7 +348,16 @@
     "Semana anterior": "Semaine précédente",
     "Semana siguiente": "Semaine suivante",
     "Elegir semana": "Choisir une semaine",
-    "Semana actual": "Semaine actuelle"
+    "Semana actual": "Semaine actuelle",
+    "Mapa del recorrido": "Carte du parcours",
+    "Centrar ubicación": "Centrer la position",
+    "Ver recorrido completo": "Voir le parcours complet",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "La carte des rues ne se charge pas. Le GPS et l’enregistrement du parcours restent disponibles.",
+    "Permití el acceso a tu ubicación en el navegador.": "Autorisez l’accès à votre position dans le navigateur.",
+    "Recorridos guardados": "Parcours enregistrés",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "Terminez une activité GPS pour enregistrer son parcours ici.",
+    "Recorrido guardado": "Parcours enregistré",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "Terminez l’activité pour enregistrer le parcours. Gardez l’application visible : le navigateur peut limiter le GPS en arrière-plan."
   },
   "zh": {
     "Activar rutina": "启用计划",
@@ -699,7 +708,16 @@
     "Semana anterior": "上一周",
     "Semana siguiente": "下一周",
     "Elegir semana": "选择周",
-    "Semana actual": "本周"
+    "Semana actual": "本周",
+    "Mapa del recorrido": "路线地图",
+    "Centrar ubicación": "定位到当前位置",
+    "Ver recorrido completo": "查看完整路线",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "街道地图无法加载。GPS 和路线记录仍然可用。",
+    "Permití el acceso a tu ubicación en el navegador.": "请允许浏览器访问你的位置信息。",
+    "Recorridos guardados": "已保存路线",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "结束 GPS 活动后，路线将保存在这里。",
+    "Recorrido guardado": "已保存路线",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "结束活动以保存路线。请保持应用可见：浏览器可能限制后台 GPS。"
   },
   "hi": {
     "Activar rutina": "दिनचर्या सक्रिय करें",
@@ -1050,7 +1068,16 @@
     "Semana anterior": "पिछला सप्ताह",
     "Semana siguiente": "अगला सप्ताह",
     "Elegir semana": "सप्ताह चुनें",
-    "Semana actual": "वर्तमान सप्ताह"
+    "Semana actual": "वर्तमान सप्ताह",
+    "Mapa del recorrido": "मार्ग का नक्शा",
+    "Centrar ubicación": "स्थान पर केंद्रित करें",
+    "Ver recorrido completo": "पूरा मार्ग देखें",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "सड़कों का नक्शा लोड नहीं हुआ। GPS और मार्ग रिकॉर्डिंग उपलब्ध हैं।",
+    "Permití el acceso a tu ubicación en el navegador.": "ब्राउज़र में स्थान की अनुमति दें।",
+    "Recorridos guardados": "सहेजे गए मार्ग",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "GPS गतिविधि समाप्त करने पर उसका मार्ग यहाँ सहेजा जाएगा।",
+    "Recorrido guardado": "सहेजा गया मार्ग",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "मार्ग सहेजने के लिए गतिविधि समाप्त करें। ऐप को खुला रखें: ब्राउज़र पृष्ठभूमि में GPS सीमित कर सकता है।"
   },
   "ar": {
     "Activar rutina": "تفعيل الروتين",
@@ -1401,7 +1428,16 @@
     "Semana anterior": "الأسبوع السابق",
     "Semana siguiente": "الأسبوع التالي",
     "Elegir semana": "اختر الأسبوع",
-    "Semana actual": "الأسبوع الحالي"
+    "Semana actual": "الأسبوع الحالي",
+    "Mapa del recorrido": "خريطة المسار",
+    "Centrar ubicación": "توسيط الموقع",
+    "Ver recorrido completo": "عرض المسار الكامل",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "تعذر تحميل خريطة الشوارع. يبقى GPS وتسجيل المسار متاحين.",
+    "Permití el acceso a tu ubicación en el navegador.": "اسمح بالوصول إلى موقعك في المتصفح.",
+    "Recorridos guardados": "المسارات المحفوظة",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "أنهِ نشاط GPS لحفظ مساره هنا.",
+    "Recorrido guardado": "مسار محفوظ",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "أنهِ النشاط لحفظ المسار. أبقِ التطبيق ظاهرًا: قد يحد المتصفح من GPS في الخلفية."
   },
   "de": {
     "Activar rutina": "Trainingsplan aktivieren",
@@ -1752,7 +1788,16 @@
     "Semana anterior": "Vorherige Woche",
     "Semana siguiente": "Nächste Woche",
     "Elegir semana": "Woche auswählen",
-    "Semana actual": "Aktuelle Woche"
+    "Semana actual": "Aktuelle Woche",
+    "Mapa del recorrido": "Routenkarte",
+    "Centrar ubicación": "Standort zentrieren",
+    "Ver recorrido completo": "Gesamte Route anzeigen",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "Die Straßenkarte konnte nicht geladen werden. GPS und Routenaufzeichnung bleiben verfügbar.",
+    "Permití el acceso a tu ubicación en el navegador.": "Erlaube den Standortzugriff im Browser.",
+    "Recorridos guardados": "Gespeicherte Routen",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "Beende eine GPS-Aktivität, um ihre Route hier zu speichern.",
+    "Recorrido guardado": "Gespeicherte Route",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "Beende die Aktivität, um die Route zu speichern. Lass die App sichtbar: Der Browser kann GPS im Hintergrund einschränken."
   },
   "it": {
     "Activar rutina": "Attiva routine",
@@ -2103,7 +2148,16 @@
     "Semana anterior": "Settimana precedente",
     "Semana siguiente": "Settimana successiva",
     "Elegir semana": "Scegli settimana",
-    "Semana actual": "Settimana attuale"
+    "Semana actual": "Settimana attuale",
+    "Mapa del recorrido": "Mappa del percorso",
+    "Centrar ubicación": "Centra posizione",
+    "Ver recorrido completo": "Mostra percorso completo",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "La mappa stradale non si carica. GPS e registrazione del percorso restano disponibili.",
+    "Permití el acceso a tu ubicación en el navegador.": "Consenti l’accesso alla posizione nel browser.",
+    "Recorridos guardados": "Percorsi salvati",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "Termina un’attività GPS per salvarne qui il percorso.",
+    "Recorrido guardado": "Percorso salvato",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "Termina l’attività per salvare il percorso. Mantieni visibile l’app: il browser può limitare il GPS in background."
   },
   "pt": {
     "Activar rutina": "Ativar rotina",
@@ -2454,7 +2508,16 @@
     "Semana anterior": "Semana anterior",
     "Semana siguiente": "Próxima semana",
     "Elegir semana": "Escolher semana",
-    "Semana actual": "Semana atual"
+    "Semana actual": "Semana atual",
+    "Mapa del recorrido": "Mapa do percurso",
+    "Centrar ubicación": "Centralizar localização",
+    "Ver recorrido completo": "Ver percurso completo",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "O mapa de ruas não carregou. O GPS e o registro do percurso continuam disponíveis.",
+    "Permití el acceso a tu ubicación en el navegador.": "Permita o acesso à localização no navegador.",
+    "Recorridos guardados": "Percursos salvos",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "Finalize uma atividade com GPS para salvar o percurso aqui.",
+    "Recorrido guardado": "Percurso salvo",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "Finalize a atividade para salvar o percurso. Mantenha o app visível: o navegador pode limitar o GPS em segundo plano."
   },
   "en": {
     "Sexo": "Sex",
@@ -2655,6 +2718,15 @@
     "Semana anterior": "Previous week",
     "Semana siguiente": "Next week",
     "Elegir semana": "Choose week",
-    "Semana actual": "Current week"
+    "Semana actual": "Current week",
+    "Mapa del recorrido": "Route map",
+    "Centrar ubicación": "Center location",
+    "Ver recorrido completo": "View full route",
+    "El mapa de calles no pudo cargarse. El GPS y el registro del recorrido siguen disponibles.": "Street tiles could not load. GPS and route recording remain available.",
+    "Permití el acceso a tu ubicación en el navegador.": "Allow location access in your browser.",
+    "Recorridos guardados": "Saved routes",
+    "Al finalizar una actividad con GPS, tu recorrido se guarda aquí.": "Finish a GPS activity to save its route here.",
+    "Recorrido guardado": "Saved route",
+    "Finalizá la actividad para guardar el recorrido. Mantené la app visible: el navegador puede limitar el GPS en segundo plano.": "Finish the activity to save the route. Keep the app visible: the browser may limit GPS in the background."
   }
 }

@@ -107,10 +107,26 @@ const savedCustomExerciseSchema = z.looseObject({
   custom: z.boolean().optional(),
   steps: z.array(z.string()).optional(),
 });
+export const trackingPointSchema = z.looseObject({
+  lat: z.number().finite().min(-90).max(90),
+  lon: z.number().finite().min(-180).max(180),
+  time: nonnegative,
+  speed: z.number().finite(),
+});
+export const trackingSessionSchema = z.looseObject({
+  id,
+  date: z.string().min(1),
+  mode: z.enum(["run", "cycle"]),
+  durationSeconds: nonnegative,
+  distanceMeters: nonnegative,
+  points: z.array(trackingPointSchema),
+});
+export type TrackingSession = z.infer<typeof trackingSessionSchema>;
 export const snapshotSchema = z.looseObject({
   routines: z.array(routineSchema),
   selected: z.string().nullable(),
   sessions: z.array(sessionSchema),
+  trackingSessions: z.array(trackingSessionSchema).optional(),
   workout: workoutSchema.nullable(),
   profile: profileSchema,
   settings: settingsSchema,

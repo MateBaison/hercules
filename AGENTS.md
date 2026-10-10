@@ -6,7 +6,7 @@ HERCULES is a fitness application migrated from a hosted HTML app to a server-re
 
 - Bun 1.4.2 is the package manager and unit-test runner; use `bun.lock` and `bun install --frozen-lockfile`.
 - Next.js 16.3.8, React 19.2.8, strict TypeScript with `noUncheckedIndexedAccess`, and the `@/*` alias for `src/*`.
-- Tailwind CSS 4, shadcn/ui with Base UI (`base-nova`), Lucide icons, Zod 4 and Supabase SSR/browser clients.
+- Tailwind CSS 4, shadcn/ui with Base UI (`base-nova`), Lucide icons, Zod 4, Leaflet 1.9.4 and Supabase SSR/browser clients.
 - Start locally with `bun run dev --hostname localhost --port 3000`. Node.js 20.9+ is required. Optional `.tools/` runtimes are machine-specific and ignored.
 - Use `bun run typecheck`, `bun run test` (unit tests), `bun run build`, and `bun run baseline:verify` as appropriate for the change. There is no lint script.
 - `bun run format` formats all source, scripts, tests and the Next.js/Playwright configs; prefer formatting only changed files for small changes.
@@ -16,7 +16,7 @@ HERCULES is a fitness application migrated from a hosted HTML app to a server-re
 - `src/app/`: route pages, layouts, loading/error boundaries, authentication callbacks and the account summary API. The `(application)` route group protects `/home`, `/library`, `/workout`, `/tools`, `/progress` and `/profile` and requires completed onboarding.
 - `src/features/`: feature UI and browser interactions. Keep route pages thin and put reusable fitness behavior in the domain layer.
 - `src/domain/`: pure calculations and workout/routine/progress behavior; `schemas/` defines persisted data and command validation, and `legacy/read-snapshot.ts` reads compatible snapshots.
-- `src/data/`: validated exercise catalog and translation helpers. `src/data/legacy/` contains captured catalog/default data, not live user records.
+- `src/data/`: validated exercise catalog and translation helpers. `src/data/legacy/` contains captured catalog/default data, not live user records. Add new exercise definitions/variants in `additional-exercises.json` and `additional-image-variants.json`; preserve the original 136 definitions and baseline assets.
 - `src/components/ui/`: shared shadcn/Base UI primitives; `src/components/layout/`: account shell, header and navigation. Reuse these components and tokens/styles in `src/app/globals.css`.
 - `src/state/app-provider.tsx`: account context exposed through `useApp()`, backed by `SyncController`. `runtime-provider.tsx` owns transient rest timers and the session clipboard; clocks also have a feature-specific provider.
 - `src/lib/supabase/`: clients, verified authentication, account reads, snapshot repository and synchronization. `src/lib/storage/` owns per-account caches/backups; `src/lib/browser/` contains browser media helpers.
@@ -34,6 +34,8 @@ HERCULES is a fitness application migrated from a hosted HTML app to a server-re
 - Keep full photo-heavy snapshots on the browser-to-Supabase path; server account summaries select small profile fields. Browser writes use `updated_at` conditional updates (or insert for a missing row); stale writes must reconcile and preserve conflict backups before an explicit choice. Clean accounts refresh on focus and every 30 seconds while visible. There is no realtime merging; older clients with unconditional upserts must refresh.
 
 ## Compatibility and UI conventions
+
+- GPS routes use optional `trackingSessions` with seconds, meters and private coordinates, separate from strength-training sessions measured in minutes. Finalization saves through the normal account change/sync path. Unfinished routes remain transient. Leaflet must load only in the browser; keep tile attribution, normal caching and listener/map cleanup. Do not add offline OpenStreetMap tile prefetch or claim reliable background GPS without native-device verification.
 
 - Persisted readers are tolerant and preserve unknown fields; new command inputs are bounded/strict. Preserve historical nulls, string profile measurements, aggregate sessions without sets, retired exercise references, notes/photos and original `done`/`entered` flags.
 - Repetitions and seconds are distinct metrics. Input autosave must work without a completion tick; untouched default values must not become recorded completed sets.

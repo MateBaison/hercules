@@ -907,6 +907,26 @@ label input[type="checkbox"] {
   text-overflow: ellipsis;
   color: var(--muted-foreground);
 }
+.gps-map {
+  height: 300px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  z-index: 0;
+  background: #191d26;
+}
+.personal-form .form-grid > label {
+  min-width: 0;
+}
+.personal-form input[type="date"] {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+@media (max-width: 480px) {
+  .personal-form .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .personal-form .menstrual-calendar-control { grid-column: 1; }
+}
 @media (max-width: 360px) {
   .calendar-session-summary {
     column-gap: 10px;

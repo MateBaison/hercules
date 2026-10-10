@@ -1,4 +1,35 @@
+import {
+  trackingSessionSchema,
+  type TrackingSession,
+} from "./schemas/snapshot";
 export type Point = { lat: number; lon: number; time: number; speed: number };
+// Keep the endpoints and chronological order while bounding full-snapshot GPS payloads.
+export function compactRoute(points: Point[], limit = 10000): Point[] {
+  if (points.length <= limit) return points.map((point) => ({ ...point }));
+  return Array.from({ length: limit }, (_, index) => ({
+    ...points[Math.round((index * (points.length - 1)) / (limit - 1))]!,
+  }));
+}
+export function recordedRoute(
+  track: {
+    mode: "run" | "cycle";
+    started: number;
+    distance: number;
+    points: Point[];
+  },
+  finished: number,
+): TrackingSession {
+  if (track.points.length < 2 || finished <= track.started)
+    throw new Error("Incomplete GPS route");
+  return trackingSessionSchema.parse({
+    id: crypto.randomUUID(),
+    date: new Date(track.started).toISOString(),
+    mode: track.mode,
+    durationSeconds: Math.floor((finished - track.started) / 1000),
+    distanceMeters: track.distance,
+    points: compactRoute(track.points),
+  });
+}
 export function haversine(a: Point, b: Point): number {
   const radians = (value: number) => (value * Math.PI) / 180,
     latitude = radians(b.lat - a.lat),
